@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../styles/globals.css" />
+    <link rel="stylesheet" href="./login-register.css" />
+    <title>Aboroad | Login</title>
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="login-image">
+        <img src="../public/images/macbookMan.png" class="image-image" />
+        <img src="../public/images/abroadsvg.svg" class="image-image" />
+      </div>
+      <div class="login-content">
+        <h1>반갑습니다!</h1>
+        <ul class="plates">
+          <li>로그인</li>
+        </ul>
+        <form class="add-email">
+          <img
+            src="../public/images/sendmail.svg"
+            class="align-right slide-in"
+          />
+          <input
+            type="email"
+            name="item"
+            placeholder="이메일을 입력해주세요"
+            class="add-email-input"
+            autocomplete="off"
+            required
+          />
+          <input type="submit" value="로그인" class="add-email-submit" />
+        </form>
+        <span
+          >아직 회원이 아니신가요? <a href="./register.html">회원가입</a></span
+        >
+      </div>
+    </div>
+
+    <script src="login-register.js"></script>
+  </body>
+</html>

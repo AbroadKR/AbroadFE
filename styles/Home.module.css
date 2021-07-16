@@ -1,3 +1,15 @@
+.header-login {
+  width: 160px;
+  display: flex;
+  justify-content: space-between;
+  font-size: 20px;
+  font-weight: 900;
+
+  position: absolute;
+  right: 50px;
+  top: 30px;
+}
+
 .container1 {
   margin: 330px auto;
   width: 100%;
@@ -87,13 +99,13 @@
 }
 
 .container2-info2 {
-  margin: 13.7px  0 12px;
+  margin: 13.7px 0 12px;
   margin-left: 41.2px;
   font-size: 24px;
   font-weight: bold;
 }
 
-.container2-color{
+.container2-color {
   color: #4db7e6;
 }
 
@@ -110,8 +122,8 @@
 
 .slide-in {
   opacity: 0;
-  transition: all .5s;
-  height: 120px; 
+  transition: all 0.5s;
+  height: 120px;
   background: url('../public/images/KT1.png') no-repeat;
   background-size: contain;
   display: flex;
@@ -120,15 +132,14 @@
   margin: 20px 0;
 }
 
-
-.container2-message p{
+.container2-message p {
   font-weight: bolder;
 }
 
 .footer {
   width: 100%;
   height: 259px;
-  background: #4DB7E6;
+  background: #4db7e6;
   color: white;
   display: flex;
   justify-content: space-around;
@@ -157,7 +168,7 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  margin-left: 185px; 
+  margin-left: 185px;
 }
 
 .footer-right h3 {
@@ -179,7 +190,6 @@
 .align-right.slide-in {
   transform: translateX(30%) scale(0.95);
 }
-
 
 .slide-in.active {
   opacity: 1;

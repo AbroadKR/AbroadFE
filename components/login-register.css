@@ -1,0 +1,147 @@
+html {
+  box-sizing: border-box;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-family: Futura, 'Trebuchet MS', Arial, sans-serif;
+  background: url('../public/images/Rectangle\ 20.png');
+}
+
+.wrapper {
+  display: flex;
+  margin: 0 auto;
+  width: 31.77vw;
+  height: 50.97vh;
+  background: rgba(255, 255, 255, 0.95);
+  box-shadow: 0 0 10px 2px rgba(0, 0, 0, 0.1);
+}
+
+.login-image {
+  flex: 1 1 36%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: url('../public/images/Rectangle24.svg') center no-repeat;
+  background-size: cover;
+}
+
+.image-image {
+  padding-bottom: 10px;
+  width: 130px;
+}
+
+.login-content {
+  flex: 1 1 64%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+h1 {
+  color: #4db7e6;
+  text-align: center;
+  margin: 0;
+  font-weight: 200;
+}
+
+li {
+  font-size: 24px;
+}
+
+.add-email {
+  margin-bottom: 20px;
+}
+
+.add-email-input {
+  width: 277px;
+  border: 1px solid #d1d1d1;
+  border-radius: 30px/30px;
+  font-size: 15px;
+  padding: 10px 10px;
+  padding-left: 20px;
+}
+
+.disabled {
+  opacity: 0;
+  transform: translateX(80%) scale(0.1);
+}
+
+.add-email-input:focus {
+  border: 2px solid black;
+}
+
+.add-email-submit {
+  color: white;
+  background-color: #4db7e6;
+  border-radius: 30px/30px;
+  font-size: 15px;
+  font-weight: bold;
+  padding: 10px 10px;
+}
+
+.add-email-submit:hover {
+  background-color: #6bcaf3;
+  transform: scale(1.02);
+}
+
+.add-email img {
+  width: 95%;
+}
+
+.align-right {
+  float: right;
+  margin-left: 20px;
+}
+
+.slide-in {
+  opacity: 0;
+  transition: all 0.2s;
+}
+
+.align-right.slide-in {
+  transform: translateX(30%) scale(0.95);
+}
+
+.slide-in.active {
+  opacity: 1;
+  transform: translateX(-2.5%) translateY(98%) scale(1);
+}
+
+span a {
+  color: #4db7e6;
+}
+
+.plates {
+  margin: 0;
+  padding: 0;
+  text-align: left;
+  list-style: none;
+}
+
+.plates li {
+  padding: 10px 0;
+  font-weight: 900;
+  display: flex;
+}
+
+.plates label {
+  flex: 1;
+  cursor: pointer;
+}
+
+.plates input {
+  display: none;
+}
+
+.plates input + label:before {
+  content: '⬜️';
+  margin-right: 10px;
+}
+
+.plates input:checked + label:before {
+  content: '🌮';
+}
