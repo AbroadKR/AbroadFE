@@ -7,17 +7,65 @@
     <link rel="stylesheet" href="./styles/globals.css" />
     <link rel="stylesheet" href="./styles/Home.module.css" />
     <title>Home | Abroad</title>
+    <style></style>
   </head>
   <body>
     <ul class="header-login">
-      <li><a href="./components/login.html">로그인 | </a></li>
-      <li><a href="./components/register.html">회원가입</a></li>
+      <button id="open">로그인 |</button>
+      <button id="open2">회원가입</button>
     </ul>
+    <div class="signup_modal hidden">
+      <div class="modal_overlay">
+        <div class="modal_content">
+          <div class="login-image">
+            <img src="../public/images/relogo.svg" class="image-image" />
+          </div>
+          <div class="login-content">
+            <button class="login-button"></button>
+            <h1>반갑습니다!</h1>
+            <ul class="plates">
+              <li>로그인</li>
+            </ul>
+            <form class="add-email">
+              <img
+                src="../public/images/sendmail.svg"
+                class="align-right signup-in"
+              />
+              <input
+                type="email"
+                name="item"
+                placeholder="이메일을 입력해주세요"
+                class="add-email-input"
+                autocomplete="off"
+                required
+              />
+              <input type="submit" value="로그인" class="add-email-submit" />
+            </form>
+            <ul class="sns">
+              <li>
+                <button>
+                  <img class="googleBtn" src="./public/images/google.jpg" />
+                </button>
+              </li>
+              <li>
+                <button>
+                  <img class="githubBtn" src="./public/images/github.png" />
+                </button>
+              </li>
+            </ul>
+            <div class="login-content-span">
+              <span>아직 회원이 아니신가요?</span>
+              <a href="./components/register.html" class="link-changeBtn">
+                <button class="changeBtn">회원가입</button>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
     <div class="container1">
       <div class="container-left">
-        <span>
-          <p class="container-title">왜 어브로드를 찾을까요?</p>
-        </span>
+        <span class="container-title"> 왜 어브로드를 찾을까요? </span>
         <div class="container-left-img1">
           <img src="./public/images/macbookMan.png" class="align-left" />
         </div>
@@ -47,7 +95,7 @@
       </div>
     </div>
     <div class="container2">
-      <div>
+      <div class="container2-wrap">
         <span class="container2-title">
           타지에서 외롭기만 한 나..과연 잘 온 걸까요?
         </span>
@@ -66,18 +114,6 @@
             <img src="./public/images/Union.png" class="align-right slide-in" />
             <img src="./public/images/Union.png" class="align-right slide-in" />
             <img src="./public/images/Union.png" class="align-right slide-in" />
-            <!-- <div class="slide-in align-right">
-              <span>매번 혼밥하기 외로웠는데 어브로드 덕분에 같이 밥먹는 친구가 생겼어요!<p>임O한 님 | 2020년 07월 01일</p>
-              </span>
-            </div> -->
-            <!-- <div class="slide-in align-right">
-              <span>입국한지 얼마 되지 않아 친구가 없었는데 다양한 친구들을 사귈 수 있었어요!<p>김O범 님 | 2020년 07월 01일</p>
-              </span>
-            </div> -->
-            <!-- <div class="slide-in align-right">
-              <span>교환학생을 알아보고 싶었는데 어브로드에서 한 눈에 편리하게 정보를 알 수 있었어요.<p>최O준 님 | 2020년 07월 01일
-              </span>
-            </div> -->
           </div>
           <img src="./public/images/phone.png" class="container2-img" />
         </section>
@@ -110,5 +146,9 @@
       </div>
     </footer>
     <script src="script.js"></script>
+    <script type="module" src="firebase.js"></script>
+    <script type="module" src="snsLogin.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.8.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.8.0/firebase-analytics.js"></script>
   </body>
 </html>
