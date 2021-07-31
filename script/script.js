@@ -1,21 +1,20 @@
-const signUpBtn = document.getElementById('open')
+const signUpBtn = document.getElementById('header_signup_login')
 const modal = document.querySelector('.signup_modal')
 const overlay = modal.querySelector('.modal_overlay')
-const closeBtn = modal.querySelector('.login-button')
-const addEmail = document.querySelector('.add-email')
-const input = document.querySelector('.add-email-input')
-const submit = document.querySelector('.add-email-submit')
-const sliderImages = document.querySelectorAll('.signup-in')
+const closeBtn = modal.querySelector('.signup_button')
+const addEmail = document.querySelector('.email_form')
+const input = document.querySelector('.email_form_input')
+const submit = document.querySelector('.email_form_submit')
+const sliderImages = document.querySelectorAll('.signup_in')
 
-const regBtn = document.getElementById('open2')
-const loginContent = document.querySelector('.login-content')
+const regBtn = document.getElementById('header_signup_regist')
+const loginContent = document.querySelector('.signup_contents')
 const modalH1 = loginContent.querySelector('h1')
 const modalLi = loginContent.querySelector('li')
-const modalImg = document.querySelectorAll('.signup-in')
 const modalInput = loginContent.querySelector('input')
 const modalSpan = loginContent.querySelector('span')
-const modalChangeBtn = document.querySelector('.changeBtn')
-const doNotChange = document.querySelector('.link-changeBtn')
+const modalChangeBtn = document.querySelector('.email_form_changeBtn')
+const doNotChange = document.querySelector('.email_form_changeBtn_wrap')
 
 const sliderImage = document.querySelectorAll('.slide-in')
 
@@ -69,8 +68,9 @@ const closeModal = () => {
   sliderImages[0].classList.remove('hidden')
   modalH1.innerText = '반갑습니다!'
   modalLi.innerText = '로그인'
-  loginContent.querySelector('img').src = '../public/images/sendmail.svg'
-  document.querySelector('.add-email-submit').value = '로그인'
+  loginContent.querySelector('img').src =
+    '../public/images/signup_modal/sendmail_img.svg'
+  document.querySelector('.email_form_submit').value = '로그인'
   modalSpan.innerHTML = '아직 회원이 아니신가요?'
   modalChangeBtn.innerText = '회원가입'
   removeItem()
@@ -79,8 +79,9 @@ const closeModal = () => {
 function changeRegist() {
   modalH1.innerText = '환영합니다!'
   modalLi.innerText = '회원가입'
-  loginContent.querySelector('img').src = '../public/images/sendmail-reg.svg'
-  document.querySelector('.add-email-submit').value = '회원가입'
+  loginContent.querySelector('img').src =
+    '../public/images/signup_modal/regist_send_mail.svg'
+  document.querySelector('.email_form_submit').value = '회원가입'
   modalSpan.innerHTML = '이미 계정이 있으신가요?'
   modalChangeBtn.innerText = '로그인'
 }
@@ -93,7 +94,7 @@ function changeLink(e) {
     modalSpan.innerHTML = '아직 회원이 아니신가요?'
     modalChangeBtn.innerText = '회원가입'
     loginContent.querySelector('img').src = '../public/images/sendmail.svg'
-    document.querySelector('.add-email-submit').value = '로그인'
+    document.querySelector('.email_form_submit').value = '로그인'
     removeItem()
   } else if (submit.value == '로그인') {
     e.preventDefault()
@@ -102,7 +103,7 @@ function changeLink(e) {
     modalSpan.innerHTML = '이미 계정이 있으신가요?'
     modalChangeBtn.innerText = '로그인'
     loginContent.querySelector('img').src = '../public/images/sendmail-reg.svg'
-    document.querySelector('.add-email-submit').value = '회원가입'
+    document.querySelector('.email_form_submit').value = '회원가입'
     removeItem()
   }
 }

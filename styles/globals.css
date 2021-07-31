@@ -44,6 +44,9 @@ textarea:focus {
 a,
 button {
   cursor: pointer;
+  all: unset;
+  padding: 0;
+  cursor: pointer;
 }
 
 ul,
