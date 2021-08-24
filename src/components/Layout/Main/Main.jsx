@@ -4,10 +4,12 @@ import Bottom from './Section/Bottom';
 
 export default function Main() {
   return (
-    <div>
-      <Top />
-      <Middle />
-      <Bottom />
-    </div>
+    <>
+      <div>
+        <Top />
+        <Middle />
+        <Bottom />
+      </div>
+    </>
   );
 }

@@ -1,13 +1,13 @@
 import Footer from './components/Layout/Footer';
 import Header from './components/Layout/Header';
-import Main from './components/Layout/Main/Main';
 import './styles/globalStyles.css';
+import Routes from './Router/Routes';
 
 function App() {
   return (
     <div className="App">
       <Header />
-      <Main />
+      <Routes />
       <Footer />
     </div>
   );

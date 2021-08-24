@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import { useSetRecoilState, useRecoilState, useRecoilValue } from 'recoil';
 import {
@@ -12,7 +12,6 @@ import {
 } from '../../store/atom';
 
 export default function SignupModalContents() {
-  const signupFormRef = useRef();
   const setModalActive = useSetRecoilState(modalActive);
   const [LoginOrRegist, setLoginOrRegist] = useRecoilState(isLoginOrRegist);
   const [opposite, setOpposite] = useRecoilState(oppositeIsLoginOrRegist);
@@ -63,7 +62,7 @@ export default function SignupModalContents() {
       <h1>{modalTitle}</h1>
       <h2>{LoginOrRegist}</h2>
       {!isUserSubmit ? (
-        <InputEmail ref={signupFormRef}>
+        <InputEmail>
           <input
             type="email"
             name="item"
@@ -77,8 +76,10 @@ export default function SignupModalContents() {
             onClick={() => setIsUserSubmit(true)}
           />
         </InputEmail>
+      ) : LoginOrRegist == '로그인' ? (
+        <SlideImgLogin />
       ) : (
-        <SlideImg></SlideImg>
+        <SlideImgRegist />
       )}
       <GoRegist>
         <span>{modalMessage}</span>
@@ -161,11 +162,25 @@ const InputEmail = styled.form`
   }
 `;
 
-const SlideImg = styled.img`
-  float: right;
-  margin-left: 20px;
-  transition: all 0.2s;
+const SlideImgLogin = styled.div`
+  width: 95%;
+  height: 2.5em;
+  position: absolute;
+  bottom: 160px;
+  left: 5px;
+  margin-bottom: 20px;
   background: url('images/signup_modal/sendmail_img.svg') center no-repeat;
+  background-size: cover;
+`;
+
+const SlideImgRegist = styled.div`
+  width: 95%;
+  height: 2.5em;
+  position: absolute;
+  bottom: 160px;
+  left: 5px;
+  margin-bottom: 20px;
+  background: url('images/signup_modal/regist_send_mail.svg') center no-repeat;
   background-size: cover;
 `;
 
