@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useHistory } from 'react-router';
 import { useRecoilState, useSetRecoilState } from 'recoil';
-import { modalActive, signupModalState } from '../../store/atom';
+import { modalActive, signupModalState } from '../../Store/atom';
 import SignupModal from '../../Modals/signUp/SignupModal';
 
 export default function Header() {

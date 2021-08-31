@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import styled, { css } from 'styled-components';
-import { Sheffield, Arkansas, Lincoln } from '../../../images';
+import { Sheffield, Arkansas, Lincoln } from '../../../../images';
 
 class Second extends Component {
   render() {

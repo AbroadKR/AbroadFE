@@ -9,7 +9,7 @@ import {
   signupModalMessage,
   signupUserSubmit,
   oppositeIsLoginOrRegist,
-} from '../../store/atom';
+} from '../../Store/atom';
 
 export default function SignupModalContents() {
   const setModalActive = useSetRecoilState(modalActive);
