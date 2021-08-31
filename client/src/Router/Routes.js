@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import Main from '../components/Layout/Main/Main';
+import Main from '../Components/Layout/Main/Main';
+import Header from "../Components/Layout/Header"
 import Community from '../pages/Community';
 
 class Routes extends React.Component {
@@ -8,6 +9,7 @@ class Routes extends React.Component {
     return (
       <Router>
         <Switch>
+          <Header/>
           <Route exact path="/" component={Main} />
           <Route exact path="/Community" component={Community} />
         </Switch>
