@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import {FaInstagram, FaYoutube} from "react-icons/fa"
 
 export default function Footer() {
   return (
@@ -19,11 +20,11 @@ export default function Footer() {
       </FooterLeft>
       <FooterRight>
         <InstagramIcon>
-          <img src="/images/main_view/footer_instagram_img.svg" />
-          <h3>어브로드 인스타그램 바로가기</h3>
+          <FaInstagram style={{fontSize : "2.5rem", marginRight:"1.2rem"}}/>
+          <FooterRightTexts>어브로드 인스타그램 바로가기</FooterRightTexts>
         </InstagramIcon>
         <YoutubeIcon>
-          <img src="/images/main_view/footer_youtube_img.svg" />
+          <FaYoutube style={{fontSize : "2.5rem", marginRight:"1.2rem"}}/> 
           <FooterRightTexts>어브로드 유튜브 바로가기</FooterRightTexts>
         </YoutubeIcon>
       </FooterRight>
@@ -32,11 +33,13 @@ export default function Footer() {
 }
 
 const FooterWrap = styled.footer`
+  display : flex;
+  align-items : center;
   width: 100%;
-  height: calc(185px + 5vh);
+  height: 33vh;
   padding: 0.5em;
   background: #66a6ff;
-  color: white;
+  color: #ffff;
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -47,14 +50,11 @@ const FooterLeft = styled.div`
   display: flex;
   justify-content: center;
   flex-direction: column;
-  height: 100%;
-  margin: auto 0;
+  height : fit-content;
 `;
 
 const Logo = styled.div`
-  display: flex;
-  margin: 1.5em 0;
-  margin-top: 0.5em;
+  transform : translateX(-8%);
 `;
 
 const LeftContent = styled.div`
@@ -62,18 +62,14 @@ const LeftContent = styled.div`
 `;
 
 const LeftTexts = styled.p`
-  margin: 0.6rem 0;
+  margin: 1rem 0;
   font-weight: bold;
   text-align: start;
-
-  &:last-child {
-    margin-bottom: 0;
-  }
 `;
 
 const FooterRight = styled.div`
-  height: 110px;
-  width: calc(200px + 10vw);
+  width: 25%;
+  height : fit-content;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -81,20 +77,23 @@ const FooterRight = styled.div`
 
 const InstagramIcon = styled.div`
   display: flex;
+  height : 5rem;
   justify-content: start;
   align-items: center;
-  margin-right: 5%;
+  margin-top : 1rem;
 `;
 
 const YoutubeIcon = styled.div`
   display: flex;
+  height : 5rem;
   justify-content: start;
   align-items: center;
-  margin-right: 5%;
 `;
 
 const FooterRightTexts = styled.h3`
   text-align: center;
   margin: auto 0;
+  font-size : 1.2rem;
+  font-weight : 700;
   white-space: nowrap;
 `;

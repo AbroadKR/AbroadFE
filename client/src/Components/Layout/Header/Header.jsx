@@ -54,7 +54,7 @@ const Head = styled.header`
     display: flex;
     align-items: center;
     width: 100vw;
-    height: 7rem;
+    height: 9rem;
     border-bottom: 1px solid #D1D1D1D1;
 `
 const HeadLogo = styled.div`
@@ -84,7 +84,7 @@ const NavMenu = styled.li`
 `
 const NavLink = styled(Link)`
     font-size: 1.1rem;
-    font-weight: 700;
+    font-weight: 800;
     padding: 1em;
 `
 const SignBox = styled.ul`
@@ -117,7 +117,7 @@ const SignBox = styled.ul`
         background-color: #ffff;
         box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
         border-radius : 25px;
-        top: 5.5rem;
+        top: 75%;
         overflow: hidden;
         z-index: 15;
         transition : max-height .4s;

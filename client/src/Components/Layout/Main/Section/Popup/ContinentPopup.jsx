@@ -8,7 +8,7 @@ function ContinentPopup({ continents, handleContinent }) {
     }, [selContinents])
     const handleSelect = (continent) => (
         selContinents.includes(continent) ?
-            setSelContinents(selContinents.filter(item => item != continent))
+            setSelContinents(selContinents.filter(item => item !== continent))
             : setSelContinents([...selContinents, continent])
     )
     return (

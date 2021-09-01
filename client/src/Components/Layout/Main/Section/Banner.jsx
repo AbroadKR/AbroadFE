@@ -56,9 +56,9 @@ const Banner = () => {
 export default Banner;
 
 const Banners = styled.div`
-  height: 50vh;
+  height: 55vh;
   width: 75vw;
-  margin: 7rem auto 0;
+  margin: 2rem auto 0;
   position: relative;
 `;
 

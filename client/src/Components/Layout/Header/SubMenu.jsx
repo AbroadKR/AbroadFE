@@ -24,7 +24,7 @@ function CommunitySub({ isDown }) {
     return (
         <SubMenu style={{ height: menuHeight }}>
             <CSSTransition
-            in={activeMenu==="continent" || activeMenu==="travel"}
+            in={activeMenu === "continent" || activeMenu === "travel"}
             timeout={250}
             classNames="move"
             >
@@ -83,7 +83,7 @@ const SubMenu = styled.ul`
     color : #444444;
     font-weight : 700;
     overflow : hidden;
-    top: 85%;
+    top: 75%;
     border: none;
     border-radius : 25px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);

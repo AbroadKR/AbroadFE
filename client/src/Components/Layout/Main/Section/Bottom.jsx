@@ -1,20 +1,19 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import { Iphone, MsgBox, Quotes } from '../../../../images';
 
 const Bottom = () => {
   return (
     <Section>
-      <Title>타지에서 외롭기만한 나.. 과연 잘 온 걸까요?</Title>
+      <Title>타지에서 외롭기만 한 나.. 과연 잘 온 걸까요?</Title>
       <Container>
         <Content>
           <Topic>
             <Quotes />
             <Phrases>
               <Phrase>
-                유학생들을 위한 정보공유와 새 친구들을 만날 수 있는 공간,
+                유학생들을 위한 정보공유와 새 친구들을 만날 수 있는 공간,<br/><span>어브로드라면 가능합니다.</span>
               </Phrase>
-              <Phrase blue>어브로드라면 가능합니다.</Phrase>
             </Phrases>
             <RightQuotes />
           </Topic>
@@ -45,7 +44,9 @@ const Bottom = () => {
             </Message>
           </Messages>
         </Content>
-        <StyledIphone src={Iphone} alt="Iphone Mockup" />
+        <PhoneBox>
+          <StyledIphone src={Iphone} alt="Iphone Mockup" />
+        </PhoneBox>
       </Container>
     </Section>
   );
@@ -66,16 +67,19 @@ const Title = styled.h3`
 `;
 
 const Container = styled.div`
-  margin-top: 6.94rem;
+  margin-top: 5.5rem;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   width: 100%;
 `;
 
 const Content = styled.div`
   display: flex;
   flex-direction: column;
+  justify-content : center;
   margin-right: 1.5rem;
+  padding-left : 2em;
+  width : 60%;
 `;
 
 const Topic = styled.div`
@@ -83,35 +87,52 @@ const Topic = styled.div`
 `;
 
 const Phrases = styled.div`
+  display : flex;
+  justify-content : center;
+  position: relative;
+  margin-bottom : 4.5rem;
+  top: 1.5em;
   font-size: 1.5rem;
   font-weight: bold;
   line-height: 1.75em;
-  position: relative;
-  top: 1.5em;
+  color : #444444;
+  &  span {
+    color : #66A6FF;
+  }
 `;
 
 const Phrase = styled.p`
-  color: ${(props) => (props.blue ? '#66A6FF' : '#444444')};
+
 `;
 
 const Messages = styled.div`
-  margin-top: 3.75em;
+  margin-top: 3em;
 `;
 
 const Message = styled.div`
   position: relative;
-  width: 40em;
+  overflow : hidden;
+  white-space : nowrap;
+  text-overflow : ellipsis;
+  display : flex;
+  flex-direction : column;
+  justify-content : center;
+  align-items : center;
+  width: 100%;
   height: 7.56em;
   margin-bottom: 2em;
   line-height: 1.75em;
-  padding: 2.13em 0 0 3em;
 `;
 
 const Comment = styled.p`
+  display : block;
+  width : 85%;
   font-weight: 400;
 `;
 
 const CommentInfo = styled.span`
+  display : block;
+  width : 85%;
   font-weight: 700;
 `;
 
@@ -124,9 +145,16 @@ const StyledMsgBox = styled(MsgBox)`
   z-index: -1;
 `;
 
+const PhoneBox = styled.div`
+  display : flex;
+  align-items : center;
+  width : 40%;
+  margin-left : 5%;
+`
+
 const StyledIphone = styled.img`
-  width: 24rem;
-  height: 37rem;
+  /* width : 100%;
+  height : 100%; */
 `;
 
 const RightQuotes = styled(Quotes)`

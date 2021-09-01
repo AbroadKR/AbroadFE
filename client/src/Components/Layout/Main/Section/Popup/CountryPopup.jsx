@@ -8,7 +8,7 @@ function CountryPopup({ countries, handleCountry}) {
     }, [selCountries])
     const handleSelect = (country) => (
         selCountries.includes(country) ?
-            setSelCountries(selCountries.filter(item => item != country))
+            setSelCountries(selCountries.filter(item => item !== country))
             : setSelCountries([...selCountries, country])
     )
     return (

@@ -57,7 +57,7 @@ export default Second;
 
 const Section = styled.div`
   width: 75vw;
-  margin: 7em auto 0;
+  margin: 7rem auto 0;
 `;
 
 const Title = styled.span`
@@ -70,8 +70,9 @@ const Title = styled.span`
 const List = styled.ul`
   width: 100%;
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-around;
   flex-wrap: wrap;
+  margin-top : 2rem;
 `;
 
 const Item = styled.li`
@@ -92,6 +93,7 @@ const Content = styled.div`
   border-radius: 1.4rem;
   display: flex;
   flex-direction: column;
+  background-color : #ffff;
 `;
 
 const imgStyle = css`
@@ -122,6 +124,7 @@ const UnivName = styled.h5`
   font-weight: 800;
   font-size: ${(props) => (props.kor ? '1.5rem' : '1.13rem')};
   padding: 0 0.2rem;
+  line-height : 2rem;
 `;
 const Button = styled.button`
   margin-top: 3.3rem;

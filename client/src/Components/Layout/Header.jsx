@@ -20,9 +20,9 @@ export default function Header() {
   };
 
   const onModalActive = (index) => {
-    if (index == 'login') {
+    if (index === 'login') {
       setModalState('login');
-    } else if (index == 'regist') {
+    } else if (index === 'regist') {
       setModalState('regist');
     }
     setModalActive(true);

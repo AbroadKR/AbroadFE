@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import styled from 'styled-components';
-import { useSetRecoilState, useRecoilState, useRecoilValue } from 'recoil';
+import { useSetRecoilState, useRecoilState } from 'recoil';
 import {
   modalActive,
   isLoginOrRegist,
@@ -22,12 +22,12 @@ export default function SignupModalContents() {
 
   useEffect(() => {
     setIsUserSubmit(false);
-    if (modalState == 'login') {
+    if (modalState === 'login') {
       setModalTitle('반갑습니다!');
       setLoginOrRegist('로그인');
       setOpposite('회원가입');
       setModalMessage('아직 회원이 아니신가요?');
-    } else if (modalState == 'regist') {
+    } else if (modalState === 'regist') {
       setModalTitle('환영합니다!');
       setLoginOrRegist('회원가입');
       setOpposite('로그인');
@@ -41,13 +41,13 @@ export default function SignupModalContents() {
 
   const ChangeModalState = () => {
     setIsUserSubmit(false);
-    if (modalState == 'login') {
+    if (modalState === 'login') {
       setModalTitle('환영합니다!');
       setLoginOrRegist('회원가입');
       setOpposite('로그인');
       setModalMessage('이미 계정이 있으신가요?');
       setModalState('regist');
-    } else if (modalState == 'regist') {
+    } else if (modalState === 'regist') {
       setModalTitle('반갑습니다!');
       setLoginOrRegist('로그인');
       setOpposite('회원가입');
@@ -76,7 +76,7 @@ export default function SignupModalContents() {
             onClick={() => setIsUserSubmit(true)}
           />
         </InputEmail>
-      ) : LoginOrRegist == '로그인' ? (
+      ) : LoginOrRegist === '로그인' ? (
         <SlideImgLogin />
       ) : (
         <SlideImgRegist />

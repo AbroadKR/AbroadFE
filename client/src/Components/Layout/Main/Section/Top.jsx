@@ -101,17 +101,16 @@ function Top(){
 export default Top;
 
 const Section1 = styled.div`
-    width : 75vw;
-    margin: 4.3em 0;
     display: flex;
     flex-direction: column;
     align-items: center;
+    width : 75vw;
 `
 const SearchBar = styled.div`
     z-index: 10;
     position: relative;
     display: flex;
-    border: 1px solid #E5E5E5;
+    border: none;
     border-radius: 50px;
     width: 100%;
     height: 11vh;

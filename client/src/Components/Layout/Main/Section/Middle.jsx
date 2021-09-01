@@ -41,7 +41,8 @@ const Section = styled.section`
   margin: 15rem auto 0;
 `;
 
-const Title = styled.span`
+const Title = styled.h2`
+  margin-bottom : 6rem;
   font-size: 3rem;
   font-weight: 800;
   color: #444444;
@@ -51,38 +52,45 @@ const Title = styled.span`
 const Container = styled.div`
   display: flex;
   margin-top: 3rem;
-  justify-content: center;
+  justify-content : space-between;
 `;
 
 const LeftColumn = styled.div`
   display: flex;
   flex-direction: column;
+  justify-content : center;
+  align-items : center;
+  flex-basis : 35%;
+  width : 35%;
 `;
 
 const StyledImoge = styled.img`
   width: 15rem;
   height: 15rem;
-  transform: translateX(10rem);
+  margin-bottom : 1rem;
 `;
 
 const StyledImac = styled.img`
-  width: 40rem;
-  height: 29rem;
+  width: 30rem;
+  height: 24rem;
 `;
 
 const RightColumn = styled.div`
   display: flex;
+  align-items : center;
   flex-direction: column;
-  padding-top: 6rem;
+  flex-basis : 60%;
 `;
 
-const Phrase = styled.p`
-  transform: translateX(-5rem);
-  width: 26em;
+const Phrase = styled.div`
+  display : flex;
+  align-items : center;
+  width : 80%;
+  line-height : 2.5rem;
   font-size: 1.5rem;
   color: ${(props) => (props.blue ? '#66A6FF' : '#444444')};
   font-weight: ${(props) => (props.blue ? '700' : '400')};
-  margin-bottom: 18rem;
+  height : ${props => props.blue ? '60%' : '40%'};
 `;
 
 // const Arrow = styled.img``;
