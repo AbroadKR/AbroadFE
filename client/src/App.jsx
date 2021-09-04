@@ -1,6 +1,6 @@
 import Routes from './Router/Routes';
 // import Header from './Components/Layout/Header';
-import Footer from './Components/Layout/Footer';
+import Footer from './Components/Layout/Footer'
 import Global from "./Styles/GlobalStyles";
 
 function App() {
@@ -8,8 +8,8 @@ function App() {
     <div className="App">
       {/* <Header /> */}
       <Routes />
-      <Footer />
       <Global/>
+      <Footer/>
     </div>
   );
 }

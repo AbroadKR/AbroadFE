@@ -24,7 +24,7 @@ const Bottom = () => {
                 생겼어요!
               </Comment>
               <CommentInfo>임○한 님 &nbsp;|&nbsp; 2020년 07월 01일</CommentInfo>
-              <StyledMsgBox />
+              <StyledMsgBox preserveAspectRatio="none"/>
             </Message>
             <Message>
               <Comment>
@@ -32,7 +32,7 @@ const Bottom = () => {
                 있었어요!
               </Comment>
               <CommentInfo>김○범 님 &nbsp;|&nbsp; 2020년 07월 01일</CommentInfo>
-              <StyledMsgBox />
+              <StyledMsgBox preserveAspectRatio="none"/>
             </Message>
             <Message>
               <Comment>
@@ -40,7 +40,7 @@ const Bottom = () => {
                 정보를 알 수 있었어요.
               </Comment>
               <CommentInfo>최○준 님 &nbsp;|&nbsp; 2020년 07월 01일</CommentInfo>
-              <StyledMsgBox />
+              <StyledMsgBox preserveAspectRatio="none" />
             </Message>
           </Messages>
         </Content>
@@ -77,7 +77,7 @@ const Content = styled.div`
   display: flex;
   flex-direction: column;
   justify-content : center;
-  margin-right: 1.5rem;
+  margin-right: 4rem;
   padding-left : 2em;
   width : 60%;
 `;
@@ -149,10 +149,10 @@ const PhoneBox = styled.div`
   display : flex;
   align-items : center;
   width : 40%;
-  margin-left : 5%;
 `
 
 const StyledIphone = styled.img`
+  margin-left : 3rem;
   /* width : 100%;
   height : 100%; */
 `;

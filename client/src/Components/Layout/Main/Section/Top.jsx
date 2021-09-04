@@ -1,4 +1,5 @@
 import React ,{useState, useRef} from "react";
+import {Link} from "react-router-dom"
 import styled from "styled-components";
 import { FiSearch } from "react-icons/fi";
 import axios from "axios";
@@ -88,8 +89,8 @@ function Top(){
                         <OptionsTitle>국가</OptionsTitle>
                         <NormalInput type="text" name="country" placeholder="어느 국가를 선호하시나요?" className="countryInput" ref={countryInputRef} disabled/>
                     </Options>
-                    <SearchButton className='section1_search_button' type="submit" onclick="searchByOptions()">
-                        <FiSearch></FiSearch>
+                    <SearchButton to={{pathname : "/result", state : {hi : "hi"}}} className='section1_search_button' type="submit">
+                        <FiSearch/>
                     </SearchButton>
                     {clickedOptions === "country" ? <CountryPopup countries={countries} handleCountry={handleCountry}/>:""}
                 </Container>
@@ -176,7 +177,7 @@ const Bar = styled.span`
     width: 1px;
     height: 47px;
 `
-const SearchButton = styled.button`
+const SearchButton = styled(Link)`
     display : flex;
     align-items : center;
     justify-content : center;
