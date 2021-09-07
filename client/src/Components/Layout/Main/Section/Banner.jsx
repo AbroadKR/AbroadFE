@@ -1,11 +1,11 @@
 import React, { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 import { animated, useSprings } from '@react-spring/web';
-import { Banner1, Banner2, Banner4 } from '../../../../images';
+import { Banner1, Banner2, Banner3 } from '../../../../images';
 
 const Banner = () => {
   const [curIndex, setCurIndex] = useState(0);
-  const banners = [Banner1, Banner2, Banner4];
+  const banners = [Banner1, Banner2, Banner3];
 
   const autoChange = useRef();
 
