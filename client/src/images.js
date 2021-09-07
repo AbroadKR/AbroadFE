@@ -1,7 +1,7 @@
 // Banner
 import Banner1 from './images/main/banner/banner_1.svg';
 import Banner2 from './images/main/banner/banner_2.svg';
-import Banner4 from './images/main/banner/banner_4.svg';
+import Banner3 from './images/main/banner/banner_3.svg';
 
 // // Top
 import Sheffield from './images/main/top/sheffield_univ.png';
@@ -20,7 +20,7 @@ import { ReactComponent as Quotes } from './images/main/bottom/quotes.svg';
 export {
   Banner1,
   Banner2,
-  Banner4,
+  Banner3,
   Sheffield,
   Arkansas,
   Lincoln,
