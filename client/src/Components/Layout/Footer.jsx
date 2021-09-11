@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import {FaInstagram, FaYoutube} from "react-icons/fa"
+import {FaInstagram, FaGithub} from "react-icons/fa"
 
 export default function Footer() {
   return (
@@ -23,10 +23,10 @@ export default function Footer() {
           <FaInstagram style={{fontSize : "2.5rem", marginRight:"1.2rem"}}/>
           <FooterRightTexts>어브로드 인스타그램 바로가기</FooterRightTexts>
         </InstagramIcon>
-        <YoutubeIcon>
-          <FaYoutube style={{fontSize : "2.5rem", marginRight:"1.2rem"}}/> 
-          <FooterRightTexts>어브로드 유튜브 바로가기</FooterRightTexts>
-        </YoutubeIcon>
+        <GithubIcon>
+          <FaGithub style={{fontSize : "2.5rem", marginRight:"1.2rem"}}/> 
+          <FooterRightTexts>어브로드 깃헙 바로가기</FooterRightTexts>
+        </GithubIcon>
       </FooterRight>
     </FooterWrap>
   );
@@ -36,7 +36,7 @@ const FooterWrap = styled.footer`
   display : flex;
   align-items : center;
   width: 100%;
-  height: 33vh;
+  height: 300px;
   padding: 0.5em;
   background: #66a6ff;
   color: #ffff;
@@ -54,7 +54,10 @@ const FooterLeft = styled.div`
 `;
 
 const Logo = styled.div`
-  transform : translateX(-8%);
+  transform : translateX(-13%);
+  & img {
+    width : 22rem;
+  }
 `;
 
 const LeftContent = styled.div`
@@ -83,7 +86,7 @@ const InstagramIcon = styled.div`
   margin-top : 1rem;
 `;
 
-const YoutubeIcon = styled.div`
+const GithubIcon = styled.div`
   display: flex;
   height : 5rem;
   justify-content: start;

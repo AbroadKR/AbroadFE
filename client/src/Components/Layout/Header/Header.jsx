@@ -56,10 +56,12 @@ const Head = styled.header`
     width: 100vw;
     height: 9rem;
     border-bottom: 1px solid #D1D1D1D1;
+    margin : 0 auto;
 `
 const HeadLogo = styled.div`
     width: 15rem;
-    margin-left: 12.5%;
+    margin-left : 12.5vw;
+    margin-right: 1%;
 `
 const HeadNav = styled.ul`
     display: flex;
@@ -83,6 +85,7 @@ const NavMenu = styled.li`
     }
 `
 const NavLink = styled(Link)`
+    min-width : 8rem;
     font-size: 1.1rem;
     font-weight: 800;
     padding: 1em;
@@ -92,8 +95,9 @@ const SignBox = styled.ul`
     display: flex;
     justify-content: flex-end;
     align-items : center;
+    margin-left : auto;
+    margin-right : 12.25vw;
     height: 100%;
-    width: 10%;
     & > li {
         height: fit-content;
         display: flex;

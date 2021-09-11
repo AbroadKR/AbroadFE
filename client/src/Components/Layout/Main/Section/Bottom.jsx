@@ -12,7 +12,7 @@ const Bottom = () => {
             <Quotes />
             <Phrases>
               <Phrase>
-                유학생들을 위한 정보공유와 새 친구들을 만날 수 있는 공간,<br/><span>어브로드라면 가능합니다.</span>
+                유학생들을 위한 정보공유와 새 친구들을 만날 수 있는 공간,<div>어브로드라면 가능합니다.</div>
               </Phrase>
             </Phrases>
             <RightQuotes />
@@ -67,6 +67,7 @@ const Title = styled.h3`
 `;
 
 const Container = styled.div`
+  position : relative;
   margin-top: 5.5rem;
   display: flex;
   justify-content: flex-start;
@@ -77,8 +78,7 @@ const Content = styled.div`
   display: flex;
   flex-direction: column;
   justify-content : center;
-  margin-right: 4rem;
-  padding-left : 2em;
+  margin-right: 2rem;
   width : 60%;
 `;
 
@@ -91,18 +91,20 @@ const Phrases = styled.div`
   justify-content : center;
   position: relative;
   margin-bottom : 4.5rem;
+  padding : 0 0.8em;
   top: 1.5em;
   font-size: 1.5rem;
   font-weight: bold;
   line-height: 1.75em;
   color : #444444;
-  &  span {
+  &  div {
+    text-align : center;
     color : #66A6FF;
   }
 `;
 
 const Phrase = styled.p`
-
+  white-space : nowrap;
 `;
 
 const Messages = styled.div`
@@ -141,6 +143,7 @@ const StyledMsgBox = styled(MsgBox)`
   left: 0;
   top: 0;
   width: 100%;
+  max-width : 750px;
   height: 100%;
   z-index: -1;
 `;
@@ -152,9 +155,11 @@ const PhoneBox = styled.div`
 `
 
 const StyledIphone = styled.img`
-  margin-left : 3rem;
-  /* width : 100%;
-  height : 100%; */
+  margin : auto 0 2rem 3rem;
+  /* margin-left : 3rem;
+  margin-top : auto; */
+  width : 85%;
+  max-width : 420px;
 `;
 
 const RightQuotes = styled(Quotes)`

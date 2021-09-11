@@ -36,7 +36,7 @@ const tableSchema = new Schema({
     safety : {type : Number, required : true}
  });
  
- const imageSchema = new Schema({
+ const forUnivSchema = new Schema({
     id : Schema.Types.ObjectId,
     forUniv : {type : String, required : true},
     image : {type : String, required : true}
@@ -44,14 +44,14 @@ const tableSchema = new Schema({
 
  tableSchema.path('__id');
  evaluationSchema.path('__id');
- imageSchema.path('__id');
+ forUnivSchema.path('__id');
  
  tableSchema.set('collection', 'table');
  evaluationSchema.set('collection', 'evaluation');
- imageSchema.set('collection', 'image');
+ forUnivSchema.set('collection', 'forUnivs');
 
  const table = mongoose.model('table', tableSchema);
  const evaluation = mongoose.model('evaluation', evaluationSchema);
- const image = mongoose.model('image', imageSchema);
+ const forUniv = mongoose.model('forUnivs', forUnivSchema);
 
-module.exports = { table, evaluation, image };
+module.exports = { table, evaluation, forUniv };

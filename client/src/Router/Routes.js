@@ -12,8 +12,9 @@ class Routes extends React.Component {
         <>
           <Header />
           <Route path="/" exact component={Main}/>
-          {/* <Main /> */}
-          <Route path="/result" exact component={Result}/>
+          <Route path="/result/:koUniv" exact component={Result}/>
+          <Route path="/result/:koUniv/:continent" exact component={Result}/>
+          <Route path="/result/:koUniv/:continent/:country" component={Result}/>
           <Redirect from="*" to="/"/>
         </>
       </HashRouter>

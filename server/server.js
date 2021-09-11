@@ -2,7 +2,7 @@ require('dotenv').config();
 const express = require("express");
 const path = require('path');
 const app = express();
-const { table } = require('./db/database');
+const { table, evaluation, forUniv } = require('./db/database');
 const { PORT } = process.env;
 
 
@@ -50,6 +50,69 @@ app.post('/api/getCountries', (req,res)=>{
     })
     .select('country')
     .distinct('country');
+});
+
+app.post('/api/getTables', (req,res)=>{
+    const data = req.body;
+    if(!data['continent'] && !data['country']){
+        table.find({koUniv : data['koUniv']}, 
+                (err, tables)=>{
+                    if(err){
+                        res.end();
+                        return
+                    }
+                    res.json(tables);
+            })
+            .select('continent country forUniv_eng forUniv_kor TO period');
+    } else if (data['continent'] && !data['country']){
+        table.find({
+            koUniv : data['koUniv'],
+            continent : {$in:data['continent']}}, 
+                (err, tables)=>{
+                    if(err){
+                        res.end();
+                        return
+                    }
+                    res.json(tables);
+            })
+            .select('continent country forUniv_eng forUniv_kor TO period');
+    } else {
+        table.find({
+            koUniv : data['koUniv'],
+            continent : {$in:data['continent']}, 
+            country : {$in:data['country']}}, 
+                (err, tables)=>{
+                    if(err){
+                        res.end();
+                        return
+                    }
+                    res.json(tables);
+            })
+            .select('continent country forUniv_eng forUniv_kor TO period');
+    }
+})
+
+app.post('/api/getForUnivs', (req, res) => {
+    const data = req.body;
+    forUniv.find({forUniv: data.forUnivTitle}, (err, images) => {
+                if (err) {
+                    res.end();
+                    return
+                }
+                res.json(images);
+            })
+        .select('image');
+});
+
+app.post('/api/getReviews', (req, res) => {
+    const data = req.body;
+    evaluation.find({forUniv: data.forUniv}, (err, details) => {
+                if (err) {
+                    res.end();
+                    return
+                }
+                res.json(details);
+            })
 });
 
 app.get("*", (req,res)=>{

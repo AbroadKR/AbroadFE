@@ -56,6 +56,7 @@ class Second extends Component {
 export default Second;
 
 const Section = styled.div`
+  position: relative;
   width: 75vw;
   margin: 7rem auto 0;
 `;
@@ -68,10 +69,10 @@ const Title = styled.span`
 `;
 
 const List = styled.ul`
-  width: 100%;
   display: flex;
-  justify-content: space-around;
   flex-wrap: wrap;
+  justify-content: space-around;
+  width: 100%;
   margin-top : 2rem;
 `;
 
@@ -88,11 +89,12 @@ const Anchor = styled.a`
 `;
 
 const Content = styled.div`
-  padding: 1.4rem;
-  box-shadow: 0px 4px 10px 2px rgba(0, 0, 0, 0.1);
-  border-radius: 1.4rem;
   display: flex;
   flex-direction: column;
+  width : 18vw;
+  padding: 1.4em;
+  box-shadow: 0px 4px 10px 2px rgba(0, 0, 0, 0.1);
+  border-radius: 1.4rem;
   background-color : #ffff;
 `;
 
@@ -115,6 +117,9 @@ const StyledLincoln = styled.img`
 const Location = styled.span`
   font-weight: 700;
   font-size: 1.13rem;
+  white-space : nowrap;
+  overflow-x : hidden;
+  text-overflow : ellipsis;
   padding: 1.25rem 0.2rem;
   border-bottom: 1px solid rgba(68, 68, 68, 0.3);
   margin-bottom: 1.25rem;
@@ -123,6 +128,9 @@ const Location = styled.span`
 const UnivName = styled.h5`
   font-weight: 800;
   font-size: ${(props) => (props.kor ? '1.5rem' : '1.13rem')};
+  white-space : nowrap;
+  overflow-x : hidden;
+  text-overflow : ellipsis;
   padding: 0 0.2rem;
   line-height : 2rem;
 `;

@@ -111,7 +111,6 @@ const FirstSub = styled.ul`
     & > li {
         display : flex;
         position : relative;
-        /* opacity : 0; */
         align-items : center;
         justify-content : flex-start;
         transition : all .2s;
@@ -173,7 +172,7 @@ const SecondSub = styled.ul`
             }
             &> div{
                 display : flex;
-                height : fit-content;
+                height : 2.6rem;
                 align-items : center;
                 & > .returnIcon {
                     margin-right : 0.5rem;

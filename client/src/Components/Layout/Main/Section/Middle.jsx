@@ -65,14 +65,12 @@ const LeftColumn = styled.div`
 `;
 
 const StyledImoge = styled.img`
-  width: 15rem;
-  height: 15rem;
+  width: 65%;
   margin-bottom : 1rem;
 `;
 
 const StyledImac = styled.img`
-  width: 30rem;
-  height: 24rem;
+  width: 100%;
 `;
 
 const RightColumn = styled.div`
