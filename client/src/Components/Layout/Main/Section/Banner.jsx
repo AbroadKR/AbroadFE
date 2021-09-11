@@ -1,11 +1,11 @@
 import React, { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 import { animated, useSprings } from '@react-spring/web';
-import { Banner1, Banner2, Banner3, Banner4 } from '../../../../images';
+import { Banner1, Banner2, Banner3 } from '../../../../images';
 
 const Banner = () => {
   const [curIndex, setCurIndex] = useState(0);
-  const banners = [Banner1, Banner2, Banner3, Banner4];
+  const banners = [Banner1, Banner2, Banner3];
 
   const autoChange = useRef();
 
@@ -18,7 +18,7 @@ const Banner = () => {
       autoChange.current();
     };
 
-    const interval = setInterval(play, 2500);
+    const interval = setInterval(play, 3500);
     return () => clearInterval(interval);
   }, [curIndex]);
 
@@ -64,7 +64,8 @@ const Banners = styled.div`
 `;
 
 const StyledBanner = styled(animated.img)`
-  height: 100%;
   width: 100%;
+  height: 100%;
   position: absolute;
+  border-radius: 1.563rem;
 `;
