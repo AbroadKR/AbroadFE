@@ -10,12 +10,17 @@ import ContinentPopup from "./Popup/ContinentPopup";
 
 function Top(){
     const [clickedOptions, setClickedOptions] = useState();
-    const [optionData, setOptionData] = useState({
+    const [fetchData, setFetchData] = useState({
         koUnivs : [],
         continents : [],
         countries : []
     });
-    const {koUnivs, continents, countries} = optionData;
+    const [selectedData, setSelectedData] = useState({
+        koUnivs : [],
+        continents : [],
+        countries : []
+    })
+    const {koUnivs, continents, countries} = fetchData;
     const [koUnivLists, setKoUnivLists] = useState([]);
 
     const koUnivInputRef = useRef();
@@ -25,23 +30,22 @@ function Top(){
 
     const togglePopup = (name) =>{
         (name === "koUniv" ? getKoUnivs() : name === "continent" ? getContinents() : name === "country" && getCountries())
-        console.log(koUnivs, continents, countries);
         return (setClickedOptions(name))
     };
     const getKoUnivs = async ()=>{
         koUnivInputRef.current.focus();
         const {data: res} = await axios.get('/api/getKoUnivs');
-        setOptionData({koUnivs : res});
+        setFetchData({koUnivs : res});
     }
     const getContinents = async ()=>{
         countryInputRef.current.value = "";
         const {data : res} = await axios.post('/api/getContinents', {selKoUniv : koUnivInputRef.current.value});
-        setOptionData({continents : res});
+        setFetchData({continents : res});
     }
     const getCountries = async ()=>{
         const {data : res} = await axios.post('/api/getCountries', 
             {selKoUniv : koUnivInputRef.current.value, selContinent : continentInputRef.current.value});
-        setOptionData({countries : res});
+        setFetchData({countries : res});
     }
     const findKoUniv = (wordToMatch, {koUnivs})=>{
         return koUnivs.filter(koUniv => {
@@ -50,17 +54,20 @@ function Top(){
         })
     }
     const koUnivMatches= (e)=>{
-        const matchKoUnivs = findKoUniv(e.target.value, optionData);
+        const matchKoUnivs = findKoUniv(e.target.value, fetchData);
         return e.target.value === "" ? setKoUnivLists([]) : setKoUnivLists(matchKoUnivs);
     }
     const handleInput = (list)=>{
         koUnivInputRef.current.value = list;
+        setSelectedData({...selectedData, koUnivs : list});
         getContinents();
     }
     const handleContinent = (list)=>{
+        setSelectedData({...selectedData, continents : list});
         return (list.length === 0 ? continentInputRef.current.value = "" : continentInputRef.current.value = list);
     }
     const handleCountry = (list)=>{
+        setSelectedData({...selectedData, countries : list});
         return (list.length === 0 ? countryInputRef.current.value = "" : countryInputRef.current.value = list);
     }
     
@@ -89,7 +96,7 @@ function Top(){
                         <OptionsTitle>국가</OptionsTitle>
                         <NormalInput type="text" name="country" placeholder="어느 국가를 선호하시나요?" className="countryInput" ref={countryInputRef} disabled/>
                     </Options>
-                    <SearchButton to={{pathname : "/result", state : {hi : "hi"}}} className='section1_search_button' type="submit">
+                    <SearchButton to={{pathname : `/result/${selectedData.koUnivs}/${selectedData.continents}/${selectedData.countries}`}} className='section1_search_button' type="submit">
                         <FiSearch/>
                     </SearchButton>
                     {clickedOptions === "country" ? <CountryPopup countries={countries} handleCountry={handleCountry}/>:""}
@@ -114,7 +121,9 @@ const SearchBar = styled.div`
     border: none;
     border-radius: 50px;
     width: 100%;
-    height: 11vh;
+    height: 12vh;
+    /* min-height : 105px; */
+    max-height : 105px;
     margin: 0 auto 5% auto;
     background-color: #FFFFFF;
     filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.1));
@@ -184,8 +193,8 @@ const SearchButton = styled(Link)`
     position: absolute;
     border: none;
     border-radius: 50px;
-    width: 130px;
-    height: 84px;
+    width: 30%;
+    height: 89%;
     right: 1%;
     top: 50%;
     transform: translateY(-50%);

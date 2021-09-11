@@ -1,16 +1,59 @@
-import React from 'react'
-import { useLocation } from "react-router-dom";
+import React, {useState, useEffect, useRef} from 'react'
 import styled from 'styled-components';
+import axios from 'axios';
+import TableDetail from './TableDetail';
 
-function Result() {
-    const location = useLocation();
+function Result({match}) {
+    const [tableData, setTableData] = useState([]);
+    const [rectValue, setRectValue] = useState();
+    const [isOpen, setIsOpen] = useState(false);
+    const [reviews, setReviews] = useState([]);
+    const {koUniv, continent, country} = match.params;
+    const getTables = async ()=>{
+        const {data : res} = await axios.post('/api/getTables', country ?  {koUniv, continent, country : country.split(',')} : {koUniv, continent});
+        setTableData(res);
+    }
+    useEffect(() => {
+        getTables();
+    }, [])
+    const getReviews = async (title) => {
+        const {data : res} = await axios.post('/api/getReviews', {forUniv : title})
+        setReviews(res);
+    }
+    const handleDetail = (e)=>{
+        let forUnivTitle = e.currentTarget.children[2].children[0].innerText
+        const tbodyTr = e.currentTarget.parentElement.children;
+        const vh = document.querySelector('html');
+        if (e.currentTarget.classList.contains('open')){
+            e.currentTarget.classList.remove('open');
+            setIsOpen(false);
+            const coords = e.currentTarget.getBoundingClientRect();
+            const trBottom = coords.bottom + vh.scrollTop;
+            setRectValue(trBottom);
+        } else {
+            for(let i=0; i<tbodyTr.length;i++){
+                if (tbodyTr[i].classList.contains('open')){
+                    tbodyTr[i].classList.remove('open');
+                    setIsOpen(false);
+                }
+            }
+            const coords = e.currentTarget.getBoundingClientRect();
+            const trBottom = coords.bottom + vh.scrollTop;
+            setRectValue(trBottom);
+            getReviews(forUnivTitle);
+            e.currentTarget.classList.add('open');
+            setIsOpen(true);
+        }
+        
+    }
     return (
         <Body>
             <Wrapper>
+                {reviews.length != 0 && <TableDetail rectValue={rectValue} isOpen={isOpen} reviews={reviews}/>}
                 <CaptionBox className="main_caption">
                     <CaptionTitle className="caption_title">나의 학교</CaptionTitle>
                     <CaptionBar className="caption_bar"></CaptionBar>
-                    <div className="captionKoUniv"></div>
+                    <div className="captionKoUniv">{koUniv}학교</div>
                 </CaptionBox>
                 <Table className="main_table">
                     <THead className="main_thead">
@@ -23,13 +66,15 @@ function Result() {
                         </tr>
                     </THead>
                     <TBody className="main_tbody">
-                        <tr>
-                            <td>Testing...</td>
-                            <td>Testing...</td>
-                            <td>Testing...</td>
-                            <td>Testing...</td>
-                            <td>Testing...</td>
-                        </tr>
+                        {tableData && tableData.map((data,i) => 
+                            <tr key={data.id} onClick={handleDetail}>
+                                <td>{data.continent}</td>
+                                <td>{data.country}</td>
+                                <td>{data.forUniv_kor && `${data.forUniv_kor},`}<span>{data.forUniv_eng}</span></td>
+                                <td>{data.TO}</td>
+                                <td>{data.period}</td>
+                            </tr>
+                            )}
                     </TBody>
                 </Table>
             </Wrapper>
@@ -112,6 +157,9 @@ const TBody = styled.tbody`
         & td:nth-child(3){
             color:#66A6FF;
         }
+    }
+    & tr.open td {
+        padding-bottom: 70.6vh;
     }
     & tr:hover td{
         background-color: #dfeafc;
