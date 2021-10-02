@@ -1,9 +1,9 @@
 import React from 'react';
-import { HashRouter, Route, Redirect } from 'react-router-dom';
-import Main from '../Components/Layout/Main/Main';
-import Result from "../Pages/Result"
+import Community from '../Pages/Community';
+import WriteArticle from '../Components/Community/WriteArticle';
 import Header from '../Components/Layout/Header/Header';
-// import Community from '../Pages/Community';
+import Main from '../Components/Layout/Main/Main';
+import { HashRouter, Route, Redirect } from 'react-router-dom';
 
 class Routes extends React.Component {
   render() {
@@ -11,11 +11,18 @@ class Routes extends React.Component {
       <HashRouter>
         <>
           <Header />
+<<<<<<< Updated upstream
           <Route path="/" exact component={Main}/>
           <Route path="/result/:koUniv" exact component={Result}/>
           <Route path="/result/:koUniv/:continent" exact component={Result}/>
           <Route path="/result/:koUniv/:continent/:country" component={Result}/>
           <Redirect from="*" to="/"/>
+=======
+          <Route path="/" exact component={Main} />
+          <Route path="/community" exact component={Community} />
+          <Route path="/writeArticle" exact component={WriteArticle} />
+          <Redirect from="*" to="/" />
+>>>>>>> Stashed changes
         </>
       </HashRouter>
     );
