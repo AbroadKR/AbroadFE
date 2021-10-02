@@ -1,6 +1,7 @@
 <svg width="685" height="122" viewBox="0 0 685 122" fill="none" xmlns="http://www.w3.org/2000/svg">
 <g filter="url(#filter0_d)">
 <path fill-rule="evenodd" clip-rule="evenodd" d="M658.655 13.3869C660.279 8.45698 666.706 0.079076 681 2.39701C676.667 4.23033 668 14.897 668 42.897V82.397C668 100.622 653.225 115.397 635 115.397H37C18.7746 115.397 4 100.622 4 82.397V36.397C4 18.1716 18.7746 3.39697 37 3.39697H635C644.277 3.39697 652.659 7.22471 658.655 13.3869Z" fill="url(#paint0_linear)"/>
+
 </g>
 <defs>
 <filter id="filter0_d" x="0" y="0" width="685" height="121.397" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
