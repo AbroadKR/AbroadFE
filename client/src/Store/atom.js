@@ -41,3 +41,15 @@ export const signupModalMessage = atom({
   key: 'signup_modal_message',
   default: '',
 });
+
+// Community
+
+export const communityName = atom({
+  key: 'community_name',
+  default: '자유게시판',
+});
+
+export const oppositeCommunityName = atom({
+  key: 'opposite_community_name',
+  default: '질문게시판',
+});
