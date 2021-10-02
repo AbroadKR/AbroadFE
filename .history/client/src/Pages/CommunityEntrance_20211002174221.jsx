@@ -7,7 +7,6 @@ import {IoChatbubbleEllipsesOutline} from "react-icons/io5"
 function CommunityEntrance({match}) {
   const param = match.params.continent;
   let continent;
-  
   if(param === "sa"){
     continent = "남미"
   } else if(param === "na"){

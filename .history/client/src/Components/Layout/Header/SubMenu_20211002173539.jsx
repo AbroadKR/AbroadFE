@@ -17,7 +17,6 @@ function CommunitySub({ isDown }) {
         const height = el.offsetHeight;
         return setMenuHeight(height);
     }
-    
     const goToMain = () => {
         setMenuHeight(null)
         setActiveMenu("main")

@@ -11,7 +11,6 @@ function Header() {
   const [isModalActive, setModalActive] = useRecoilState(modalActive);
   const setModalState = useSetRecoilState(signupModalState);
 
-  
   useEffect(() => {
     setModalActive(false);
   }, []);
