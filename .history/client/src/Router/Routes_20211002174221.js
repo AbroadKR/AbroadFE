@@ -11,7 +11,7 @@ import Result from "../Pages/Result";
 class Routes extends React.Component {
   render() {
     return (
-      <HashRouter> 
+      <HashRouter>
           <>
             <Header/>
             <Switch>
