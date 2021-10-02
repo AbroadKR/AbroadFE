@@ -1,12 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useRecoilState, useSetRecoilState } from 'recoil';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import CommunitySub from './SubMenu';
-import { useRecoilState, useSetRecoilState } from 'recoil';
 import { modalActive, signupModalState } from '../../../Store/atom';
 import SignupModal from '../../../Modals/signUp/SignupModal';
 
 function Header() {
+  const [isDown, setIsDown] = useState(false);
   const [isModalActive, setModalActive] = useRecoilState(modalActive);
   const setModalState = useSetRecoilState(signupModalState);
 
@@ -22,8 +23,6 @@ function Header() {
     }
     setModalActive(true);
   };
-
-  const [isDown, setIsDown] = useState(false);
 
   const dropdown = (e) => {
     setIsDown(true);
@@ -68,8 +67,8 @@ function Header() {
             </li>
           </ul>
         </li>
+        <div>{isModalActive && <SignupModal />}</div>
       </SignBox>
-      {isModalActive && <SignupModal />}
     </Head>
   );
 }
@@ -82,10 +81,12 @@ const Head = styled.header`
   width: 100vw;
   height: 9rem;
   border-bottom: 1px solid #d1d1d1d1;
+  margin: 0 auto;
 `;
 const HeadLogo = styled.div`
   width: 15rem;
-  margin-left: 12.5%;
+  margin-left: 12.5vw;
+  margin-right: 1%;
 `;
 const HeadNav = styled.ul`
   display: flex;
@@ -109,6 +110,7 @@ const NavMenu = styled.li`
   }
 `;
 const NavLink = styled(Link)`
+  min-width: 8rem;
   font-size: 1.1rem;
   font-weight: 800;
   padding: 1em;
@@ -118,8 +120,9 @@ const SignBox = styled.ul`
   display: flex;
   justify-content: flex-end;
   align-items: center;
+  margin-left: auto;
+  margin-right: 12.25vw;
   height: 100%;
-  width: 10%;
   & > li {
     height: fit-content;
     display: flex;
