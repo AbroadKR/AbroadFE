@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useRef} from 'react'
+import React, {useState, useEffect} from 'react'
 import styled from 'styled-components';
 import axios from 'axios';
 import TableDetail from './TableDetail';
@@ -8,6 +8,7 @@ function Result({match}) {
     const [rectValue, setRectValue] = useState();
     const [isOpen, setIsOpen] = useState(false);
     const [reviews, setReviews] = useState([]);
+    const [image, setImage] = useState();
     const {koUniv, continent, country} = match.params;
     const getTables = async ()=>{
         const {data : res} = await axios.post('/api/getTables', country ?  {koUniv, continent, country : country.split(',')} : {koUniv, continent});
@@ -19,6 +20,10 @@ function Result({match}) {
     const getReviews = async (title) => {
         const {data : res} = await axios.post('/api/getReviews', {forUniv : title})
         setReviews(res);
+    }
+    const getImage = async (title)=>{
+        const {data : res} = await axios.post('/api/getForUnivs', {title});
+        setImage(res[0].image);
     }
     const handleDetail = (e)=>{
         let forUnivTitle = e.currentTarget.children[2].children[0].innerText
@@ -39,17 +44,17 @@ function Result({match}) {
             }
             const coords = e.currentTarget.getBoundingClientRect();
             const trBottom = coords.bottom + vh.scrollTop;
+            getImage(forUnivTitle);
             setRectValue(trBottom);
             getReviews(forUnivTitle);
             e.currentTarget.classList.add('open');
             setIsOpen(true);
         }
-        
     }
     return (
         <Body>
             <Wrapper>
-                {reviews.length != 0 && <TableDetail rectValue={rectValue} isOpen={isOpen} reviews={reviews}/>}
+                {reviews.length !== 0 && <TableDetail rectValue={rectValue} isOpen={isOpen} reviews={reviews} image={image}/>}
                 <CaptionBox className="main_caption">
                     <CaptionTitle className="caption_title">나의 학교</CaptionTitle>
                     <CaptionBar className="caption_bar"></CaptionBar>

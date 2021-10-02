@@ -1,9 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import styled from 'styled-components';
-import axios from 'axios';
 
-export default function TableDetail({rectValue, isOpen, reviews}) {
-    const [imgUrl, setImgUrl] = useState();
+export default function TableDetail({rectValue, isOpen, reviews, image}) {
     const [evaluations, setEvaluations] = useState({
         avgPoint : null,
         koreans : null,
@@ -12,11 +10,6 @@ export default function TableDetail({rectValue, isOpen, reviews}) {
         trans : null,
         safety : null
     });
-    let forUnivTitle = reviews[0].forUniv;
-    const changeImg = async ()=> {
-        const {data : res} = await axios.post('/api/getForUnivs', {forUnivTitle});
-        setImgUrl(res[0].image);
-    }
     const calcReviews = () =>{
         let avgPoint=0, koreans=0, difficulty=0, avgCost=0, trans=0, safety = 0;
         for(let i=0; i < reviews.length; i++){
@@ -74,13 +67,12 @@ export default function TableDetail({rectValue, isOpen, reviews}) {
         setEvaluations({avgPoint, koreans, difficulty, avgCost, trans, safety});
     }
     useEffect(() => {
-        changeImg();
         calcReviews();
     }, [reviews])
     return (
         <MainBox className="detail_mainBox" top={rectValue} isOpen={isOpen}>
             <LeftBox className="detail_leftBox">
-                <img className="detail_image" src={imgUrl} alt="img"/>
+                <img className="detail_image" src={image} alt="img"/>
                 <LeftCaption className="rightBox_caption">
                     <span className="empty_point">
                         <span style={{minWidth :`${(evaluations.avgPoint/reviews.length)*20}%`}} className="filled_point"></span>
@@ -114,7 +106,7 @@ export default function TableDetail({rectValue, isOpen, reviews}) {
             </LeftBox>
             <RightBox className="detail_rightBox">
                 <Comments className="rightBox_comments">
-                    {reviews.length != 0 && reviews.slice(0,4).map((review, index) => (
+                    {reviews.length !== 0 && reviews.slice(0,4).map((review, index) => (
                         <li key={index}>
                             <CommentContent className="comments_info">
                                 <span className="comments_empty_point">
