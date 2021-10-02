@@ -9,12 +9,6 @@ const globalStyles = createGlobalStyle`
     html {
         line-height: 1.15;
         -webkit-text-size-adjust: 100%;
-        @media screen and (max-width : 1400px){
-        font-size : 14px;
-    }
-        @media screen and (max-width : 1200px){
-        font-size : 13px;
-    }
     }
 
     body {

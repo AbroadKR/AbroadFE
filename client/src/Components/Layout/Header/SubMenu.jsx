@@ -146,87 +146,6 @@ const FirstSub = styled.ul`
       font-size: 0.7rem;
       color: #66a6ff;
     }
-<<<<<<< Updated upstream
-    &.move-exit{
-        transform:translateX(-100%);
-    }
-    &.move-exit-active{
-        transform:translateX(0);
-        transition : all .4s ease;
-    }
-    & > li {
-        display : flex;
-        position : relative;
-        align-items : center;
-        justify-content : flex-start;
-        transition : all .2s;
-        padding-left : 1.5em;
-        width : 100%;
-        height : 3.25rem;
-        cursor: pointer;
-        &:hover::before{
-            content : "";
-            position : absolute;
-            left : 0;
-            width : 5px;
-            height : 70%;
-            background-color : #66A6FF;
-        }
-        &:hover::after{
-            content : "▶";
-            margin : 0 1.5rem 0 auto;
-            font-size : 0.7rem;
-            color : #66A6FF;
-        }
-    }
-`
-
-const SecondSub = styled.ul`
-    display : flex;
-    flex-direction : column;
-    align-items : flex-start;
-    justify-content : space-evenly;
-    position : absolute;
-    top:0;
-    width : 10rem;
-    min-height : 13rem;
-    padding : 1em 1.5em;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-    background-color : #ffffff;
-    border-radius : 25px;
-            &.slide-enter{
-                transform : translateX(100%);
-                position : absolute;
-            }
-            &.slide-enter-active{
-                transform : translateX(0);
-                transition : all .4s ease;
-            }
-            &.slide-exit{
-            }
-            &.slide-exit-active{
-                transform : translateX(100%);
-                transition : all .4s ease;
-            }
-            & > li {
-                display : flex;
-                align-items : center;
-                justify-content : flex-start;
-                cursor: pointer;
-                width : 100%;
-                height : 3.25rem;
-            }
-            &> div{
-                display : flex;
-                height : 2.6rem;
-                align-items : center;
-                & > .returnIcon {
-                    margin-right : 0.5rem;
-                    font-size : 1.5rem;
-                    cursor: pointer;
-                    color : #66A6FF;
-                }
-=======
   }
 `;
 
@@ -274,7 +193,6 @@ const SecondSub = styled.ul`
       font-size: 1.5rem;
       cursor: pointer;
       color: #66a6ff;
->>>>>>> Stashed changes
     }
   }
 `;

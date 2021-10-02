@@ -11,18 +11,10 @@ class Routes extends React.Component {
       <HashRouter>
         <>
           <Header />
-<<<<<<< Updated upstream
-          <Route path="/" exact component={Main}/>
-          <Route path="/result/:koUniv" exact component={Result}/>
-          <Route path="/result/:koUniv/:continent" exact component={Result}/>
-          <Route path="/result/:koUniv/:continent/:country" component={Result}/>
-          <Redirect from="*" to="/"/>
-=======
           <Route path="/" exact component={Main} />
           <Route path="/community" exact component={Community} />
           <Route path="/writeArticle" exact component={WriteArticle} />
           <Redirect from="*" to="/" />
->>>>>>> Stashed changes
         </>
       </HashRouter>
     );

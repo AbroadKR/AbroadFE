@@ -77,20 +77,6 @@ function Header() {
 export default Header;
 
 const Head = styled.header`
-<<<<<<< Updated upstream
-    display: flex;
-    align-items: center;
-    width: 100vw;
-    height: 9rem;
-    border-bottom: 1px solid #D1D1D1D1;
-    margin : 0 auto;
-`
-const HeadLogo = styled.div`
-    width: 15rem;
-    margin-left : 12.5vw;
-    margin-right: 1%;
-`
-=======
   display: flex;
   align-items: center;
   width: 100vw;
@@ -101,7 +87,6 @@ const HeadLogo = styled.div`
   width: 15rem;
   margin-left: 12.5%;
 `;
->>>>>>> Stashed changes
 const HeadNav = styled.ul`
   display: flex;
   justify-content: space-evenly;
@@ -124,18 +109,10 @@ const NavMenu = styled.li`
   }
 `;
 const NavLink = styled(Link)`
-<<<<<<< Updated upstream
-    min-width : 8rem;
-    font-size: 1.1rem;
-    font-weight: 800;
-    padding: 1em;
-`
-=======
   font-size: 1.1rem;
   font-weight: 800;
   padding: 1em;
 `;
->>>>>>> Stashed changes
 const SignBox = styled.ul`
   position: relative;
   display: flex;
@@ -156,13 +133,6 @@ const SignBox = styled.ul`
   & > li ul {
     position: absolute;
     display: flex;
-<<<<<<< Updated upstream
-    justify-content: flex-end;
-    align-items : center;
-    margin-left : auto;
-    margin-right : 12.25vw;
-    height: 100%;
-=======
     flex-direction: column;
     align-items: center;
     justify-content: center;
@@ -181,7 +151,6 @@ const SignBox = styled.ul`
   }
   & li.dropdown ul {
     max-height: 15rem;
->>>>>>> Stashed changes
     & > li {
       opacity: 100%;
     }
