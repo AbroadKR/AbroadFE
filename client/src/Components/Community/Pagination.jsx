@@ -15,6 +15,7 @@ const Button = styled.button`
   width: 4em;
   height: 3em;
   border-radius: 15px/15px;
-  background: rgba(102, 166, 255, 0.5);
+  background: #66a6ff;
   color: white;
+  margin: 2em auto;
 `;

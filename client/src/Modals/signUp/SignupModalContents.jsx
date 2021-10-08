@@ -74,6 +74,7 @@ export default function SignupModalContents() {
             type="submit"
             value={LoginOrRegist}
             onClick={() => setIsUserSubmit(true)}
+            required
           />
         </InputEmail>
       ) : LoginOrRegist === '로그인' ? (

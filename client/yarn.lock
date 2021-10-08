@@ -1784,6 +1784,32 @@
   dependencies:
     "@babel/runtime" "^7.12.5"
 
+"@toast-ui/chart@^4.1.4":
+  "integrity" "sha512-bU5xZnSA2nQ0VnSVVnbQwrNS0qfGyJ/c2P5oxHN8RR4AgSAPqpNZ2OsQBHj/6ZCnLs+hc4QVjWB+yC4o4dwA/w=="
+  "resolved" "https://registry.npmjs.org/@toast-ui/chart/-/chart-4.4.0.tgz"
+  "version" "4.4.0"
+
+"@toast-ui/editor-plugin-chart@^3.0.1":
+  "integrity" "sha512-mdqJerDo836kxKZEa3B6NZOJLrb+acRMkPIanYo//9GFPJcllG7KFdZU+K0bSMapEED7W7OJCsOzM0VNThndHg=="
+  "resolved" "https://registry.npmjs.org/@toast-ui/editor-plugin-chart/-/editor-plugin-chart-3.0.1.tgz"
+  "version" "3.0.1"
+  dependencies:
+    "@toast-ui/chart" "^4.1.4"
+
+"@toast-ui/editor-plugin-code-syntax-highlight@^3.0.0":
+  "integrity" "sha512-62XB3IcFgvRxVZzj2kTeQao0xACotv/mD6jScSDkWac2V0jkCsTh0kZRG4TSW5bGdKvx4xz3YjFm7gWgw1I/Aw=="
+  "resolved" "https://registry.npmjs.org/@toast-ui/editor-plugin-code-syntax-highlight/-/editor-plugin-code-syntax-highlight-3.0.0.tgz"
+  "version" "3.0.0"
+  dependencies:
+    "prismjs" "^1.23.0"
+
+"@toast-ui/editor-plugin-color-syntax@^3.0.1":
+  "integrity" "sha512-7IC3GHvxlxIc++zm+Zed3U55gNb8iWxXd/oDZLLGW+fmcOtg6fzB0mdfkinQTof69bCgTRvyR60XKxcRs0vQEQ=="
+  "resolved" "https://registry.npmjs.org/@toast-ui/editor-plugin-color-syntax/-/editor-plugin-color-syntax-3.0.1.tgz"
+  "version" "3.0.1"
+  dependencies:
+    "tui-color-picker" "^2.2.6"
+
 "@toast-ui/editor@^3.1.0":
   "integrity" "sha512-ewNsl0eefMejVYwY3SP6n/gx9Ppf+K2iOSUJPIEcLeoeIoodd4JAS0gyBvfx+/nLY0feVj9CjqMfbuAezssDYg=="
   "resolved" "https://registry.npmjs.org/@toast-ui/editor/-/editor-3.1.0.tgz"
@@ -9264,6 +9290,11 @@
     "ansi-styles" "^5.0.0"
     "react-is" "^17.0.1"
 
+"prismjs@^1.23.0":
+  "integrity" "sha512-WCjJHl1KEWbnkQom1+SzftbtXMKQoezOCYs5rECqMN+jP+apI7ftoflyqigqzopSO3hMhTEb0mFClA8lkolgEg=="
+  "resolved" "https://registry.npmjs.org/prismjs/-/prismjs-1.25.0.tgz"
+  "version" "1.25.0"
+
 "process-nextick-args@~2.0.0":
   "integrity" "sha512-3ouUOpQhtgrbOa17J7+uxOTpITYWaGP7/AhoR3+A+/1e9skrzelGi/dXzEYyvbxubEF6Wn2ypscTKiKJFFn1ag=="
   "resolved" "https://registry.npmjs.org/process-nextick-args/-/process-nextick-args-2.0.1.tgz"
@@ -11419,6 +11450,11 @@
   "integrity" "sha1-oVe6QC2iTpv5V/mqadUk7tQpAaY="
   "resolved" "https://registry.npmjs.org/tty-browserify/-/tty-browserify-0.0.0.tgz"
   "version" "0.0.0"
+
+"tui-color-picker@^2.2.6":
+  "integrity" "sha512-y7gUe6PdVBq8ruZbiOkeaN7N/DX+ogVyLkK53OM4qW5Vrc4pDWYEKlnOBCsPODb4/RSzS9iTd6fXYirXxeakJA=="
+  "resolved" "https://registry.npmjs.org/tui-color-picker/-/tui-color-picker-2.2.7.tgz"
+  "version" "2.2.7"
 
 "tunnel-agent@^0.6.0":
   "integrity" "sha1-J6XeoGs2sEoKmWZ3SykIaPD8QP0="

@@ -1,7 +1,21 @@
-import React, { useState, useRef } from 'react';
+import React, { useRef } from 'react';
 import styled from 'styled-components';
 import '@toast-ui/editor/dist/toastui-editor.css';
 import { Editor } from '@toast-ui/react-editor';
+// color plugin
+import 'tui-color-picker/dist/tui-color-picker.css';
+import '@toast-ui/editor-plugin-color-syntax/dist/toastui-editor-plugin-color-syntax.css';
+import colorSyntax from '@toast-ui/editor-plugin-color-syntax';
+
+//chart plugin
+import '@toast-ui/chart/dist/toastui-chart.css';
+import chart from '@toast-ui/editor-plugin-chart';
+
+// code syntax highliter plugin
+import 'prismjs/themes/prism.css';
+import '@toast-ui/editor-plugin-code-syntax-highlight/dist/toastui-editor-plugin-code-syntax-highlight.css';
+import 'prismjs/components/prism-clojure.js';
+import codeSyntaxHighlight from '@toast-ui/editor-plugin-code-syntax-highlight';
 
 export default function WriteArticle() {
   const editorRef = useRef();
@@ -28,6 +42,7 @@ export default function WriteArticle() {
           initialEditType="markdown"
           useCommandShortcut={true}
           ref={editorRef}
+          plugins={[colorSyntax, chart, codeSyntaxHighlight]}
         />
       </ToastEditor>
       <FileOverview>
