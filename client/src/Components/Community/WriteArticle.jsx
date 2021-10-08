@@ -1,5 +1,8 @@
 import React, { useRef } from 'react';
 import styled from 'styled-components';
+import { useHistory } from 'react-router';
+import Prism from 'prismjs';
+
 import '@toast-ui/editor/dist/toastui-editor.css';
 import { Editor } from '@toast-ui/react-editor';
 // color plugin
@@ -14,7 +17,6 @@ import chart from '@toast-ui/editor-plugin-chart';
 // code syntax highliter plugin
 import 'prismjs/themes/prism.css';
 import '@toast-ui/editor-plugin-code-syntax-highlight/dist/toastui-editor-plugin-code-syntax-highlight.css';
-import 'prismjs/components/prism-clojure.js';
 import codeSyntaxHighlight from '@toast-ui/editor-plugin-code-syntax-highlight';
 
 export default function WriteArticle() {
@@ -22,6 +24,13 @@ export default function WriteArticle() {
 
   const saveFunction = () => {
     console.log('hi');
+  };
+
+  const history = useHistory();
+  const routeToArticeList = () => {
+    history.push({
+      pathname: '/Community',
+    });
   };
 
   return (
@@ -42,7 +51,11 @@ export default function WriteArticle() {
           initialEditType="markdown"
           useCommandShortcut={true}
           ref={editorRef}
-          plugins={[colorSyntax, chart, codeSyntaxHighlight]}
+          plugins={[
+            colorSyntax,
+            chart,
+            [codeSyntaxHighlight, { highlighter: Prism }],
+          ]}
         />
       </ToastEditor>
       <FileOverview>
@@ -50,7 +63,7 @@ export default function WriteArticle() {
         <input className="fileInput"></input>
       </FileOverview>
       <SaveArticle onClick={saveFunction}>
-        <button>목록으로</button>
+        <button onClick={routeToArticeList}>목록으로</button>
         <button>임시저장</button>
         <button>등록하기</button>
       </SaveArticle>
@@ -110,6 +123,7 @@ const TitleOverview = styled.div`
     flex: 1 1 90%;
     height: 100%;
     overflow: hidden;
+    padding: 2em;
   }
 `;
 
