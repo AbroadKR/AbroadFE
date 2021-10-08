@@ -48,7 +48,7 @@ export default function WriteArticle() {
           initialValue="hello react editor world!"
           previewStyle="vertical"
           height="750px"
-          initialEditType="markdown"
+          initialEditType="wysiwyg"
           useCommandShortcut={true}
           ref={editorRef}
           plugins={[
