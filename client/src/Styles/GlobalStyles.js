@@ -9,6 +9,12 @@ const globalStyles = createGlobalStyle`
     html {
         line-height: 1.15;
         -webkit-text-size-adjust: 100%;
+        @media screen and (max-width : 1400px){
+        font-size : 14px;
+    }
+        @media screen and (max-width : 1200px){
+        font-size : 13px;
+    }
     }
 
     body {
@@ -98,29 +104,7 @@ const globalStyles = createGlobalStyle`
     font-size: 100%; /* 1 */
     line-height: 1.15; /* 1 */
     margin: 0; /* 2 */
-    background-color: transparent;
-  border: 0;
     }
-
-    button,
-    input,
-    select,
-    textarea:focus {
-      outline: none;
-      box-shadow: none;
-    }
-    
-    a,
-    button {
-      cursor: pointer;
-    }
-    
-    ul,
-    ol {
-      padding-left: 0;
-      list-style: none;
-    }
-
 
     button,
     input {
@@ -153,6 +137,30 @@ const globalStyles = createGlobalStyle`
     [type='submit']:-moz-focusring {
     outline: 1px dotted ButtonText;
     }
+
+    button,
+input,
+select,
+textarea {
+  background-color: transparent;
+  border: 0;
+}
+button,
+input,
+select,
+textarea:focus {
+  outline: none;
+  box-shadow: none;
+}
+a,
+button {
+  cursor: pointer;
+}
+ul,
+ol {
+  padding-left: 0;
+  list-style: none;
+}
 
     fieldset {
     padding: 0.35em 0.75em 0.625em;

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import { useHistory } from 'react-router';
 import { CSSTransition } from 'react-transition-group';
 import { IoArrowBackCircleSharp } from 'react-icons/io5';
 
@@ -17,17 +17,9 @@ function CommunitySub({ isDown }) {
     const height = el.offsetHeight;
     return setMenuHeight(height);
   };
-
   const goToMain = () => {
     setMenuHeight(null);
     setActiveMenu('main');
-  };
-
-  const history = useHistory();
-  const goToCommunityPage = () => {
-    history.push({
-      pathname: '/Community',
-    });
   };
 
   return (
@@ -38,7 +30,9 @@ function CommunitySub({ isDown }) {
         classNames="move"
       >
         <FirstSub>
-          <li onClick={goToCommunityPage}>자유 게시판</li>
+          <li>
+            <Link to="/community">자유 게시판</Link>
+          </li>
           <li onClick={() => setActiveMenu('continent')}>대륙</li>
           <li onClick={() => setActiveMenu('travel')}>여행</li>
         </FirstSub>
@@ -54,13 +48,12 @@ function CommunitySub({ isDown }) {
           <div>
             <IoArrowBackCircleSharp className="returnIcon" onClick={goToMain} />
           </div>
-          <li>남미</li>
-          <li>북미</li>
-          <li>아시아</li>
-          <li>아프리카</li>
-          <li>오세아니아</li>
-          <li>유럽 </li>
-          <li>중동</li>
+          <SubLink to="/communityentrance/sa">남미</SubLink>
+          <SubLink to="/communityentrance/na">북미</SubLink>
+          <SubLink to="/communityentrance/asia">아시아</SubLink>
+          <SubLink to="/communityentrance/africa">아프리카</SubLink>
+          <SubLink to="/communityentrance/oceania">오세아니아</SubLink>
+          <SubLink to="/communityentrance/europe">유럽</SubLink>
         </SecondSub>
       </CSSTransition>
       <CSSTransition
@@ -74,8 +67,8 @@ function CommunitySub({ isDown }) {
           <div>
             <IoArrowBackCircleSharp className="returnIcon" onClick={goToMain} />
           </div>
-          <li>정보/일정 공유 </li>
-          <li>동행 찾기</li>
+          <SubLink to="/travel">정보/일정 공유</SubLink>
+          <SubLink to="/travel/party">동행 찾기</SubLink>
         </SecondSub>
       </CSSTransition>
     </SubMenu>
@@ -124,7 +117,6 @@ const FirstSub = styled.ul`
   & > li {
     display: flex;
     position: relative;
-    /* opacity : 0; */
     align-items: center;
     justify-content: flex-start;
     transition: all 0.2s;
@@ -158,7 +150,7 @@ const SecondSub = styled.ul`
   top: 0;
   width: 10rem;
   min-height: 13rem;
-  padding: 1em 1.5em;
+  padding: 1em 0;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
   background-color: #ffffff;
   border-radius: 25px;
@@ -176,23 +168,34 @@ const SecondSub = styled.ul`
     transform: translateX(100%);
     transition: all 0.4s ease;
   }
-  & > li {
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    cursor: pointer;
-    width: 100%;
-    height: 3.25rem;
-  }
   & > div {
     display: flex;
-    height: fit-content;
+    height: 2.6rem;
     align-items: center;
+    padding-left: 1.5em;
     & > .returnIcon {
       margin-right: 0.5rem;
       font-size: 1.5rem;
       cursor: pointer;
       color: #66a6ff;
     }
+  }
+`;
+const SubLink = styled(Link)`
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding-left: 1.5em;
+  position: relative;
+  cursor: pointer;
+  width: 100%;
+  height: 3.25rem;
+  &:hover::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    width: 5px;
+    height: 70%;
+    background-color: #66a6ff;
   }
 `;

@@ -41,17 +41,37 @@ const tableSchema = new Schema({
     forUniv : {type : String, required : true},
     image : {type : String, required : true}
  });
+ const qnaSchema = new Schema({
+    id : Schema.Types.ObjectId,
+    title : {type : String, required : true},
+    user : {type : String, required : true},
+    like : {type : Number, required : true},
+    contents : {type : String, required : true}
+ });
+ const freeSchema = new Schema({
+    id : Schema.Types.ObjectId,
+    title : {type : String, required : true},
+    user : {type : String, required : true},
+    like : {type : Number, required : true},
+    contents : {type : String, required : true}
+ });
 
  tableSchema.path('__id');
  evaluationSchema.path('__id');
  forUnivSchema.path('__id');
+ qnaSchema.path('__id');
+ freeSchema.path('__id');
  
  tableSchema.set('collection', 'table');
  evaluationSchema.set('collection', 'evaluation');
  forUnivSchema.set('collection', 'forUnivs');
+ qnaSchema.set('collection', 'qna');
+ freeSchema.set('collection', 'free');
 
  const table = mongoose.model('table', tableSchema);
  const evaluation = mongoose.model('evaluation', evaluationSchema);
  const forUniv = mongoose.model('forUnivs', forUnivSchema);
+ const qna = mongoose.model('qna', qnaSchema);
+ const free = mongoose.model('free', freeSchema);
 
-module.exports = { table, evaluation, forUniv };
+module.exports = { table, evaluation, forUniv, qna, free };

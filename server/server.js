@@ -1,8 +1,9 @@
 require('dotenv').config();
+const { SSL_OP_TLS_BLOCK_PADDING_BUG } = require('constants');
 const express = require("express");
 const path = require('path');
 const app = express();
-const { table, evaluation, forUniv } = require('./db/database');
+const { table, evaluation, forUniv, qna, free } = require('./db/database');
 const { PORT } = process.env;
 
 
@@ -94,7 +95,7 @@ app.post('/api/getTables', (req,res)=>{
 
 app.post('/api/getForUnivs', (req, res) => {
     const data = req.body;
-    forUniv.find({forUniv: data.forUnivTitle}, (err, images) => {
+    forUniv.find({forUniv: data.title}, (err, images) => {
                 if (err) {
                     res.end();
                     return
@@ -113,6 +114,27 @@ app.post('/api/getReviews', (req, res) => {
                 }
                 res.json(details);
             })
+});
+
+app.post('/api/getQna', (req,res)=>{
+    const num = req.body.page;
+    qna.find({}, (err, qnas) => {
+        if (err) {
+            res.end();
+            return;
+        }
+        res.json(qnas);
+    }).skip((Number(num)-1)*15).limit(Number(num)*15);
+});
+app.post('/api/getFree', (req,res)=>{
+    const num = req.body.page;
+    free.find({}, (err, frees) => {
+        if (err) {
+            res.end();
+            return;
+        }
+        res.json(frees);
+    }).skip((Number(num)-1)*15).limit((Number(num)+9)*15);
 });
 
 app.get("*", (req,res)=>{

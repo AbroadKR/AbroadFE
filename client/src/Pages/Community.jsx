@@ -4,15 +4,9 @@ import { useState, useEffect } from 'react';
 import SearchBar from '../Components/Community/SearchBar';
 import Pagination from '../Components/Community/Pagination';
 import AriticleList from '../Components/Community/ArticleList';
-import { useRecoilState } from 'recoil';
-import { communityName, oppositeCommunityName } from '../Store/atom';
 
 export default function Community() {
   const [article, setArticle] = useState([]);
-  const [communityState, setCommunityState] = useRecoilState(communityName);
-  const [opposeCommunityState, setOpposeCommunityState] = useRecoilState(
-    oppositeCommunityName
-  );
   const API_URL =
     'http://makeup-api.herokuapp.com/api/v1/products.json?brand=Dior';
 
@@ -73,35 +67,6 @@ const UpstreamSection = styled.div`
   & > span:last-child {
     font-weight: 900;
   }
-`;
-
-const SortingCommunity = styled.section`
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-
-  & > .communityStatus {
-    font-size: 1.5rem;
-    font-weight: bold;
-  }
-
-  & > .convertCommunity {
-    width: 10em;
-    height: 3em;
-    font-size: 1rem;
-    font-weight: bold;
-    color: #66a6ff;
-    background-color: #ffffff;
-  }
-`;
-
-const ContinentImg = styled.div`
-  width: 400px;
-  height: 400px;
-  background: url('images/community/continent/north_america.svg') center
-    no-repeat;
-  background-size: 100%;
 `;
 
 const ListSorting = styled.div`
