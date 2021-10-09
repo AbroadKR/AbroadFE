@@ -51,8 +51,8 @@ const ModalContents = styled.div`
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
   display: flex;
   margin: 0 auto;
-  width: 606px;
-  height: 480px;
+  width: 697px;
+  height: 481px;
   background: #ffffff;
   z-index: 10;
   border-radius: 10px;

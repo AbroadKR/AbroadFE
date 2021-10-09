@@ -13,7 +13,6 @@ export default function Community() {
   function getData() {
     Axios.get(API_URL) //
       .then((res) => {
-        console.log(res.data);
         setArticle(res.data);
       })
       .catch((err) => console.log(err));
@@ -34,7 +33,7 @@ export default function Community() {
         <button>댓글순</button>
         <button>좋아요순</button>
       </ListSorting>
-      <AriticleList article={article.slice(0, 10)} />
+      <AriticleList article={article.slice(0, 15)} />
       <Pagination />
       <SearchBar />
     </CommunityWrap>
