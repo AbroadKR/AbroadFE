@@ -51,8 +51,8 @@ const ModalContents = styled.div`
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
   display: flex;
   margin: 0 auto;
-  width: 697px;
-  height: 481px;
+  width: 677px;
+  height: 471px;
   background: #ffffff;
   z-index: 10;
   border-radius: 10px;
@@ -64,7 +64,7 @@ const ModalLogo = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background: linear-gradient(180deg, #66a6ff 57.81%, #ffffff 100%);
+  background: linear-gradient(180deg, #66a6ff 57.81%, #86efff 100%);
   border-top-left-radius: 10px;
   border-bottom-left-radius: 10px;
 

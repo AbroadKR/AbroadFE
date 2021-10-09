@@ -82,6 +82,24 @@ export default function SignupModalContents() {
       ) : (
         <SlideImgRegist />
       )}
+      <SocialLogin>
+        <span>
+          <img
+            src="images/signup_modal/google.svg"
+            className="google"
+            alt="modal_google"
+          />{' '}
+          <p>구글계정으로 로그인하기</p>
+        </span>
+        <span>
+          <img
+            src="images/signup_modal/kakkao.svg"
+            className="kakao"
+            alt="modal_kakao"
+          />{' '}
+          <p>카카오계정으로 로그인하기</p>
+        </span>
+      </SocialLogin>
       <GoRegist>
         <span>{modalMessage}</span>
         <EmailFormBtn onClick={ChangeModalState}>{opposite}</EmailFormBtn>
@@ -98,12 +116,13 @@ const SignupContents = styled.div`
   justify-content: center;
   align-items: center;
   position: relative;
+  padding: 0 1.5em;
 
   & > h1 {
     position: absolute;
     top: 100px;
-    left: 25px;
-    color: #4db7e6;
+    left: 35px;
+    color: #66a6ff;
     text-align: center;
     margin: 0;
     font-weight: 900;
@@ -111,8 +130,8 @@ const SignupContents = styled.div`
 
   & > h2 {
     position: absolute;
-    top: 200px;
-    left: 25px;
+    top: 170px;
+    left: 35px;
     font-size: 24px;
     font-weight: 900;
   }
@@ -135,11 +154,9 @@ const CloseModalButton = styled.button`
 `;
 
 const InputEmail = styled.form`
-  flex: 1 1 0%;
   position: absolute;
-  bottom: 160px;
-  left: 5px;
-  margin-bottom: 20px;
+  top: 220px;
+  left: 35px;
   outline: 0;
 
   & > input[type='email'] {
@@ -153,12 +170,12 @@ const InputEmail = styled.form`
 
   & > input[type='submit'] {
     color: white;
-    background-color: #4db7e6;
+    background-color: #66a6ff;
     border-radius: 30px/30px;
     font-size: 15px;
     font-weight: bold;
     padding: 10px 10px;
-    margin-left: 4px;
+    margin-left: 7px;
     cursor: pointer;
   }
 `;
@@ -185,14 +202,68 @@ const SlideImgRegist = styled.div`
   background-size: cover;
 `;
 
+const SocialLogin = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  position: absolute;
+  top: 270px;
+  left: 35px;
+  color: #444444;
+  font-weight: bold;
+
+  & > span {
+    width: 22em;
+    height: 40px;
+    border: 0.2px solid #d8d8d8;
+    border-radius: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0.3em auto;
+    cursor: pointer;
+    position: relative;
+    & > img {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: absolute;
+      top: 0px;
+      left: 20px;
+    }
+
+    & > .kakao {
+      margin-left: 0.3em;
+      margin-top: 0.25em;
+      width: 2.15em;
+    }
+
+    & > p {
+      margin-left: 1.5em;
+    }
+  }
+
+  & > span:last-child {
+    background-color: #f9e000;
+  }
+`;
+
 const GoRegist = styled.div`
   font-size: 16px;
   position: absolute;
-  bottom: 30px;
+  bottom: 25px;
   right: 33px;
+
+  & > span {
+    margin-right: 0.8em;
+  }
 `;
 
 const EmailFormBtn = styled.button`
+  border: 0.2px solid #66a6ff;
+  border-radius: 25px;
   font-size: 1rem;
-  color: #4db7e6;
+  color: #66a6ff;
+  width: 103px;
+  height: 49px;
 `;

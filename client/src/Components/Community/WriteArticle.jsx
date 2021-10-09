@@ -100,7 +100,7 @@ const UpstreamSection = styled.div`
 
 const TitleOverview = styled.div`
   width: 100%;
-  height: 70px;
+  height: 65px;
   border: 0.2px solid #d1d1d1;
   border-radius: 30px/30px;
   display: flex;
