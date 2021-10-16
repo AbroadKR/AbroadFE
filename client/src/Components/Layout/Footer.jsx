@@ -13,7 +13,7 @@ export default function Footer() {
             상담 : 010-9220-1407 | Email : teamabroad@gamil.com
           </LeftTexts>
           <LeftTexts>
-            팀 어브로드 | 박훈주, 주재성, 이효범, 김세은, 최재혁
+            팀 어브로드 | 박훈주, 주재성, 이효범, 최재혁
           </LeftTexts>
           <LeftTexts>COPYRIGHT © TEAM Abroad ALL Rights Reserved.</LeftTexts>
         </LeftContent>
