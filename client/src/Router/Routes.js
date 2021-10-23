@@ -6,16 +6,19 @@ import Community from '../Pages/Community';
 import CommunityEntrance from '../Pages/CommunityEntrance';
 import WriteArticle from '../Components/Community/WriteArticle';
 import Main from '../Components/Layout/Main/Main';
-import { HashRouter, Route, Redirect, Switch } from 'react-router-dom';
+import Header from '../Components/Layout/Header/Header';
+import Footer from '../Components/Layout/Footer';
+import { Route, Redirect, Switch, BrowserRouter } from 'react-router-dom';
 
 class Routes extends React.Component {
   render() {
     return (
-      <HashRouter>
+      <BrowserRouter>
         <>
+          <Header />
           <Switch>
             <Route path="/" exact component={Main} />
-            <Route path="/community" component={Community} />
+            <Route path="/community" exact component={Community} />
             <Route path="/writeArticle" component={WriteArticle} />
             <Route path="/result/:koUniv" component={Result} />
             <Route path="/result/:koUniv/:continent" component={Result} />
@@ -25,20 +28,27 @@ class Routes extends React.Component {
             />
             <Route
               path="/communityentrance/:continent"
+              exact
               component={CommunityEntrance}
             />
             <Route
               path="/communityentrance/:continent/freeboard"
+              exact
               component={FreeBoard}
             />
+            <Route
+              path="/communityentrance/:continent/freeboard/:searchOptions"
+              component={FreeBoard}
+            ></Route>
             <Route
               path="/communityentrance/:continent/qna"
               component={QnABoard}
             />
-            <Redirect from="*" to="/" />
+            {/* <Redirect from="*" to="/" /> */}
           </Switch>
+          <Footer />
         </>
-      </HashRouter>
+      </BrowserRouter>
     );
   }
 }

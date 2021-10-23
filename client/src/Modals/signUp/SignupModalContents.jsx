@@ -120,7 +120,7 @@ const SignupContents = styled.div`
 
   & > h1 {
     position: absolute;
-    top: 100px;
+    top: 65px;
     left: 35px;
     color: #66a6ff;
     text-align: center;
@@ -130,7 +130,7 @@ const SignupContents = styled.div`
 
   & > h2 {
     position: absolute;
-    top: 170px;
+    top: 140px;
     left: 35px;
     font-size: 24px;
     font-weight: 900;
@@ -155,16 +155,17 @@ const CloseModalButton = styled.button`
 
 const InputEmail = styled.form`
   position: absolute;
-  top: 220px;
+  top: 195px;
   left: 35px;
   outline: 0;
 
   & > input[type='email'] {
     width: 18.5em;
+    height: 45px;
     border: 1px solid #d1d1d1;
     border-radius: 30px/30px;
     font-size: 15px;
-    padding: 10px 10px;
+    padding: 0.8em;
     padding-left: 20px;
   }
 
@@ -172,9 +173,9 @@ const InputEmail = styled.form`
     color: white;
     background-color: #66a6ff;
     border-radius: 30px/30px;
-    font-size: 15px;
+    font-size: 1rem;
     font-weight: bold;
-    padding: 10px 10px;
+    padding: 0.8em;
     margin-left: 7px;
     cursor: pointer;
   }
@@ -207,35 +208,32 @@ const SocialLogin = styled.div`
   flex-direction: column;
   justify-content: space-around;
   position: absolute;
-  top: 270px;
+  top: 250px;
   left: 35px;
   color: #444444;
   font-weight: bold;
 
   & > span {
     width: 22em;
-    height: 40px;
+    height: 44px;
     border: 0.2px solid #d8d8d8;
     border-radius: 25px;
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 0.3em auto;
+    margin: 0.5em auto;
     cursor: pointer;
     position: relative;
     & > img {
+      width: 1.7rem;
       display: flex;
       justify-content: center;
       align-items: center;
       position: absolute;
-      top: 0px;
       left: 20px;
     }
-
     & > .kakao {
-      margin-left: 0.3em;
-      margin-top: 0.25em;
-      width: 2.15em;
+      width: 1.4em;
     }
 
     & > p {
@@ -253,6 +251,7 @@ const GoRegist = styled.div`
   position: absolute;
   bottom: 25px;
   right: 33px;
+  height: 45px;
 
   & > span {
     margin-right: 0.8em;
@@ -265,5 +264,5 @@ const EmailFormBtn = styled.button`
   font-size: 1rem;
   color: #66a6ff;
   width: 103px;
-  height: 49px;
+  height: 40px;
 `;

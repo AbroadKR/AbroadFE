@@ -9,7 +9,7 @@ export default function SigupModal() {
           <ModalContents>
             <ModalLogo>
               <img
-                src="images/logos/logo_vertical.svg"
+                src="images/logos/logo_vertical_white.svg"
                 alt="modal_logo"
                 className="modal_logo"
               />
