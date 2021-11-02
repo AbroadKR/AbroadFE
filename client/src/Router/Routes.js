@@ -2,13 +2,13 @@ import React from 'react';
 import Result from '../Pages/Result';
 import QnABoard from '../Pages/QnABoard';
 import FreeBoard from '../Pages/FreeBoard';
+import All from '../Pages/All';
 import Community from '../Pages/Community';
-import CommunityEntrance from '../Pages/CommunityEntrance';
 import WriteArticle from '../Components/Community/WriteArticle';
 import Main from '../Components/Layout/Main/Main';
 import Header from '../Components/Layout/Header/Header';
 import Footer from '../Components/Layout/Footer';
-import { Route, Redirect, Switch, BrowserRouter } from 'react-router-dom';
+import { Route, Switch, BrowserRouter } from 'react-router-dom';
 
 class Routes extends React.Component {
   render() {
@@ -18,33 +18,25 @@ class Routes extends React.Component {
           <Header />
           <Switch>
             <Route path="/" exact component={Main} />
-            <Route path="/community" exact component={Community} />
+            <Route path="/all" exact component={All} />
             <Route path="/writeArticle" component={WriteArticle} />
-            <Route path="/result/:koUniv" component={Result} />
-            <Route path="/result/:koUniv/:continent" component={Result} />
+            <Route path="/result/:koUniv" exact component={Result} />
+            <Route path="/result/:koUniv/:continent" exact component={Result} />
             <Route
               path="/result/:koUniv/:continent/:country"
               component={Result}
             />
+            <Route path="/community/:continent" exact component={Community} />
             <Route
-              path="/communityentrance/:continent"
-              exact
-              component={CommunityEntrance}
-            />
-            <Route
-              path="/communityentrance/:continent/freeboard"
+              path="/community/:continent/freeboard"
               exact
               component={FreeBoard}
             />
             <Route
-              path="/communityentrance/:continent/freeboard/:searchOptions"
+              path="/community/:continent/freeboard/:searchOptions"
               component={FreeBoard}
             ></Route>
-            <Route
-              path="/communityentrance/:continent/qna"
-              component={QnABoard}
-            />
-            {/* <Redirect from="*" to="/" /> */}
+            <Route path="/community/:continent/qna" component={QnABoard} />
           </Switch>
           <Footer />
         </>

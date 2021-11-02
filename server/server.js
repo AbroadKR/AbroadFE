@@ -1,5 +1,4 @@
 require('dotenv').config();
-const { SSL_OP_TLS_BLOCK_PADDING_BUG } = require('constants');
 const express = require('express');
 const path = require('path');
 const app = express();
@@ -159,6 +158,18 @@ app.post('/api/getFree', (req, res) => {
     })
     .skip((Number(num) - 1) * 15)
     .limit((Number(num) + 9) * 15);
+});
+app.post('/api/getFree/search', (req, res) => {
+  const {
+    body: { target, keyword },
+  } = req;
+  free.find({ title: { $regex: keyword } }, (err, frees) => {
+    if (err) {
+      res.end();
+      return;
+    }
+    res.json(frees);
+  });
 });
 
 // app.get('*', (req, res) => {

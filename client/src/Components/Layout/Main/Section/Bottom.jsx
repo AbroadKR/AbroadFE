@@ -12,7 +12,8 @@ const Bottom = () => {
             <Quotes />
             <Phrases>
               <Phrase>
-                유학생들을 위한 정보공유와 새 친구들을 만날 수 있는 공간,<div>어브로드라면 가능합니다.</div>
+                유학생들을 위한 정보공유와 새 친구들을 만날 수 있는 공간,
+                <span>어브로드라면 가능합니다.</span>
               </Phrase>
             </Phrases>
             <RightQuotes />
@@ -24,7 +25,7 @@ const Bottom = () => {
                 생겼어요!
               </Comment>
               <CommentInfo>임○한 님 &nbsp;|&nbsp; 2020년 07월 01일</CommentInfo>
-              <StyledMsgBox preserveAspectRatio="none"/>
+              <StyledMsgBox preserveAspectRatio="none" />
             </Message>
             <Message>
               <Comment>
@@ -32,7 +33,7 @@ const Bottom = () => {
                 있었어요!
               </Comment>
               <CommentInfo>김○범 님 &nbsp;|&nbsp; 2020년 07월 01일</CommentInfo>
-              <StyledMsgBox preserveAspectRatio="none"/>
+              <StyledMsgBox preserveAspectRatio="none" />
             </Message>
             <Message>
               <Comment>
@@ -67,7 +68,7 @@ const Title = styled.h3`
 `;
 
 const Container = styled.div`
-  position : relative;
+  position: relative;
   margin-top: 5.5rem;
   display: flex;
   justify-content: flex-start;
@@ -77,9 +78,9 @@ const Container = styled.div`
 const Content = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content : center;
+  justify-content: center;
   margin-right: 2rem;
-  width : 60%;
+  width: 60%;
 `;
 
 const Topic = styled.div`
@@ -87,24 +88,25 @@ const Topic = styled.div`
 `;
 
 const Phrases = styled.div`
-  display : flex;
-  justify-content : center;
+  display: flex;
+  justify-content: center;
   position: relative;
-  margin-bottom : 4.5rem;
-  padding : 0 0.8em;
+  margin-bottom: 4.5rem;
+  padding: 0 0.8em;
   top: 1.5em;
   font-size: 1.5rem;
   font-weight: bold;
   line-height: 1.75em;
-  color : #444444;
-  &  div {
-    text-align : center;
-    color : #66A6FF;
+  color: #444444;
+  & span {
+    display: block;
+    text-align: center;
+    color: #66a6ff;
   }
 `;
 
 const Phrase = styled.p`
-  white-space : nowrap;
+  white-space: nowrap;
 `;
 
 const Messages = styled.div`
@@ -113,13 +115,13 @@ const Messages = styled.div`
 
 const Message = styled.div`
   position: relative;
-  overflow : hidden;
-  white-space : nowrap;
-  text-overflow : ellipsis;
-  display : flex;
-  flex-direction : column;
-  justify-content : center;
-  align-items : center;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   width: 100%;
   height: 7.56em;
   margin-bottom: 2em;
@@ -127,14 +129,14 @@ const Message = styled.div`
 `;
 
 const Comment = styled.p`
-  display : block;
-  width : 85%;
+  display: block;
+  width: 85%;
   font-weight: 400;
 `;
 
 const CommentInfo = styled.span`
-  display : block;
-  width : 85%;
+  display: block;
+  width: 85%;
   font-weight: 700;
 `;
 
@@ -143,23 +145,23 @@ const StyledMsgBox = styled(MsgBox)`
   left: 0;
   top: 0;
   width: 100%;
-  max-width : 750px;
+  max-width: 750px;
   height: 100%;
   z-index: -1;
 `;
 
 const PhoneBox = styled.div`
-  display : flex;
-  align-items : center;
-  width : 40%;
-`
+  display: flex;
+  align-items: center;
+  width: 40%;
+`;
 
 const StyledIphone = styled.img`
-  margin : auto 0 2rem 3rem;
+  margin: auto 0 2rem 3rem;
   /* margin-left : 3rem;
   margin-top : auto; */
-  width : 85%;
-  max-width : 420px;
+  width: 85%;
+  max-width: 420px;
 `;
 
 const RightQuotes = styled(Quotes)`

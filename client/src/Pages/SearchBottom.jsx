@@ -1,19 +1,37 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
-import axios from 'axios';
+import { useHistory } from 'react-router-dom';
 
-function SearchBottom({ param }) {
-  console.log(param);
+function SearchBottom({ continent, boardType }) {
+  const [target, setTarget] = useState('제목+내용');
+  const [keyword, setKeyword] = useState('');
+  const history = useHistory();
+  const handleTarget = (e) => {
+    setTarget(e.currentTarget.value);
+  };
+  const handleKeyword = (e) => {
+    setKeyword(e.currentTarget.value);
+  };
+  const handleSubmit = () => {
+    history.push(`/community/${continent}/${boardType}`, { target, keyword });
+    setTarget('제목+내용');
+    setKeyword('');
+  };
   return (
-    <SearchBox action="/api/" method="GET">
-      <SearchOpt name="searchOption" id="searchOption">
+    <SearchBox>
+      <SearchOpt name="searchTarget" id="searchTarget" onChange={handleTarget}>
         <option value="제목+내용">제목+내용</option>
         <option value="글쓴이">글쓴이</option>
         <option value="댓글">댓글</option>
       </SearchOpt>
       <BarBox>
-        <SearchBar type="text" name="searcText" id="searchBar" />
-        <SearchBtn type="submit">검색</SearchBtn>
+        <SearchBar
+          type="text"
+          name="searchKeyword"
+          id="searchKeyword"
+          onChange={handleKeyword}
+        />
+        <SearchBtn onClick={handleSubmit}>검색</SearchBtn>
       </BarBox>
     </SearchBox>
   );
@@ -21,7 +39,7 @@ function SearchBottom({ param }) {
 
 export default SearchBottom;
 
-const SearchBox = styled.form`
+const SearchBox = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;

@@ -29,7 +29,7 @@ export default function WriteArticle() {
   const history = useHistory();
   const routeToArticeList = () => {
     history.push({
-      pathname: '/Community',
+      pathname: '/all',
     });
   };
 
@@ -37,7 +37,7 @@ export default function WriteArticle() {
     <Div>
       <UpstreamSection>
         <span>커뮤니티</span>
-        <span>자유게시판</span>
+        <span>전체 게시판</span>
       </UpstreamSection>
       <TitleOverview>
         <span className="title">제목</span>

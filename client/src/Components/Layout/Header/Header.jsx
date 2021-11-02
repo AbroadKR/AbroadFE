@@ -5,6 +5,7 @@ import CommunitySub from './SubMenu';
 import SignupModal from '../../../Modals/signUp/SignupModal';
 import { useRecoilState, useSetRecoilState } from 'recoil';
 import { modalActive, signupModalState } from '../../../Store/atom';
+import { UserIcon, LogoHorizontal } from '../../../images';
 
 function Header() {
   const [isDown, setIsDown] = useState(false);
@@ -38,7 +39,7 @@ function Header() {
     <Head>
       <HeadLogo>
         <Link to="/">
-          <img src="Images/logos/logo_horizontal.svg" alt="horizontal_logo" />
+          <img src={LogoHorizontal} alt="horizontal_logo" />
         </Link>
       </HeadLogo>
       <HeadNav className="header_nav">
@@ -55,7 +56,7 @@ function Header() {
       </HeadNav>
       <SignBox>
         <li onMouseEnter={dropdown} onMouseLeave={closeDropdown}>
-          <img src="Images/signup_modal/user_circle.svg" alt="user" />
+          <img src={UserIcon} alt="user" />
           <ul>
             <li id="header_signup_login" onClick={() => onModalActive('login')}>
               로그인

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 import { GiSpeaker } from 'react-icons/gi';
 import Pagination from './Pagination';
@@ -11,15 +11,42 @@ function FreeBoard({ match }) {
   const [order, setOrder] = useState(1);
   const [posts, setPosts] = useState([{}]);
   const [firstIndex, setFirstIndex] = useState(1);
-  const getFree = async () => {
-    const { data: res } = await axios.post('/api/getFree', {
-      page: firstIndex,
-    });
-    setPosts(res);
-    console.log(res);
+
+  const getFree = async (opt) => {
+    if (!opt) {
+      const { data: res } = await axios.post('/api/getFree', {
+        page: firstIndex,
+      });
+      setPosts(res);
+    } else {
+      const { data: res } = await axios.post('/api/getFree/search', {
+        target: opt.target,
+        keyword: opt.keyword,
+      });
+      if (res.length === 0) {
+        alert('검색결과가 없습니다.');
+        return;
+      }
+      setPosts(res);
+    }
   };
-  const handleOrder = (e) => {
-    setOrder(Number(e.currentTarget.id));
+  const handleOrder = async (e) => {
+    setOrder(e.currentTarget.id);
+    if (e.currentTarget.id === '1') {
+      getFree();
+    } else if (e.currentTarget.id === '3') {
+      await posts.sort((a, b) => {
+        if (a.like > b.like) {
+          return -1;
+        } else if (a.like < b.like) {
+          return 1;
+        } else {
+          return 0;
+        }
+      });
+      setPosts([]);
+      setPosts(posts);
+    }
   };
   const handlePage = (e) => {
     setCurrentPage(Number(e.currentTarget.textContent));
@@ -48,8 +75,15 @@ function FreeBoard({ match }) {
     continent = '유럽';
   }
 
+  const location = useLocation();
+  const searchOpt = location.state;
+
   useEffect(() => {
-    getFree();
+    getFree(searchOpt);
+  }, [searchOpt]);
+
+  useEffect(() => {
+    getFree(searchOpt);
   }, [currentPage]);
 
   return (
@@ -76,10 +110,6 @@ function FreeBoard({ match }) {
           </li>
           <hr />
           <li id="3" onClick={handleOrder}>
-            댓글순
-          </li>
-          <hr />
-          <li id="5" onClick={handleOrder}>
             좋아요순
           </li>
         </Filter>
@@ -109,8 +139,8 @@ function FreeBoard({ match }) {
             {posts &&
               posts
                 .slice((normalIndex - 1) * 15, normalIndex * 15)
-                .map((post) => (
-                  <tr>
+                .map((post, index) => (
+                  <tr key={index}>
                     <td>{post.title}</td>
                     <td>{post.user}</td>
                     <td>{post.like}</td>
@@ -129,7 +159,11 @@ function FreeBoard({ match }) {
           />
           <WriteBtn>글 작성</WriteBtn>
         </PageBox>
-        <SearchBottom setPosts={setPosts} param={param} />
+        <SearchBottom
+          setPosts={setPosts}
+          continent={param}
+          boardType={'freeboard'}
+        />
       </TableBox>
     </>
   );
@@ -195,7 +229,7 @@ const Filter = styled.ul`
   align-items: center;
   justify-content: space-evenly;
   height: 5.3rem;
-  width: 20rem;
+  width: 13rem;
   margin-left: auto;
   & li {
     width: 5rem;

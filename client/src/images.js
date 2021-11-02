@@ -1,3 +1,7 @@
+// Header
+import UserIcon from './images/hearder/user_circle.svg';
+import LogoHorizontal from './images/hearder/logo_horizontal.svg';
+
 // Banner
 import Banner1 from './images/main/banner/banner_1.svg';
 import Banner2 from './images/main/banner/banner_2.svg';
@@ -17,6 +21,9 @@ import Iphone from './images/main/bottom/Iphone.png';
 import { ReactComponent as MsgBox } from './images/main/bottom/msgBox.svg';
 import { ReactComponent as Quotes } from './images/main/bottom/quotes.svg';
 
+// footer
+import LogoBottom from './images/footer/logo_bottom.svg';
+
 export {
   Banner1,
   Banner2,
@@ -29,4 +36,7 @@ export {
   Iphone,
   MsgBox,
   Quotes,
+  UserIcon,
+  LogoHorizontal,
+  LogoBottom,
 };
