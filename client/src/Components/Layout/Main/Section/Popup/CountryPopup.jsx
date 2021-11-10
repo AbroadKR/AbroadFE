@@ -81,8 +81,8 @@ const PopUp = styled.div`
         background-image: url('Images/main_view/location_default.svg');
         background-size: cover;
         background-position: center;
-        width: 16px;
-        height: 18px;
+        width: 14px;
+        height: 16px;
         display: inline-block;
         margin-right: 1em;
         margin-left: 1em;

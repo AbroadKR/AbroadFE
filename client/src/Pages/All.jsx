@@ -5,11 +5,32 @@ import { GiSpeaker } from 'react-icons/gi';
 import SearchBottom from './SearchBottom';
 import Pagination from './Pagination';
 
-export default function All() {
+export default function All({ match }) {
+  let currentPath;
   const [currentPage, setCurrentPage] = useState(1);
   const [order, setOrder] = useState(1);
   const [posts, setPosts] = useState([{}]);
   const [firstIndex, setFirstIndex] = useState(1);
+
+  if (match.path === '/all') {
+    currentPath = '전체';
+  } else if (match.path === '/travel/info') {
+    currentPath = '정보/일정 공유';
+  } else if (match.path === '/travel/party') {
+    currentPath = '동행 찾기';
+  }
+
+  const getPost = async () => {
+    const { data: res } = await axios.post('/api/getPost', {
+      path: currentPath,
+    });
+    console.log(res);
+  };
+
+  useState(() => {
+    getPost();
+  }, []);
+
   const handleOrder = async (e) => {
     setOrder(e.currentTarget.id);
     if (e.currentTarget.id === '1') {
@@ -44,7 +65,7 @@ export default function All() {
       <CommunityWrap>
         <UpstreamSection>
           <span>커뮤니티</span>
-          <span>전체 게시판</span>
+          <span>{currentPath} 게시판</span>
         </UpstreamSection>
         <TableBox>
           <Filter order={order}>
@@ -74,7 +95,7 @@ export default function All() {
                       marginRight: '1rem',
                     }}
                   />
-                  대륙별 자유게시판 이용 안내
+                  {currentPath} 게시판 이용 안내
                 </td>
                 <td>어브로드</td>
                 <td>-</td>

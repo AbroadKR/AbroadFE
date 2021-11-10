@@ -67,7 +67,7 @@ function CommunitySub({ isDown }) {
           <div>
             <IoArrowBackCircleSharp className="returnIcon" onClick={goToMain} />
           </div>
-          <SubLink to="/travel">정보/일정 공유</SubLink>
+          <SubLink to="/travel/info">정보/일정 공유</SubLink>
           <SubLink to="/travel/party">동행 찾기</SubLink>
         </SecondSub>
       </CSSTransition>

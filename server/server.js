@@ -172,6 +172,19 @@ app.post('/api/getFree/search', (req, res) => {
   });
 });
 
+app.post('/api/getPost', (req, res) => {
+  const {
+    body: { path },
+  } = req;
+  if (path === '전체') {
+    return;
+  } else if (path === '정보/일정 공유') {
+    return;
+  } else if (path === '동행 찾기') {
+    return;
+  }
+});
+
 // app.get('*', (req, res) => {
 //   res.sendFile(path.join(__dirname, '../client/public/index.html'));
 // });

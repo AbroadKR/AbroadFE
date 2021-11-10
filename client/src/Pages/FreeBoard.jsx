@@ -188,8 +188,8 @@ const ContinentImg = styled.div`
   width: 35%;
   background-image: url(${(props) =>
     `/images/pages/continent_${props.bgShort}.png`});
-  background-size: 28%;
-  background-position: center;
+  background-size: 33%;
+  background-position: 60%;
   background-repeat: no-repeat;
 `;
 const BoardInfo = styled.div`

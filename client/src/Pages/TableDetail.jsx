@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 export default function TableDetail({ rectValue, isOpen, reviews, image }) {
@@ -138,7 +139,12 @@ export default function TableDetail({ rectValue, isOpen, reviews, image }) {
         </Comments>
         <BtnBox className="rightBox_buttons">
           <InfoBtn className="ogInfo_button">국제처 공지 바로가기</InfoBtn>
-          <MoreBtn className="more_detail_button">+ 더 보기</MoreBtn>
+          <MoreBtn
+            to={`/college/${reviews[0].forUniv}`}
+            className="more_detail_button"
+          >
+            + 더 보기
+          </MoreBtn>
         </BtnBox>
       </RightBox>
     </MainBox>
@@ -279,7 +285,7 @@ const InfoBtn = styled.button`
   border: 1px solid #66a6ff;
   color: #66a6ff;
 `;
-const MoreBtn = styled.button`
+const MoreBtn = styled(Link)`
   display: inline-block;
   margin-left: 3%;
   padding: 0.7em;

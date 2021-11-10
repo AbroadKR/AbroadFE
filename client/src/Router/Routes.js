@@ -9,6 +9,7 @@ import Main from '../Components/Layout/Main/Main';
 import Header from '../Components/Layout/Header/Header';
 import Footer from '../Components/Layout/Footer';
 import { Route, Switch, BrowserRouter } from 'react-router-dom';
+import CollegeDetail from '../Pages/CollegeDetail';
 
 class Routes extends React.Component {
   render() {
@@ -37,6 +38,9 @@ class Routes extends React.Component {
               component={FreeBoard}
             ></Route>
             <Route path="/community/:continent/qna" component={QnABoard} />
+            <Route path="/travel/info" exact component={All} />
+            <Route path="/travel/party" exact component={All} />
+            <Route path="/college/:id" exact component={CollegeDetail} />
           </Switch>
           <Footer />
         </>
