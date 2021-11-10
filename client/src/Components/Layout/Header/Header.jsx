@@ -130,6 +130,7 @@ const SignBox = styled.ul`
     display: flex;
     align-items: center;
     justify-content: center;
+
     padding: 1em 0;
   }
   & > li img {

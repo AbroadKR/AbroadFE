@@ -13,12 +13,12 @@ import {
 
 export default function SignupModalContents() {
   const setModalActive = useSetRecoilState(modalActive);
-  const [LoginOrRegist, setLoginOrRegist] = useRecoilState(isLoginOrRegist);
-  const [opposite, setOpposite] = useRecoilState(oppositeIsLoginOrRegist);
   const [modalState, setModalState] = useRecoilState(signupModalState);
   const [modalTitle, setModalTitle] = useRecoilState(signupModalTitle);
-  const [modalMessage, setModalMessage] = useRecoilState(signupModalMessage);
+  const [opposite, setOpposite] = useRecoilState(oppositeIsLoginOrRegist);
   const [isUserSubmit, setIsUserSubmit] = useRecoilState(signupUserSubmit);
+  const [LoginOrRegist, setLoginOrRegist] = useRecoilState(isLoginOrRegist);
+  const [modalMessage, setModalMessage] = useRecoilState(signupModalMessage);
 
   useEffect(() => {
     setIsUserSubmit(false);
@@ -56,6 +56,19 @@ export default function SignupModalContents() {
     }
   };
 
+  function validateEmail() {
+    const re =
+      /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
+    const email = document.getElementById('useremail').value;
+
+    if (email == '' || !re.test(email)) {
+      alert('올바른 이메일 주소를 입력하세요');
+      return false;
+    } else {
+      setIsUserSubmit(true);
+    }
+  }
+
   return (
     <SignupContents>
       <CloseModalButton onClick={closeSingupModal} />
@@ -65,16 +78,17 @@ export default function SignupModalContents() {
         <InputEmail>
           <input
             type="email"
-            name="item"
+            name="email"
             placeholder="이메일을 입력해주세요"
             autocomplete="off"
             required
+            id="useremail"
           />
           <input
             type="submit"
             value={LoginOrRegist}
-            onClick={() => setIsUserSubmit(true)}
             required
+            onClick={validateEmail}
           />
         </InputEmail>
       ) : LoginOrRegist === '로그인' ? (
@@ -88,6 +102,7 @@ export default function SignupModalContents() {
             src="images/signup_modal/google.svg"
             className="google"
             alt="modal_google"
+            style={{ width: '30px' }}
           />{' '}
           <p>구글계정으로 로그인하기</p>
         </span>
@@ -96,6 +111,7 @@ export default function SignupModalContents() {
             src="images/signup_modal/kakkao.svg"
             className="kakao"
             alt="modal_kakao"
+            style={{ width: '25px' }}
           />{' '}
           <p>카카오계정으로 로그인하기</p>
         </span>
@@ -145,7 +161,7 @@ const CloseModalButton = styled.button`
   height: 1.5em;
   border: 1px solid white;
   border-radius: 50%;
-  background: #4db7e6;
+  background: #66a6ff;
   margin: 0;
   padding: 0;
   text-align: left;
@@ -185,22 +201,51 @@ const SlideImgLogin = styled.div`
   width: 95%;
   height: 2.5em;
   position: absolute;
-  bottom: 160px;
+  top: 200px;
   left: 5px;
   margin-bottom: 20px;
   background: url('images/signup_modal/sendmail_img.svg') center no-repeat;
   background-size: cover;
+  animation-duration: 0.17s;
+  animation-name: slidein;
+
+  @keyframes slidein {
+    from {
+      margin-left: 70%;
+      width: 150%;
+    }
+
+    to {
+      margin-left: 0%;
+      width: 100%;
+    }
+  }
 `;
 
 const SlideImgRegist = styled.div`
   width: 95%;
   height: 2.5em;
   position: absolute;
-  bottom: 160px;
+  top: 200px;
+
   left: 5px;
   margin-bottom: 20px;
   background: url('images/signup_modal/regist_send_mail.svg') center no-repeat;
   background-size: cover;
+  animation-duration: 0.17ss;
+  animation-name: slidein;
+
+  @keyframes slidein {
+    from {
+      margin-left: 70%;
+      width: 150%;
+    }
+
+    to {
+      margin-left: 0%;
+      width: 100%;
+    }
+  }
 `;
 
 const SocialLogin = styled.div`
@@ -232,8 +277,18 @@ const SocialLogin = styled.div`
       position: absolute;
       left: 20px;
     }
+
+    & > .google {
+      position: absolute;
+      top: 4px;
+      left: 20px;
+    }
+
     & > .kakao {
-      width: 1.4em;
+      position: absolute;
+      top: 8px;
+      left: 24px;
+      background-size: cover;
     }
 
     & > p {

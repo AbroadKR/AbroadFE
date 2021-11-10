@@ -46,6 +46,7 @@ export const signupModalMessage = atom({
 
 export const communityName = atom({
   key: 'community_name',
+
   default: '전체 게시판',
 });
 

@@ -48,6 +48,7 @@ function CommunitySub({ isDown }) {
           <div>
             <IoArrowBackCircleSharp className="returnIcon" onClick={goToMain} />
           </div>
+
           <SubLink to="/community/sa">남미</SubLink>
           <SubLink to="/community/na">북미</SubLink>
           <SubLink to="/community/asia">아시아</SubLink>
@@ -67,6 +68,7 @@ function CommunitySub({ isDown }) {
           <div>
             <IoArrowBackCircleSharp className="returnIcon" onClick={goToMain} />
           </div>
+
           <SubLink to="/travel/info">정보/일정 공유</SubLink>
           <SubLink to="/travel/party">동행 찾기</SubLink>
         </SecondSub>
