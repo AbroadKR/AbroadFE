@@ -13,12 +13,21 @@ import {
 
 export default function SignupModalContents() {
   const setModalActive = useSetRecoilState(modalActive);
+<<<<<<< HEAD
   const [modalState, setModalState] = useRecoilState(signupModalState);
   const [modalTitle, setModalTitle] = useRecoilState(signupModalTitle);
   const [opposite, setOpposite] = useRecoilState(oppositeIsLoginOrRegist);
   const [isUserSubmit, setIsUserSubmit] = useRecoilState(signupUserSubmit);
   const [LoginOrRegist, setLoginOrRegist] = useRecoilState(isLoginOrRegist);
   const [modalMessage, setModalMessage] = useRecoilState(signupModalMessage);
+=======
+  const [LoginOrRegist, setLoginOrRegist] = useRecoilState(isLoginOrRegist);
+  const [opposite, setOpposite] = useRecoilState(oppositeIsLoginOrRegist);
+  const [modalState, setModalState] = useRecoilState(signupModalState);
+  const [modalTitle, setModalTitle] = useRecoilState(signupModalTitle);
+  const [modalMessage, setModalMessage] = useRecoilState(signupModalMessage);
+  const [isUserSubmit, setIsUserSubmit] = useRecoilState(signupUserSubmit);
+>>>>>>> develope
 
   useEffect(() => {
     setIsUserSubmit(false);
@@ -56,6 +65,7 @@ export default function SignupModalContents() {
     }
   };
 
+<<<<<<< HEAD
   function validateEmail() {
     const re =
       /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
@@ -69,6 +79,8 @@ export default function SignupModalContents() {
     }
   }
 
+=======
+>>>>>>> develope
   return (
     <SignupContents>
       <CloseModalButton onClick={closeSingupModal} />
@@ -78,17 +90,29 @@ export default function SignupModalContents() {
         <InputEmail>
           <input
             type="email"
+<<<<<<< HEAD
             name="email"
             placeholder="이메일을 입력해주세요"
             autocomplete="off"
             required
             id="useremail"
+=======
+            name="item"
+            placeholder="이메일을 입력해주세요"
+            autocomplete="off"
+            required
+>>>>>>> develope
           />
           <input
             type="submit"
             value={LoginOrRegist}
+<<<<<<< HEAD
             required
             onClick={validateEmail}
+=======
+            onClick={() => setIsUserSubmit(true)}
+            required
+>>>>>>> develope
           />
         </InputEmail>
       ) : LoginOrRegist === '로그인' ? (
@@ -102,7 +126,10 @@ export default function SignupModalContents() {
             src="images/signup_modal/google.svg"
             className="google"
             alt="modal_google"
+<<<<<<< HEAD
             style={{ width: '30px' }}
+=======
+>>>>>>> develope
           />{' '}
           <p>구글계정으로 로그인하기</p>
         </span>
@@ -111,7 +138,10 @@ export default function SignupModalContents() {
             src="images/signup_modal/kakkao.svg"
             className="kakao"
             alt="modal_kakao"
+<<<<<<< HEAD
             style={{ width: '25px' }}
+=======
+>>>>>>> develope
           />{' '}
           <p>카카오계정으로 로그인하기</p>
         </span>
@@ -161,7 +191,11 @@ const CloseModalButton = styled.button`
   height: 1.5em;
   border: 1px solid white;
   border-radius: 50%;
+<<<<<<< HEAD
   background: #66a6ff;
+=======
+  background: #4db7e6;
+>>>>>>> develope
   margin: 0;
   padding: 0;
   text-align: left;
@@ -201,11 +235,16 @@ const SlideImgLogin = styled.div`
   width: 95%;
   height: 2.5em;
   position: absolute;
+<<<<<<< HEAD
   top: 200px;
+=======
+  bottom: 160px;
+>>>>>>> develope
   left: 5px;
   margin-bottom: 20px;
   background: url('images/signup_modal/sendmail_img.svg') center no-repeat;
   background-size: cover;
+<<<<<<< HEAD
   animation-duration: 0.17s;
   animation-name: slidein;
 
@@ -220,17 +259,24 @@ const SlideImgLogin = styled.div`
       width: 100%;
     }
   }
+=======
+>>>>>>> develope
 `;
 
 const SlideImgRegist = styled.div`
   width: 95%;
   height: 2.5em;
   position: absolute;
+<<<<<<< HEAD
   top: 200px;
+=======
+  bottom: 160px;
+>>>>>>> develope
   left: 5px;
   margin-bottom: 20px;
   background: url('images/signup_modal/regist_send_mail.svg') center no-repeat;
   background-size: cover;
+<<<<<<< HEAD
   animation-duration: 0.17ss;
   animation-name: slidein;
 
@@ -245,6 +291,8 @@ const SlideImgRegist = styled.div`
       width: 100%;
     }
   }
+=======
+>>>>>>> develope
 `;
 
 const SocialLogin = styled.div`
@@ -276,6 +324,7 @@ const SocialLogin = styled.div`
       position: absolute;
       left: 20px;
     }
+<<<<<<< HEAD
 
     & > .google {
       position: absolute;
@@ -288,6 +337,10 @@ const SocialLogin = styled.div`
       top: 8px;
       left: 24px;
       background-size: cover;
+=======
+    & > .kakao {
+      width: 1.4em;
+>>>>>>> develope
     }
 
     & > p {

@@ -5,6 +5,10 @@ import CommunitySub from './SubMenu';
 import SignupModal from '../../../Modals/signUp/SignupModal';
 import { useRecoilState, useSetRecoilState } from 'recoil';
 import { modalActive, signupModalState } from '../../../Store/atom';
+<<<<<<< HEAD
+=======
+import { UserIcon, LogoHorizontal } from '../../../images';
+>>>>>>> develope
 
 function Header() {
   const [isDown, setIsDown] = useState(false);
@@ -38,7 +42,11 @@ function Header() {
     <Head>
       <HeadLogo>
         <Link to="/">
+<<<<<<< HEAD
           <img src="Images/logos/logo_horizontal.svg" alt="horizontal_logo" />
+=======
+          <img src={LogoHorizontal} alt="horizontal_logo" />
+>>>>>>> develope
         </Link>
       </HeadLogo>
       <HeadNav className="header_nav">
@@ -47,7 +55,11 @@ function Header() {
           <CommunitySub isDown={isDown} />
         </NavMenu>
         <NavMenu>
+<<<<<<< HEAD
           <NavLink to="/foreCampus">해외교 평가</NavLink>
+=======
+          <NavLink to="#">해외교 평가</NavLink>
+>>>>>>> develope
         </NavMenu>
         <NavMenu>
           <NavLink to="#">도움문의</NavLink>
@@ -55,14 +67,22 @@ function Header() {
       </HeadNav>
       <SignBox>
         <li onMouseEnter={dropdown} onMouseLeave={closeDropdown}>
+<<<<<<< HEAD
           <img src="Images/signup_modal/user_circle.svg" alt="user" />
+=======
+          <img src={UserIcon} alt="user" />
+>>>>>>> develope
           <ul>
             <li id="header_signup_login" onClick={() => onModalActive('login')}>
               로그인
             </li>
             <li
               id="header_signup_regist"
+<<<<<<< HEAD
               onClick={() => onModalActive('regist')}
+=======
+              onClick={() => onModalActive('login')}
+>>>>>>> develope
             >
               회원가입
             </li>
@@ -129,6 +149,10 @@ const SignBox = styled.ul`
     display: flex;
     align-items: center;
     justify-content: center;
+<<<<<<< HEAD
+=======
+    padding: 1em 0;
+>>>>>>> develope
   }
   & > li img {
     width: 3rem;

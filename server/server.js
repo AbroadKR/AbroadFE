@@ -1,5 +1,8 @@
 require('dotenv').config();
+<<<<<<< HEAD
 const { SSL_OP_TLS_BLOCK_PADDING_BUG } = require('constants');
+=======
+>>>>>>> develope
 const express = require('express');
 const path = require('path');
 const app = express();
@@ -160,6 +163,34 @@ app.post('/api/getFree', (req, res) => {
     .skip((Number(num) - 1) * 15)
     .limit((Number(num) + 9) * 15);
 });
+<<<<<<< HEAD
+=======
+app.post('/api/getFree/search', (req, res) => {
+  const {
+    body: { target, keyword },
+  } = req;
+  free.find({ title: { $regex: keyword } }, (err, frees) => {
+    if (err) {
+      res.end();
+      return;
+    }
+    res.json(frees);
+  });
+});
+
+app.post('/api/getPost', (req, res) => {
+  const {
+    body: { path },
+  } = req;
+  if (path === '전체') {
+    return;
+  } else if (path === '정보/일정 공유') {
+    return;
+  } else if (path === '동행 찾기') {
+    return;
+  }
+});
+>>>>>>> develope
 
 // app.get('*', (req, res) => {
 //   res.sendFile(path.join(__dirname, '../client/public/index.html'));

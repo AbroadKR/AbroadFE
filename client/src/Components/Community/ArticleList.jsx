@@ -46,7 +46,10 @@ const Category = styled.span`
   min-height: 3.3em;
   font-size: 0.85rem;
   display: flex;
+<<<<<<< HEAD
   border-top: 1.5px solid #444444;
+=======
+>>>>>>> develope
   border-bottom: 1px solid #d1d1d1;
   & > span:first-child {
     flex: 1 1 84%;

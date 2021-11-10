@@ -19,7 +19,10 @@ class Middle extends Component {
                 해외 교환학생 프로그램을 떠나기 전에 많은 답답함을 느낍니다.
               </strong>
             </Phrase>
+<<<<<<< HEAD
             {/* <Arrow src={arrow} alt="down-arrow" /> */}
+=======
+>>>>>>> develope
             <Phrase blue>
               <strong>
                 어브로드는 유학생 및 교환학생들을 위한 다양하고 많은 정보들을 한
@@ -42,7 +45,11 @@ const Section = styled.section`
 `;
 
 const Title = styled.h2`
+<<<<<<< HEAD
   margin-bottom : 6rem;
+=======
+  margin-bottom: 6rem;
+>>>>>>> develope
   font-size: 3rem;
   font-weight: 800;
   color: #444444;
@@ -52,21 +59,36 @@ const Title = styled.h2`
 const Container = styled.div`
   display: flex;
   margin-top: 3rem;
+<<<<<<< HEAD
   justify-content : space-between;
+=======
+  justify-content: space-between;
+>>>>>>> develope
 `;
 
 const LeftColumn = styled.div`
   display: flex;
   flex-direction: column;
+<<<<<<< HEAD
   justify-content : center;
   align-items : center;
   flex-basis : 35%;
   width : 35%;
+=======
+  justify-content: center;
+  align-items: center;
+  flex-basis: 35%;
+  width: 35%;
+>>>>>>> develope
 `;
 
 const StyledImoge = styled.img`
   width: 65%;
+<<<<<<< HEAD
   margin-bottom : 1rem;
+=======
+  margin-bottom: 1rem;
+>>>>>>> develope
 `;
 
 const StyledImac = styled.img`
@@ -75,6 +97,7 @@ const StyledImac = styled.img`
 
 const RightColumn = styled.div`
   display: flex;
+<<<<<<< HEAD
   align-items : center;
   flex-direction: column;
   flex-basis : 60%;
@@ -89,6 +112,22 @@ const Phrase = styled.div`
   color: ${(props) => (props.blue ? '#66A6FF' : '#444444')};
   font-weight: ${(props) => (props.blue ? '700' : '400')};
   height : ${props => props.blue ? '60%' : '40%'};
+=======
+  align-items: center;
+  flex-direction: column;
+  flex-basis: 60%;
+`;
+
+const Phrase = styled.div`
+  display: flex;
+  align-items: center;
+  width: 80%;
+  line-height: 2.5rem;
+  font-size: 1.5rem;
+  color: ${(props) => (props.blue ? '#66A6FF' : '#444444')};
+  font-weight: ${(props) => (props.blue ? '700' : '400')};
+  height: ${(props) => (props.blue ? '60%' : '40%')};
+>>>>>>> develope
 `;
 
 // const Arrow = styled.img``;

@@ -21,6 +21,7 @@ import codeSyntaxHighlight from '@toast-ui/editor-plugin-code-syntax-highlight';
 
 export default function WriteArticle() {
   const editorRef = useRef();
+<<<<<<< HEAD
   const history = useHistory();
   const routeToArticeList = () => {
     history.push({
@@ -31,11 +32,29 @@ export default function WriteArticle() {
   const saveCurrentText = (e) => {};
   const sendDataofArticle = () => {};
 
+=======
+
+  const saveFunction = () => {
+    console.log('hi');
+  };
+
+  const history = useHistory();
+  const routeToArticeList = () => {
+    history.push({
+      pathname: '/all',
+    });
+  };
+
+>>>>>>> develope
   return (
     <Div>
       <UpstreamSection>
         <span>커뮤니티</span>
+<<<<<<< HEAD
         <span>자유게시판</span>
+=======
+        <span>전체 게시판</span>
+>>>>>>> develope
       </UpstreamSection>
       <TitleOverview>
         <span className="title">제목</span>
@@ -43,6 +62,7 @@ export default function WriteArticle() {
       </TitleOverview>
       <ToastEditor>
         <Editor
+<<<<<<< HEAD
           height="750px"
           ref={editorRef}
           previewStyle="vertical"
@@ -50,6 +70,14 @@ export default function WriteArticle() {
           useCommandShortcut={true}
           initialValue="내용을 입력해주세요"
           onChange={(e) => saveCurrentText(e)}
+=======
+          initialValue="hello react editor world!"
+          previewStyle="vertical"
+          height="750px"
+          initialEditType="wysiwyg"
+          useCommandShortcut={true}
+          ref={editorRef}
+>>>>>>> develope
           plugins={[
             colorSyntax,
             chart,
@@ -59,12 +87,21 @@ export default function WriteArticle() {
       </ToastEditor>
       <FileOverview>
         <span className="file">파일</span>
+<<<<<<< HEAD
         <input className="fileInput" readOnly></input>
       </FileOverview>
       <SaveArticle>
         <button onClick={routeToArticeList}>목록으로</button>
         <button>임시저장</button>
         <button onClick={sendDataofArticle}>등록하기</button>
+=======
+        <input className="fileInput"></input>
+      </FileOverview>
+      <SaveArticle onClick={saveFunction}>
+        <button onClick={routeToArticeList}>목록으로</button>
+        <button>임시저장</button>
+        <button>등록하기</button>
+>>>>>>> develope
       </SaveArticle>
     </Div>
   );

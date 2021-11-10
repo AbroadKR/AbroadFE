@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
@@ -7,13 +8,47 @@ function SearchBottom({ param }) {
   return (
     <SearchBox action="/api/" method="GET">
       <SearchOpt name="searchOption" id="searchOption">
+=======
+import React, { useState } from 'react';
+import styled from 'styled-components';
+import { useHistory } from 'react-router-dom';
+
+function SearchBottom({ continent, boardType }) {
+  const [target, setTarget] = useState('제목+내용');
+  const [keyword, setKeyword] = useState('');
+  const history = useHistory();
+  const handleTarget = (e) => {
+    setTarget(e.currentTarget.value);
+  };
+  const handleKeyword = (e) => {
+    setKeyword(e.currentTarget.value);
+  };
+  const handleSubmit = () => {
+    history.push(`/community/${continent}/${boardType}`, { target, keyword });
+    setTarget('제목+내용');
+    setKeyword('');
+  };
+  return (
+    <SearchBox>
+      <SearchOpt name="searchTarget" id="searchTarget" onChange={handleTarget}>
+>>>>>>> develope
         <option value="제목+내용">제목+내용</option>
         <option value="글쓴이">글쓴이</option>
         <option value="댓글">댓글</option>
       </SearchOpt>
       <BarBox>
+<<<<<<< HEAD
         <SearchBar type="text" name="searcText" id="searchBar" />
         <SearchBtn type="submit">검색</SearchBtn>
+=======
+        <SearchBar
+          type="text"
+          name="searchKeyword"
+          id="searchKeyword"
+          onChange={handleKeyword}
+        />
+        <SearchBtn onClick={handleSubmit}>검색</SearchBtn>
+>>>>>>> develope
       </BarBox>
     </SearchBox>
   );
@@ -21,7 +56,11 @@ function SearchBottom({ param }) {
 
 export default SearchBottom;
 
+<<<<<<< HEAD
 const SearchBox = styled.form`
+=======
+const SearchBox = styled.div`
+>>>>>>> develope
   display: flex;
   align-items: center;
   justify-content: center;

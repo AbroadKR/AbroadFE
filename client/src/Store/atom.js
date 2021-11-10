@@ -46,7 +46,11 @@ export const signupModalMessage = atom({
 
 export const communityName = atom({
   key: 'community_name',
+<<<<<<< HEAD
   default: '자유게시판',
+=======
+  default: '전체 게시판',
+>>>>>>> develope
 });
 
 export const oppositeCommunityName = atom({
