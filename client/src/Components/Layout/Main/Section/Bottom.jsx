@@ -25,6 +25,7 @@ const Bottom = () => {
                 생겼어요!
               </Comment>
               <CommentInfo>임○한 님 &nbsp;|&nbsp; 2020년 07월 01일</CommentInfo>
+
               <StyledMsgBox preserveAspectRatio="none" />
             </Message>
             <Message>
@@ -33,6 +34,7 @@ const Bottom = () => {
                 있었어요!
               </Comment>
               <CommentInfo>김○범 님 &nbsp;|&nbsp; 2020년 07월 01일</CommentInfo>
+
               <StyledMsgBox preserveAspectRatio="none" />
             </Message>
             <Message>
@@ -78,6 +80,7 @@ const Container = styled.div`
 const Content = styled.div`
   display: flex;
   flex-direction: column;
+
   justify-content: center;
   margin-right: 2rem;
   width: 60%;
@@ -115,6 +118,7 @@ const Messages = styled.div`
 
 const Message = styled.div`
   position: relative;
+
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
@@ -145,6 +149,7 @@ const StyledMsgBox = styled(MsgBox)`
   left: 0;
   top: 0;
   width: 100%;
+
   max-width: 750px;
   height: 100%;
   z-index: -1;

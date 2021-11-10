@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+
 import { FaInstagram, FaGithub } from 'react-icons/fa';
 import { LogoBottom } from '../../images';
 
@@ -13,6 +14,7 @@ export default function Footer() {
           <LeftTexts>
             상담 : 010-9220-1407 | Email : teamabroad@gamil.com
           </LeftTexts>
+
           <LeftTexts>팀 어브로드 | 박훈주, 주재성, 이효범, 최재혁</LeftTexts>
           <LeftTexts>COPYRIGHT © TEAM Abroad ALL Rights Reserved.</LeftTexts>
         </LeftContent>
@@ -49,6 +51,7 @@ const FooterLeft = styled.div`
   display: flex;
   justify-content: center;
   flex-direction: column;
+
   height: fit-content;
 `;
 
@@ -71,6 +74,7 @@ const LeftTexts = styled.p`
 
 const FooterRight = styled.div`
   width: 25%;
+
   height: fit-content;
   display: flex;
   flex-direction: column;
@@ -79,6 +83,7 @@ const FooterRight = styled.div`
 
 const InstagramIcon = styled.div`
   display: flex;
+
   height: 5rem;
   justify-content: start;
   align-items: center;
@@ -95,6 +100,7 @@ const GithubIcon = styled.div`
 const FooterRightTexts = styled.h3`
   text-align: center;
   margin: auto 0;
+
   font-size: 1.2rem;
   font-weight: 700;
   white-space: nowrap;

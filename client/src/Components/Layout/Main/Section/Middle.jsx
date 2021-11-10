@@ -19,6 +19,7 @@ class Middle extends Component {
                 해외 교환학생 프로그램을 떠나기 전에 많은 답답함을 느낍니다.
               </strong>
             </Phrase>
+
             <Phrase blue>
               <strong>
                 어브로드는 유학생 및 교환학생들을 위한 다양하고 많은 정보들을 한
@@ -51,12 +52,14 @@ const Title = styled.h2`
 const Container = styled.div`
   display: flex;
   margin-top: 3rem;
+
   justify-content: space-between;
 `;
 
 const LeftColumn = styled.div`
   display: flex;
   flex-direction: column;
+
   justify-content: center;
   align-items: center;
   flex-basis: 35%;
@@ -65,6 +68,7 @@ const LeftColumn = styled.div`
 
 const StyledImoge = styled.img`
   width: 65%;
+
   margin-bottom: 1rem;
 `;
 
@@ -74,6 +78,7 @@ const StyledImac = styled.img`
 
 const RightColumn = styled.div`
   display: flex;
+
   align-items: center;
   flex-direction: column;
   flex-basis: 60%;

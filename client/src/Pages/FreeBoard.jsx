@@ -139,6 +139,7 @@ function FreeBoard({ match }) {
             {posts &&
               posts
                 .slice((normalIndex - 1) * 15, normalIndex * 15)
+
                 .map((post, index) => (
                   <tr key={index}>
                     <td>{post.title}</td>
@@ -159,6 +160,7 @@ function FreeBoard({ match }) {
           />
           <WriteBtn>글 작성</WriteBtn>
         </PageBox>
+
         <SearchBottom
           setPosts={setPosts}
           continent={param}
@@ -188,6 +190,7 @@ const ContinentImg = styled.div`
   width: 35%;
   background-image: url(${(props) =>
     `/images/pages/continent_${props.bgShort}.png`});
+
   background-size: 33%;
   background-position: 60%;
   background-repeat: no-repeat;
@@ -229,6 +232,7 @@ const Filter = styled.ul`
   align-items: center;
   justify-content: space-evenly;
   height: 5.3rem;
+
   width: 13rem;
   margin-left: auto;
   & li {

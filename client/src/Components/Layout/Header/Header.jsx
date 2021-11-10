@@ -48,7 +48,7 @@ function Header() {
           <CommunitySub isDown={isDown} />
         </NavMenu>
         <NavMenu>
-          <NavLink to="#">해외교 평가</NavLink>
+          <NavLink to="/pages/foreCampus">해외교 평가</NavLink>
         </NavMenu>
         <NavMenu>
           <NavLink to="#">도움문의</NavLink>
@@ -130,6 +130,7 @@ const SignBox = styled.ul`
     display: flex;
     align-items: center;
     justify-content: center;
+
     padding: 1em 0;
   }
   & > li img {

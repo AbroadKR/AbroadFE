@@ -60,6 +60,7 @@ export default function WriteArticle() {
       </ToastEditor>
       <FileOverview>
         <span className="file">파일</span>
+
         <input className="fileInput"></input>
       </FileOverview>
       <SaveArticle onClick={saveFunction}>
