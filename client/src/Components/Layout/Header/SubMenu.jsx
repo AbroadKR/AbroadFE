@@ -31,11 +31,7 @@ function CommunitySub({ isDown }) {
       >
         <FirstSub>
           <li>
-<<<<<<< HEAD
-            <Link to="/community">자유 게시판</Link>
-=======
             <Link to="/all">전체 게시판</Link>
->>>>>>> develope
           </li>
           <li onClick={() => setActiveMenu('continent')}>대륙</li>
           <li onClick={() => setActiveMenu('travel')}>여행</li>
@@ -52,21 +48,13 @@ function CommunitySub({ isDown }) {
           <div>
             <IoArrowBackCircleSharp className="returnIcon" onClick={goToMain} />
           </div>
-<<<<<<< HEAD
-          <SubLink to="/communityentrance/sa">남미</SubLink>
-          <SubLink to="/communityentrance/na">북미</SubLink>
-          <SubLink to="/communityentrance/asia">아시아</SubLink>
-          <SubLink to="/communityentrance/africa">아프리카</SubLink>
-          <SubLink to="/communityentrance/oceania">오세아니아</SubLink>
-          <SubLink to="/communityentrance/europe">유럽</SubLink>
-=======
+
           <SubLink to="/community/sa">남미</SubLink>
           <SubLink to="/community/na">북미</SubLink>
           <SubLink to="/community/asia">아시아</SubLink>
           <SubLink to="/community/africa">아프리카</SubLink>
           <SubLink to="/community/oceania">오세아니아</SubLink>
           <SubLink to="/community/europe">유럽</SubLink>
->>>>>>> develope
         </SecondSub>
       </CSSTransition>
       <CSSTransition
@@ -80,11 +68,8 @@ function CommunitySub({ isDown }) {
           <div>
             <IoArrowBackCircleSharp className="returnIcon" onClick={goToMain} />
           </div>
-<<<<<<< HEAD
-          <SubLink to="/travel">정보/일정 공유</SubLink>
-=======
+
           <SubLink to="/travel/info">정보/일정 공유</SubLink>
->>>>>>> develope
           <SubLink to="/travel/party">동행 찾기</SubLink>
         </SecondSub>
       </CSSTransition>

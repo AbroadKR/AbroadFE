@@ -1,9 +1,5 @@
 import React, { useState, useEffect } from 'react';
-<<<<<<< HEAD
-import { Link } from 'react-router-dom';
-=======
 import { Link, useLocation } from 'react-router-dom';
->>>>>>> develope
 import styled from 'styled-components';
 import { GiSpeaker } from 'react-icons/gi';
 import Pagination from './Pagination';
@@ -15,17 +11,6 @@ function FreeBoard({ match }) {
   const [order, setOrder] = useState(1);
   const [posts, setPosts] = useState([{}]);
   const [firstIndex, setFirstIndex] = useState(1);
-<<<<<<< HEAD
-  const getFree = async () => {
-    const { data: res } = await axios.post('/api/getFree', {
-      page: firstIndex,
-    });
-    setPosts(res);
-    console.log(res);
-  };
-  const handleOrder = (e) => {
-    setOrder(Number(e.currentTarget.id));
-=======
 
   const getFree = async (opt) => {
     if (!opt) {
@@ -62,7 +47,6 @@ function FreeBoard({ match }) {
       setPosts([]);
       setPosts(posts);
     }
->>>>>>> develope
   };
   const handlePage = (e) => {
     setCurrentPage(Number(e.currentTarget.textContent));
@@ -91,10 +75,6 @@ function FreeBoard({ match }) {
     continent = '유럽';
   }
 
-<<<<<<< HEAD
-  useEffect(() => {
-    getFree();
-=======
   const location = useLocation();
   const searchOpt = location.state;
 
@@ -104,7 +84,6 @@ function FreeBoard({ match }) {
 
   useEffect(() => {
     getFree(searchOpt);
->>>>>>> develope
   }, [currentPage]);
 
   return (
@@ -131,13 +110,6 @@ function FreeBoard({ match }) {
           </li>
           <hr />
           <li id="3" onClick={handleOrder}>
-<<<<<<< HEAD
-            댓글순
-          </li>
-          <hr />
-          <li id="5" onClick={handleOrder}>
-=======
->>>>>>> develope
             좋아요순
           </li>
         </Filter>
@@ -167,13 +139,9 @@ function FreeBoard({ match }) {
             {posts &&
               posts
                 .slice((normalIndex - 1) * 15, normalIndex * 15)
-<<<<<<< HEAD
-                .map((post) => (
-                  <tr>
-=======
+
                 .map((post, index) => (
                   <tr key={index}>
->>>>>>> develope
                     <td>{post.title}</td>
                     <td>{post.user}</td>
                     <td>{post.like}</td>
@@ -192,15 +160,12 @@ function FreeBoard({ match }) {
           />
           <WriteBtn>글 작성</WriteBtn>
         </PageBox>
-<<<<<<< HEAD
-        <SearchBottom setPosts={setPosts} param={param} />
-=======
+
         <SearchBottom
           setPosts={setPosts}
           continent={param}
           boardType={'freeboard'}
         />
->>>>>>> develope
       </TableBox>
     </>
   );
@@ -225,13 +190,9 @@ const ContinentImg = styled.div`
   width: 35%;
   background-image: url(${(props) =>
     `/images/pages/continent_${props.bgShort}.png`});
-<<<<<<< HEAD
-  background-size: 28%;
-  background-position: center;
-=======
+
   background-size: 33%;
   background-position: 60%;
->>>>>>> develope
   background-repeat: no-repeat;
 `;
 const BoardInfo = styled.div`
@@ -271,11 +232,8 @@ const Filter = styled.ul`
   align-items: center;
   justify-content: space-evenly;
   height: 5.3rem;
-<<<<<<< HEAD
-  width: 20rem;
-=======
+
   width: 13rem;
->>>>>>> develope
   margin-left: auto;
   & li {
     width: 5rem;

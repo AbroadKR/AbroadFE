@@ -1,8 +1,4 @@
 require('dotenv').config();
-<<<<<<< HEAD
-const { SSL_OP_TLS_BLOCK_PADDING_BUG } = require('constants');
-=======
->>>>>>> develope
 const express = require('express');
 const path = require('path');
 const app = express();
@@ -163,8 +159,6 @@ app.post('/api/getFree', (req, res) => {
     .skip((Number(num) - 1) * 15)
     .limit((Number(num) + 9) * 15);
 });
-<<<<<<< HEAD
-=======
 app.post('/api/getFree/search', (req, res) => {
   const {
     body: { target, keyword },
@@ -190,7 +184,6 @@ app.post('/api/getPost', (req, res) => {
     return;
   }
 });
->>>>>>> develope
 
 // app.get('*', (req, res) => {
 //   res.sendFile(path.join(__dirname, '../client/public/index.html'));
