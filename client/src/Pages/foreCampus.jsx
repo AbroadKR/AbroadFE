@@ -2,18 +2,26 @@ import React, { useRef, useState } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { useHistory } from 'react-router';
+import axios from 'axios';
 
 export default function ForeCampus() {
   const [isDown, setIsDown] = useState(false);
-  const [university, setUniversity] = useState('');
+  const [university, setUniversity] = useState([]);
   const searchRef = useRef();
 
   const history = useHistory();
-
+  const getForUnivs = async (e) => {
+    const { data: data } = await axios.get('/api/getForUnivs', {
+      params: {
+        query: e.currentTarget.value,
+      },
+    });
+    dropdown(data);
+    setUniversity(data);
+  };
   const dropdown = (input) => {
     if (input) {
       setIsDown(true);
-      setUniversity(input);
     } else setIsDown(false);
   };
   const closeDropdown = (e) => {
@@ -30,7 +38,7 @@ export default function ForeCampus() {
             ref={searchRef}
             autoFocus={false}
             placeholder="학교명을 입력하세요"
-            onChange={(e) => dropdown(e.target.value)}
+            onChange={(e) => getForUnivs(e)}
             onFocus={(e) => dropdown(e.target.value)}
             onBlur={closeDropdown}
           />
@@ -46,12 +54,9 @@ export default function ForeCampus() {
           />
           {isDown && (
             <DropdownMenu>
-              <p>{university}</p>
-              <p>{university}</p>
-              <p>{university}</p>
-              <p>{university}</p>
-              <p>{university}</p>
-              <p>{university}</p>
+              {university.map((univ, i) => (
+                <span key={i}>{univ.forUniv_eng}</span>
+              ))}
             </DropdownMenu>
           )}
         </form>

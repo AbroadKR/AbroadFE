@@ -109,6 +109,21 @@ app.post('/api/getTables', (req, res) => {
   }
 });
 
+app.get('/api/getForUnivs', (req, res) => {
+  const {
+    query: { query },
+  } = req;
+  table
+    .find({ forUniv_eng: { $regex: query, $options: 'i' } }, (err, tables) => {
+      if (err) {
+        res.end();
+        return;
+      }
+      res.json(tables);
+    })
+    .select('forUniv_eng');
+});
+
 app.post('/api/getForUnivs', (req, res) => {
   const data = req.body;
   forUniv
