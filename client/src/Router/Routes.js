@@ -11,6 +11,7 @@ import Footer from '../Components/Layout/Footer';
 import { Route, Switch, BrowserRouter } from 'react-router-dom';
 import CollegeDetail from '../Pages/CollegeDetail';
 import ForeCampus from '../Pages/foreCampus';
+import ArticleDetail from '../Components/Community/ArticleDetail';
 
 class Routes extends React.Component {
   render() {
@@ -22,7 +23,8 @@ class Routes extends React.Component {
             <Route path="/" exact component={Main} />
 
             <Route path="/all" exact component={All} />
-            <Route path="/writeArticle" component={WriteArticle} />
+            <Route path="/write-article" component={WriteArticle} />
+            <Route path="/article-detail" component={ArticleDetail} />
             <Route path="/pages/foreCampus" component={ForeCampus} />
             <Route path="/result/:koUniv" exact component={Result} />
             <Route path="/result/:koUniv/:continent" exact component={Result} />

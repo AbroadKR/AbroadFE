@@ -1,4 +1,5 @@
 import { atom } from 'recoil';
+import { recoilPersist } from 'recoil-persist';
 
 // Signup Modal
 
@@ -53,4 +54,25 @@ export const communityName = atom({
 export const oppositeCommunityName = atom({
   key: 'opposite_community_name',
   default: '질문게시판',
+});
+
+// Editor
+const { persistAtom } = recoilPersist();
+
+export const ArticleTitle = atom({
+  key: 'article_title',
+  default: '',
+  effects_UNSTABLE: [persistAtom],
+});
+
+export const ArticleContent = atom({
+  key: 'article_content',
+  default: '',
+  effects_UNSTABLE: [persistAtom],
+});
+
+export const ArticleCreateDate = atom({
+  key: 'article_create_date',
+  default: 0,
+  effects_UNSTABLE: [persistAtom],
 });
