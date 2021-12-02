@@ -52,3 +52,12 @@
 - "유랑 or 유디니"의 동행게시판과 유사하게 여행을 같이 갈 사람들을 모집하거나, 하우스파티, 저녁식사 등등 타지에서 외로운 유학생 및 교환학생들이 한국인을 만날 수 있는 커뮤니티 게시판을 개설
 - 교환학생 후기
 - 교환학생 정보게시판
+
+
+# Contributor
+<a href="https://github.com/AbroadKR/AbroadFE/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=AbroadKR/AbroadFE" />
+</a>
+
+Made with [contributors-img](https://contrib.rocks).
+
