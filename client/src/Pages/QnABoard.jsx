@@ -122,7 +122,7 @@ function QnABoard({ match }) {
             <li>&gt;</li>
             <li style={{ fontWeight: 'bold' }}>&gt;&gt;</li>
           </Pagenation>
-          <WriteBtn>글 작성</WriteBtn>
+          <WriteBtn to="/write-article">글 작성</WriteBtn>
         </PageBox>
         <SearchBox>
           <SearchOpt name="searchOption" id="searchOption">
@@ -296,7 +296,7 @@ const Pagenation = styled.ul`
     color: #66a6ff;
   }
 `;
-const WriteBtn = styled.button`
+const WriteBtn = styled(Link)`
   position: absolute;
   display: inline-block;
   min-width: 100px;
