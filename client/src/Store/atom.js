@@ -44,13 +44,13 @@ export const signupModalMessage = atom({
 
 // Community
 
-export const communityName = atom({
-  key: 'community_name',
+// export const communityName = atom({
+//   key: 'community_name',
 
-  default: '전체 게시판',
-});
+//   default: '전체 게시판',
+// });
 
-export const oppositeCommunityName = atom({
-  key: 'opposite_community_name',
-  default: '질문게시판',
-});
+// export const oppositeCommunityName = atom({
+//   key: 'opposite_community_name',
+//   default: '질문게시판',
+// });

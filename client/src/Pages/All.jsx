@@ -6,25 +6,15 @@ import SearchBottom from './SearchBottom';
 import Pagination from './Pagination';
 
 export default function All({ match }) {
-  let currentPath;
   const [currentPage, setCurrentPage] = useState(1);
   const [order, setOrder] = useState(1);
-  const [posts, setPosts] = useState([{}]);
+  const [posts, setPosts] = useState([]);
   const [firstIndex, setFirstIndex] = useState(1);
-
-  if (match.path === '/all') {
-    currentPath = '전체';
-  } else if (match.path === '/travel/info') {
-    currentPath = '정보/일정 공유';
-  } else if (match.path === '/travel/party') {
-    currentPath = '동행 찾기';
-  }
-
   const getPost = async () => {
-    const { data: res } = await axios.post('/api/getPost', {
-      path: currentPath,
+    const { data: res } = await axios.get('/api/getPosts', {
+      params: { board: 'all' },
     });
-    console.log(res);
+    setPosts(res);
   };
 
   useState(() => {
@@ -36,7 +26,7 @@ export default function All({ match }) {
     if (e.currentTarget.id === '1') {
       return;
     } else if (e.currentTarget.id === '3') {
-      await posts.sort((a, b) => {
+      posts.sort((a, b) => {
         if (a.like > b.like) {
           return -1;
         } else if (a.like < b.like) {
@@ -65,7 +55,7 @@ export default function All({ match }) {
       <CommunityWrap>
         <UpstreamSection>
           <span>커뮤니티</span>
-          <span>{currentPath} 게시판</span>
+          <span>전체 게시판</span>
         </UpstreamSection>
         <TableBox>
           <Filter order={order}>
@@ -95,7 +85,7 @@ export default function All({ match }) {
                       marginRight: '1rem',
                     }}
                   />
-                  {currentPath} 게시판 이용 안내
+                  전체 게시판 이용 안내
                 </td>
                 <td>어브로드</td>
                 <td>-</td>
@@ -106,7 +96,7 @@ export default function All({ match }) {
                   .map((post, index) => (
                     <tr key={index}>
                       <td>{post.title}</td>
-                      <td>{post.user}</td>
+                      <td>{post.owner.name}</td>
                       <td>{post.like}</td>
                     </tr>
                   ))}

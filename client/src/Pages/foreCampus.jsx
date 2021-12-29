@@ -11,6 +11,11 @@ export default function ForeCampus() {
 
   const history = useHistory();
   const getForUnivs = async (e) => {
+    if (e.currentTarget.value.length === 0) {
+      setUniversity([]);
+      closeDropdown();
+      return;
+    }
     const { data: data } = await axios.get('/api/getForUnivs', {
       params: {
         query: e.currentTarget.value,
@@ -18,11 +23,15 @@ export default function ForeCampus() {
     });
     dropdown(data);
     setUniversity(data);
+    console.log(data);
   };
   const dropdown = (input) => {
     if (input) {
       setIsDown(true);
-    } else setIsDown(false);
+    } else {
+      setUniversity([]);
+      setIsDown(false);
+    }
   };
   const closeDropdown = (e) => {
     setIsDown(false);

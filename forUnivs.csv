@@ -1,9 +1,9 @@
-﻿forUniv,image
-University of Ottawa,https://www.uhakbrain.com/wp-content/uploads/2020/02/%EC%BA%90%EB%82%98%EB%8B%A4%EB%8C%80%EC%9E%85%EC%A0%95%EB%B3%B4-%EC%98%A4%ED%83%80%EC%99%80-%EB%8C%80%ED%95%99%EA%B5%90-University-of-Ottawa.jpg
-James Madison University,https://lh3.googleusercontent.com/proxy/o8QstBsiovrm9XiScYRe1TqCUHVEw3Tu2IAqdUYgvDkjRIqf5U9gH-Rmxi-Sf3LfhXcVwI6NGR_h3HA88imBSFpOurO5zeruUKOvtEf950JPyX-EL3hVeZtz02Z99oE
-University of Akron,https://www.uakron.edu/im/online-newsroom/images/2019/1-2/building-where-visit-days-are-held.jpg
-University of North Carolina Wilmington,"https://assets.simpleviewinc.com/simpleview/image/upload/c_fill,f_jpg,g_xy_center,h_470,q_65,w_640,x_1360,y_873/v1/clients/wilmingtonnc/30812517990_230545424b_o_de7c9cf5-f178-4c94-a929-d2a608b5e4b0.jpg"
-Mount Royal University,https://images.shiksha.com/mediadata/images/1538131137php48munz.jpeg
-Universite de Montreal,https://media1.ledevoir.com/images_galerie/nwd_569571_422480/image.jpg
-Memorial University of Newfoundland,https://xscholarship.com/wp-content/uploads/2020/04/mun.jpeg
-University of Massachusetts Boston,https://images.ctfassets.net/2htm8llflwdx/2P3oIvW2tSY12qjZIMrbQv/7ab7836b9c580525c7b9639837a67d5b/University_Massachusetts_Boston_Gallery_hallway.jpg
+﻿forUniv,continent,country,image,reviews
+University of Ottawa,북미,캐나다,https://www.uhakbrain.com/wp-content/uploads/2020/02/%EC%BA%90%EB%82%98%EB%8B%A4%EB%8C%80%EC%9E%85%EC%A0%95%EB%B3%B4-%EC%98%A4%ED%83%80%EC%99%80-%EB%8C%80%ED%95%99%EA%B5%90-University-of-Ottawa.jpg,
+James Madison University,북미,미국,https://lh3.googleusercontent.com/proxy/o8QstBsiovrm9XiScYRe1TqCUHVEw3Tu2IAqdUYgvDkjRIqf5U9gH-Rmxi-Sf3LfhXcVwI6NGR_h3HA88imBSFpOurO5zeruUKOvtEf950JPyX-EL3hVeZtz02Z99oE,
+University of Akron,북미,미국,https://www.uakron.edu/im/online-newsroom/images/2019/1-2/building-where-visit-days-are-held.jpg,
+University of North Carolina Wilmington,북미,미국,"https://assets.simpleviewinc.com/simpleview/image/upload/c_fill,f_jpg,g_xy_center,h_470,q_65,w_640,x_1360,y_873/v1/clients/wilmingtonnc/30812517990_230545424b_o_de7c9cf5-f178-4c94-a929-d2a608b5e4b0.jpg",
+Mount Royal University,북미,캐나다,https://images.shiksha.com/mediadata/images/1538131137php48munz.jpeg,
+Universite de Montreal,북미,캐나다,https://media1.ledevoir.com/images_galerie/nwd_569571_422480/image.jpg,
+Memorial University of Newfoundland,북미,캐나다,https://xscholarship.com/wp-content/uploads/2020/04/mun.jpeg,
+University of Massachusetts Boston,북미,미국,https://images.ctfassets.net/2htm8llflwdx/2P3oIvW2tSY12qjZIMrbQv/7ab7836b9c580525c7b9639837a67d5b/University_Massachusetts_Boston_Gallery_hallway.jpg,

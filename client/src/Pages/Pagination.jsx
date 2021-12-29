@@ -31,11 +31,15 @@ function Pagination({
     <Pagenation currentPage={currentPage}>
       <li style={{ fontWeight: 'bold' }}>&lt;&lt;</li>
       <li onClick={backPage}>&lt;</li>
-      {pages.map((page, index) => (
-        <li key={index} id={'p' + page} onClick={setPage}>
-          {page}
-        </li>
-      ))}
+      {pages.length > 0 ? (
+        pages.map((page, index) => (
+          <li key={index} id={'p' + page} onClick={setPage}>
+            {page}
+          </li>
+        ))
+      ) : (
+        <li>1</li>
+      )}
       <li onClick={nextPage}>&gt;</li>
       <li style={{ fontWeight: 'bold' }}>&gt;&gt;</li>
     </Pagenation>

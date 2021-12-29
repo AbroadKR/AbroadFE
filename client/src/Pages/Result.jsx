@@ -8,7 +8,7 @@ function Result({ match }) {
   const [rectValue, setRectValue] = useState();
   const [isOpen, setIsOpen] = useState(false);
   const [reviews, setReviews] = useState([]);
-  const [image, setImage] = useState();
+  const [forUnivObj, setForUnivObj] = useState({});
   const { koUniv, continent, country } = match.params;
   const getTables = async () => {
     const { data: res } = await axios.post(
@@ -26,16 +26,14 @@ function Result({ match }) {
     const { data: res } = await axios.post('/api/getReviews', {
       forUniv: title,
     });
-    setReviews(res);
+    setReviews(...res.map((el) => el.reviews));
+    setForUnivObj({ forUniv: res[0].forUniv, image: res[0].image });
   };
-  const getImage = async (title) => {
-    const { data: res } = await axios.post('/api/getForUnivs', { title });
-    setImage(res[0].image);
-  };
-  const handleDetail = (e) => {
-    let forUnivTitle = e.currentTarget.children[2].children[0].innerText;
+  const handleDetail = async (e) => {
+    let forUnivTitle = e.currentTarget.children[2].children[0].innerText.trim();
     const tbodyTr = e.currentTarget.parentElement.children;
     const vh = document.querySelector('html');
+
     if (e.currentTarget.classList.contains('open')) {
       e.currentTarget.classList.remove('open');
       setIsOpen(false);
@@ -49,11 +47,10 @@ function Result({ match }) {
           setIsOpen(false);
         }
       }
+      getReviews(forUnivTitle);
       const coords = e.currentTarget.getBoundingClientRect();
       const trBottom = coords.bottom + vh.scrollTop;
-      getImage(forUnivTitle);
       setRectValue(trBottom);
-      getReviews(forUnivTitle);
       e.currentTarget.classList.add('open');
       setIsOpen(true);
     }
@@ -61,12 +58,12 @@ function Result({ match }) {
   return (
     <Body>
       <Wrapper>
-        {reviews.length !== 0 && (
+        {reviews && (
           <TableDetail
             rectValue={rectValue}
             isOpen={isOpen}
             reviews={reviews}
-            image={image}
+            forUnivObj={forUnivObj}
           />
         )}
         <CaptionBox className="main_caption">
@@ -87,7 +84,7 @@ function Result({ match }) {
           <TBody className="main_tbody">
             {tableData &&
               tableData.map((data, i) => (
-                <tr key={data.id} onClick={handleDetail}>
+                <tr key={i} onClick={handleDetail}>
                   <td>{data.continent}</td>
                   <td>{data.country}</td>
                   <td>

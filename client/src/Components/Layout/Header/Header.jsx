@@ -48,7 +48,7 @@ function Header() {
           <CommunitySub isDown={isDown} />
         </NavMenu>
         <NavMenu>
-          <NavLink to="/pages/foreCampus">해외교 평가</NavLink>
+          <NavLink to="/pages/foreCampus">대학 평가</NavLink>
         </NavMenu>
         <NavMenu>
           <NavLink to="#">도움문의</NavLink>

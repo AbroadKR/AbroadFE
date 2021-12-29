@@ -156,21 +156,21 @@ function Top() {
               disabled
             />
           </Options>
-          <SearchButton
-            to={{
-              pathname: `/result/${selectedData.koUnivs}/${selectedData.continents}/${selectedData.countries}`,
-            }}
-            className="section1_search_button"
-            type="submit"
-          >
-            <FiSearch />
-          </SearchButton>
           {clickedOptions === 'country' ? (
             <CountryPopup countries={countries} handleCountry={handleCountry} />
           ) : (
             ''
           )}
         </Container>
+        <SearchButton
+          to={{
+            pathname: `/result/${selectedData.koUnivs}/${selectedData.continents}/${selectedData.countries}`,
+          }}
+          className="section1_search_button"
+          type="submit"
+        >
+          <FiSearch />
+        </SearchButton>
       </SearchBar>
     </Section1>
   );
@@ -263,9 +263,9 @@ const SearchButton = styled(Link)`
   position: absolute;
   border: none;
   border-radius: 50px;
-  width: 30%;
+  width: 10%;
   height: 89%;
-  right: 1%;
+  right: 0.5%;
   top: 50%;
   transform: translateY(-50%);
   background: linear-gradient(180deg, #89f7fe 0%, #66a6ff 100%);
