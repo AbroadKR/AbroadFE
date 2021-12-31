@@ -28,14 +28,12 @@ class Routes extends React.Component {
               path="/result/:koUniv/:continent/:country"
               component={Result}
             />
-            <Route path="/community/all" exact component={All} />
-            <Route path="/community/:continent" exact component={Community} />
-            {/* <Route
-              path="/community/:continent/freeboard/:searchOptions"
-              component={FreeBoard}
-            ></Route> */}
-            {/* <Route path="/travel/info" exact component={All} />
-            <Route path="/travel/party" exact component={All} /> */}
+            <Route path="/community/:board" exact component={All} />
+            <Route
+              path="/community/:continent/:category"
+              exact
+              component={Community}
+            />
             <Route path="/college/:id" exact component={CollegeDetail} />
           </Switch>
           <Footer />

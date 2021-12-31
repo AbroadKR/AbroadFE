@@ -1,6 +1,6 @@
 import axios from 'axios';
 import styled from 'styled-components';
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { GiSpeaker } from 'react-icons/gi';
 import SearchBottom from './SearchBottom';
 import Pagination from './Pagination';
@@ -10,13 +10,15 @@ export default function All({ match }) {
   const [order, setOrder] = useState(1);
   const [posts, setPosts] = useState([]);
   const [firstIndex, setFirstIndex] = useState(1);
+  const {
+    params: { board },
+  } = match;
   const getPost = async () => {
     const { data: res } = await axios.get('/api/getPosts', {
-      params: { board: 'all' },
+      params: { board: board },
     });
     setPosts(res);
   };
-
   useState(() => {
     getPost();
   }, []);

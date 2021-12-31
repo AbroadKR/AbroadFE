@@ -78,6 +78,10 @@ const commentSchema = new Schema({
     required: true,
     ref: 'user',
   },
+  target: {
+    type: mongoose.Schema.Types.ObjectId,
+    required: true,
+  },
   text: { type: String, required: true },
   createdAt: { type: String, required: true },
 });

@@ -181,7 +181,7 @@ app.get('/api/getPosts', (req, res) => {
   } = req;
   if (board === 'all') {
     allBoard
-      .find({}, (err, result) => {
+      .find({ category: board }, (err, result) => {
         if (err) {
           res.end();
           return;
@@ -190,10 +190,108 @@ app.get('/api/getPosts', (req, res) => {
       })
       .populate('owner')
       .populate('comments');
+  } else if (board === 'travel') {
+    africaBoard
+      .find({ category: board }, (err, result) => {
+        if (err) {
+          res.end();
+          return;
+        }
+        res.json(result);
+      })
+      .populate('owner')
+      .populate('comments');
+  } else if (board === 'africa') {
+    africaBoard
+      .find({ category: category }, (err, result) => {
+        if (err) {
+          res.end();
+          return;
+        }
+        res.json(result);
+      })
+      .populate('owner')
+      .populate('comments');
+  } else if (board === 'asia') {
+    asiaBoard
+      .find({ category: category }, (err, result) => {
+        if (err) {
+          res.end();
+          return;
+        }
+        res.json(result);
+      })
+      .populate('owner')
+      .populate('comments');
+  } else if (board === 'europe') {
+    europeBoard
+      .find({ category: category }, (err, result) => {
+        if (err) {
+          res.end();
+          return;
+        }
+        res.json(result);
+      })
+      .populate('owner')
+      .populate('comments');
+  } else if (board === 'na') {
+    northAmericaBoard
+      .find({ category: category }, (err, result) => {
+        if (err) {
+          res.end();
+          return;
+        }
+        res.json(result);
+      })
+      .populate('owner')
+      .populate('comments');
+  } else if (board === 'sa') {
+    southAmericaBoard
+      .find({ category: category }, (err, result) => {
+        if (err) {
+          res.end();
+          return;
+        }
+        res.json(result);
+      })
+      .populate('owner')
+      .populate('comments');
+  } else if (board === 'oceania') {
+    oceaniaBoard
+      .find({ category: category }, (err, result) => {
+        if (err) {
+          res.end();
+          return;
+        }
+        res.json(result);
+      })
+      .populate('owner')
+      .populate('comments');
+  } else if (board === 'travel') {
+    return;
   }
-  // 같은 get요청인데.... 어떻게 다른 collection으로부터 데이터를 요청할 수 있을까?
-  // parameter 자체에 catergory, board 값을 넣어서 해당 값에 대한 if 조건문을 걸면 될듯 하다.
 });
+
+app.post('/api/postBoard', (req, res) => {
+  const {
+    body: {
+      data: { userObject, board, category, post },
+    },
+  } = req;
+  console.log(board, category, post);
+  return;
+});
+
+app.post('/api/postComment', (req, res) => {
+  const {
+    body: {
+      data: { userObject, target, comment },
+    },
+  } = req;
+  console.log(userObject, target, comment);
+  return;
+});
+
 // app.post('/api/getQna', (req, res) => {
 //   const num = req.body.page;
 //   qna
