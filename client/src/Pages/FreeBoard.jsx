@@ -158,7 +158,7 @@ function FreeBoard({ match }) {
             lastIndex={lastIndex}
             pageCount={pageCount}
           />
-          <WriteBtn to="/write-article">글 작성</WriteBtn>
+          <WriteBtn to={`/edit${match.path}`}>글 작성</WriteBtn>
         </PageBox>
 
         <SearchBottom
@@ -315,7 +315,9 @@ const PageBox = styled.div`
 
 const WriteBtn = styled(Link)`
   position: absolute;
-  display: inline-block;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   min-width: 100px;
   width: 6rem;
   height: 3rem;
