@@ -2,7 +2,12 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
-export default function TableDetail({ rectValue, isOpen, reviews, image }) {
+export default function TableDetail({
+  rectValue,
+  isOpen,
+  reviews,
+  forUnivObj,
+}) {
   const [evaluations, setEvaluations] = useState({
     avgPoint: null,
     koreans: null,
@@ -78,7 +83,7 @@ export default function TableDetail({ rectValue, isOpen, reviews, image }) {
   return (
     <MainBox className="detail_mainBox" top={rectValue} isOpen={isOpen}>
       <LeftBox className="detail_leftBox">
-        <img className="detail_image" src={image} alt="img" />
+        <img className="detail_image" src={forUnivObj.image} alt="img" />
         <LeftCaption className="rightBox_caption">
           <span className="empty_point">
             <span
@@ -129,10 +134,10 @@ export default function TableDetail({ rectValue, isOpen, reviews, image }) {
                       className="comments_filled_point"
                     ></span>
                   </span>
-                  <div className="comments_id">{review.user_id}</div>
+                  <div className="comments_id">{review.owner.name}</div>
                 </CommentContent>
                 <CommentText className="comments_comments">
-                  {review.comment}
+                  {review.text}
                 </CommentText>
               </li>
             ))}
@@ -140,7 +145,10 @@ export default function TableDetail({ rectValue, isOpen, reviews, image }) {
         <BtnBox className="rightBox_buttons">
           <InfoBtn className="ogInfo_button">국제처 공지 바로가기</InfoBtn>
           <MoreBtn
-            to={`/college/${reviews[0].forUniv}`}
+            to={{
+              pathname: `/college/${reviews._id}`,
+              state: { reviews, evaluations, forUnivObj },
+            }}
             className="more_detail_button"
           >
             + 더 보기
@@ -286,12 +294,13 @@ const InfoBtn = styled.button`
   color: #66a6ff;
 `;
 const MoreBtn = styled(Link)`
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   margin-left: 3%;
   padding: 0.7em;
   border: none;
   background-color: #66a6ff;
   color: #ffffff;
-  display: inline-block;
   border-radius: 15px;
 `;

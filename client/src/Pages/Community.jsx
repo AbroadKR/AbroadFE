@@ -29,13 +29,20 @@ function Community({ match }) {
         <Hr />
       </TitleBox>
       <BtnBox>
-        <FreeBox to={`${param}/freeboard`}>
+        <FreeBox
+          to={{
+            path: `/community/${param}/freeboard`,
+            state: { category: 'free' },
+          }}
+        >
           <IoChatbubbleEllipsesOutline
             style={{ fontSize: '7rem', height: '13rem', color: '#66A6FF' }}
           />
           <div>자유게시판 바로가기</div>
         </FreeBox>
-        <QuestionBox to={`${param}/qna`}>
+        <QuestionBox
+          to={{ path: `/community/${param}/qna`, state: { category: 'qna' } }}
+        >
           <BsQuestionCircle style={{ fontSize: '7rem', height: '13rem' }} />
           <div>질문게시판 바로가기</div>
         </QuestionBox>

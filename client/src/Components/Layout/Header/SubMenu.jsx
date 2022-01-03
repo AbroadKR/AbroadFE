@@ -31,7 +31,7 @@ function CommunitySub({ isDown }) {
       >
         <FirstSub>
           <li>
-            <Link to="/all">전체 게시판</Link>
+            <Link to="/community/all">전체 게시판</Link>
           </li>
           <li onClick={() => setActiveMenu('continent')}>대륙</li>
           <li onClick={() => setActiveMenu('travel')}>여행</li>

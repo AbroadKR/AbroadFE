@@ -24,11 +24,13 @@ export default function ForeCampus() {
     });
     dropdown(data);
     setUniversity(data);
+    console.log(data);
   };
   const dropdown = (input) => {
     if (input) {
       setIsDown(true);
     } else {
+      setUniversity([]);
       setIsDown(false);
     }
   };

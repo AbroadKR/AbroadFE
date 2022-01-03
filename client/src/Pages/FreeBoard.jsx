@@ -11,11 +11,15 @@ function FreeBoard({ match }) {
   const [order, setOrder] = useState(1);
   const [posts, setPosts] = useState([{}]);
   const [firstIndex, setFirstIndex] = useState(1);
-
+  const param = match.params.continent;
+  const location = useLocation();
+  const {
+    state: { searchOpt, category },
+  } = location;
   const getFree = async (opt) => {
     if (!opt) {
       const { data: res } = await axios.post('/api/getFree', {
-        page: firstIndex,
+        params: { board: 'param', category: category },
       });
       setPosts(res);
     } else {
@@ -35,7 +39,7 @@ function FreeBoard({ match }) {
     if (e.currentTarget.id === '1') {
       getFree();
     } else if (e.currentTarget.id === '3') {
-      await posts.sort((a, b) => {
+      posts.sort((a, b) => {
         if (a.like > b.like) {
           return -1;
         } else if (a.like < b.like) {
@@ -59,24 +63,6 @@ function FreeBoard({ match }) {
   } else if (currentPage < firstIndex) {
     setFirstIndex(firstIndex - 10);
   }
-  const param = match.params.continent;
-  let continent;
-  if (param === 'sa') {
-    continent = '남미';
-  } else if (param === 'na') {
-    continent = '북미';
-  } else if (param === 'asia') {
-    continent = '아시아';
-  } else if (param === 'africa') {
-    continent = '아프리카';
-  } else if (param === 'oceania') {
-    continent = '오세아니아';
-  } else if (param === 'europe') {
-    continent = '유럽';
-  }
-
-  const location = useLocation();
-  const searchOpt = location.state;
 
   useEffect(() => {
     getFree(searchOpt);
@@ -92,8 +78,8 @@ function FreeBoard({ match }) {
         <TopBox>
           <ContinentImg bgShort={param}></ContinentImg>
           <BoardInfo>
-            <h3>{continent} 자유게시판</h3>
-            <div>{continent} 대륙 교환학생들을 위한 자유게시판입니다.</div>
+            <h3>{category} 자유게시판</h3>
+            <div>{category} 대륙 교환학생들을 위한 자유게시판입니다.</div>
             <div>다른 학생들과 자유롭게 소통해보세요.</div>
             <ToQnA to="qna">질문게시판 바로가기</ToQnA>
           </BoardInfo>
@@ -190,7 +176,6 @@ const ContinentImg = styled.div`
   width: 35%;
   background-image: url(${(props) =>
     `/images/pages/continent_${props.bgShort}.png`});
-
   background-size: 33%;
   background-position: 60%;
   background-repeat: no-repeat;
