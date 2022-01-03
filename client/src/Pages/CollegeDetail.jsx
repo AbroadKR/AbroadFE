@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
@@ -186,6 +187,22 @@ function CollegeDetail({ match, location }) {
       </TogetherBox>
     </CollegeDetailBox>
   );
+=======
+import React, { useEffect } from 'react';
+import styled from 'styled-components';
+import { Link, useLocation } from 'react-router-dom';
+
+function CollegeDetail({ match }) {
+  let queryString = new URLSearchParams(window.location.search);
+  const param = match.params;
+
+  useEffect(() => {
+    console.log(queryString);
+    console.log(param);
+  }, [queryString]);
+
+  return <div>해외교 평가 게시판</div>;
+>>>>>>> develope
 }
 
 export default CollegeDetail;

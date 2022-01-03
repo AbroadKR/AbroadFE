@@ -1,7 +1,11 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import styled from 'styled-components';
+import axios from 'axios';
 import { useHistory } from 'react-router';
 import Prism from 'prismjs';
+import moment from 'moment';
+// 안써도 자동으로 한국 시간을 불러온다. 명확하게 하기 위해 import
+import 'moment/locale/ko';
 
 import '@toast-ui/editor/dist/toastui-editor.css';
 import { Editor } from '@toast-ui/react-editor';
@@ -19,19 +23,70 @@ import 'prismjs/themes/prism.css';
 import '@toast-ui/editor-plugin-code-syntax-highlight/dist/toastui-editor-plugin-code-syntax-highlight.css';
 import codeSyntaxHighlight from '@toast-ui/editor-plugin-code-syntax-highlight';
 
-export default function WriteArticle() {
+export default function AbroadEditor({ match }) {
+  const titleRef = useRef();
   const editorRef = useRef();
-
-  const saveFunction = () => {
-    console.log('hi');
-  };
-
   const history = useHistory();
-  const routeToArticeList = () => {
+
+  const routeToList = () => {
     history.push({
       pathname: '/all',
     });
   };
+
+  const TEXT_EDITOR_ITEM = `text-editor-item_${match.path}`;
+  const localEditData = localStorage.getItem(TEXT_EDITOR_ITEM);
+
+  const initialValue = localEditData ?? '';
+  const saveToLocalStorage = () => {
+    const data = editorRef.current.getInstance().getMarkdown();
+    localStorage.setItem(TEXT_EDITOR_ITEM, data);
+  };
+
+  const [userName, setUserName] = useState(null);
+  const [title, setTitle] = useState(null);
+  const [body, setBody] = useState(null);
+  const [date, setDate] = useState(null);
+  const routeWithData = () => {
+    setDate(moment().format('YYYY-MM-DD HH:mm'));
+
+    const pageData = {
+      title,
+      body,
+      date,
+      likes: 0,
+      userName,
+    };
+    history.push({
+      pathname: '/qna-detail',
+    });
+  };
+
+  useEffect(() => {
+    editorRef.current.getInstance().removeHook('addImageBlobHook');
+    editorRef.current
+      .getInstance()
+      .addHook('addImageBlobHook', (blob, callback) => {
+        (async () => {
+          let formData = new FormData();
+          formData.append('file', blob);
+
+          axios.defaults.withCredentials = true;
+          const { data: url } = await axios.post(
+            // `${backUrl}image.do`,
+            formData,
+            {
+              header: { 'content-type': 'multipart/formdata' },
+            }
+          );
+          callback(url, 'alt text');
+        })();
+
+        return false;
+      });
+
+    return () => {};
+  }, [editorRef]);
 
   return (
     <Div>
@@ -39,34 +94,41 @@ export default function WriteArticle() {
         <span>커뮤니티</span>
         <span>전체 게시판</span>
       </UpstreamSection>
-      <TitleOverview>
+      <PageInfoBox>
         <span className="title">제목</span>
-        <input className="titleInput"></input>
-      </TitleOverview>
+        <input
+          className="titleInput"
+          ref={titleRef}
+          onChange={() => {
+            const innerTxt = titleRef.current.value;
+            setTitle(innerTxt);
+          }}
+        />
+      </PageInfoBox>
       <ToastEditor>
         <Editor
-          initialValue="hello react editor world!"
-          previewStyle="vertical"
-          height="750px"
-          initialEditType="wysiwyg"
+          height="600px"
+          previewStyle="tab"
+          initialEditType="markdown"
           useCommandShortcut={true}
-          ref={editorRef}
+          placeholder="내용을 입력해주세요"
+          initialValue={initialValue}
           plugins={[
             colorSyntax,
             chart,
             [codeSyntaxHighlight, { highlighter: Prism }],
           ]}
+          onChange={() => {
+            const innerTxt = editorRef.current.getInstance().getMarkdown();
+            setBody(innerTxt);
+          }}
+          ref={editorRef}
         />
       </ToastEditor>
-      <FileOverview>
-        <span className="file">파일</span>
-
-        <input className="fileInput"></input>
-      </FileOverview>
-      <SaveArticle onClick={saveFunction}>
-        <button onClick={routeToArticeList}>목록으로</button>
-        <button>임시저장</button>
-        <button>등록하기</button>
+      <SaveArticle>
+        <button onClick={routeToList}>목록으로</button>
+        <button onClick={saveToLocalStorage}>임시저장</button>
+        <button onClick={routeWithData}>등록하기</button>
       </SaveArticle>
     </Div>
   );
@@ -89,6 +151,7 @@ const UpstreamSection = styled.div`
   background-color: #66a6ff;
   color: white;
   padding-left: 2em;
+  border-radius: 30px/30px;
 
   & > span:first-child::after {
     content: '|';
@@ -99,9 +162,10 @@ const UpstreamSection = styled.div`
   }
 `;
 
-const TitleOverview = styled.div`
+const PageInfoBox = styled.div`
   width: 100%;
   height: 65px;
+  flex: 1 1 45%;
   border: 0.2px solid #d1d1d1;
   border-radius: 30px/30px;
   display: flex;
@@ -134,36 +198,6 @@ const ToastEditor = styled.div`
   border: 0.2px solid #d1d1d1;
   overflow: hidden;
   border-radius: 30px/30px;
-`;
-
-const FileOverview = styled.div`
-  width: 100%;
-  height: 90px;
-  border: 0.2px solid #d1d1d1;
-  border-radius: 30px/30px;
-  display: flex;
-  align-items: center;
-  margin: 2em auto;
-
-  & > .file {
-    flex: 1 1 10%;
-    height: 100%;
-    border-right: 0.2px solid #d1d1d1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: #66a6ff;
-    font-size: 1rem;
-    font-weight: bold;
-  }
-
-  & > .fileInput {
-    flex: 1 1 90%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
 `;
 
 const SaveArticle = styled.div`

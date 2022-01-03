@@ -144,7 +144,11 @@ app.get('/api/getForUnivs', (req, res) => {
           res.json(tables);
         }
       )
+<<<<<<< HEAD
       .select('_id, forUniv_eng')
+=======
+      .select('forUniv_eng')
+>>>>>>> develope
       .limit(10);
   } else {
     table

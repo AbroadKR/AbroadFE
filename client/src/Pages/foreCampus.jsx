@@ -7,6 +7,7 @@ import axios from 'axios';
 export default function ForeCampus() {
   const [isDown, setIsDown] = useState(false);
   const [university, setUniversity] = useState([]);
+  const [universityID, setUniversityID] = useState();
   const searchRef = useRef();
 
   const history = useHistory();
@@ -29,12 +30,30 @@ export default function ForeCampus() {
     if (input) {
       setIsDown(true);
     } else {
+<<<<<<< HEAD
       setUniversity([]);
+=======
+>>>>>>> develope
       setIsDown(false);
     }
   };
-  const closeDropdown = (e) => {
+  function closeDropdown() {
     setIsDown(false);
+  }
+
+  function routeToUnivDetail(e) {
+    e.preventDefault();
+    if (!searchRef.current.value) alert('학교명을 입력해주세요');
+    else {
+      history.push(`/college/${universityID}`);
+    }
+  }
+
+  const inputConcurrentValue = (e, univ_id) => {
+    const inputAutoComplete = e.target.innerHTML;
+    searchRef.current.value = inputAutoComplete;
+    setUniversityID(univ_id);
+    closeDropdown();
   };
 
   return (
@@ -49,22 +68,21 @@ export default function ForeCampus() {
             placeholder="학교명을 입력하세요"
             onChange={(e) => getForUnivs(e)}
             onFocus={(e) => dropdown(e.target.value)}
-            onBlur={closeDropdown}
           />
           <input
             type="submit"
             value="검색"
-            onClick={(e) => {
-              e.preventDefault();
-              if (!searchRef.current.value) alert('학교명을 입력해주세요');
-              searchRef.current.value &&
-                history.push('/result/경희대/북미/미국');
-            }}
+            onClick={(e) => routeToUnivDetail(e)}
           />
           {isDown && (
             <DropdownMenu>
               {university.map((univ, i) => (
-                <span key={i}>{univ.forUniv_eng}</span>
+                <span
+                  key={i}
+                  onClick={(e) => inputConcurrentValue(e, univ._id)}
+                >
+                  {univ.forUniv_eng}
+                </span>
               ))}
             </DropdownMenu>
           )}
@@ -172,25 +190,20 @@ const DropdownMenu = styled.div`
   z-index: 1000;
   display: flex;
   flex-direction: column;
+  overflow: hidden;
 
-  & > p {
-    width: 130px;
-    max-height: 25px;
-    margin: 1em 0;
-    padding-left: 7px;
-    padding-bottom: 0.3em;
+  & > span {
+    min-height: 50px;
     font-size: 1.1rem;
     font-weight: 700;
-    margin-left: 1.2em;
-    color: #66a6ff;
-    border-bottom: 0.2px solid #d1d1d1;
-    border-radius: 15px;
     cursor: pointer;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
   }
 
-  & > p:hover {
-    background-color: #66a6ff;
-    color: white;
+  & > span:hover {
+    background-color: #d1d1d1;
   }
 `;
 

@@ -1,6 +1,11 @@
 import axios from 'axios';
 import styled from 'styled-components';
+<<<<<<< HEAD
 import React, { useState, useEffect } from 'react';
+=======
+import { Link } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+>>>>>>> develope
 import { GiSpeaker } from 'react-icons/gi';
 import SearchBottom from './SearchBottom';
 import Pagination from './Pagination';
@@ -113,7 +118,7 @@ export default function All({ match }) {
               lastIndex={lastIndex}
               pageCount={pageCount}
             />
-            <WriteBtn>글 작성</WriteBtn>
+            <WriteBtn to={`/edit${match.path}`}>글 작성</WriteBtn>
           </PageBox>
           <SearchBottom setPosts={setPosts} />
         </TableBox>
@@ -239,9 +244,11 @@ const PageBox = styled.div`
   margin: 1.5rem 0;
 `;
 
-const WriteBtn = styled.button`
+const WriteBtn = styled(Link)`
   position: absolute;
-  display: inline-block;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   min-width: 100px;
   width: 6rem;
   height: 3rem;
