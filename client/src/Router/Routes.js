@@ -21,13 +21,9 @@ class Routes extends React.Component {
           <Header />
           <Switch>
             <Route path="/" exact component={Main} />
-<<<<<<< HEAD
-            <Route path="/writeArticle" component={WriteArticle} />
-=======
             <Route path="/all" exact component={All} />
             <Route path="/edit/:category" component={AbroadEditor} />
             <Route path="/qna-detail" component={QnAPageDetail} />
->>>>>>> develope
             <Route path="/pages/foreCampus" component={ForeCampus} />
             <Route path="/result/:koUniv" exact component={Result} />
             <Route path="/result/:koUniv/:continent" exact component={Result} />

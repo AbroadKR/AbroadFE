@@ -1,11 +1,7 @@
 import axios from 'axios';
 import styled from 'styled-components';
-<<<<<<< HEAD
-import React, { useState, useEffect } from 'react';
-=======
 import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
->>>>>>> develope
 import { GiSpeaker } from 'react-icons/gi';
 import SearchBottom from './SearchBottom';
 import Pagination from './Pagination';

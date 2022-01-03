@@ -30,10 +30,7 @@ export default function ForeCampus() {
     if (input) {
       setIsDown(true);
     } else {
-<<<<<<< HEAD
       setUniversity([]);
-=======
->>>>>>> develope
       setIsDown(false);
     }
   };
