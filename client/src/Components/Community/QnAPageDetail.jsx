@@ -1,16 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import { useRecoilValue } from 'recoil';
-import {
-  ArticleTitle,
-  ArticleContent,
-  ArticleCreateDate,
-} from '../../Store/atom';
 
-export default function ArticleDetail() {
-  const title = useRecoilValue(ArticleTitle);
-  const content = useRecoilValue(ArticleContent);
-  const date = useRecoilValue(ArticleCreateDate);
+export default function QnAPageDetail() {
   return (
     <CommunityWrap>
       <UpstreamSection>
@@ -20,10 +11,10 @@ export default function ArticleDetail() {
       <UserBox>
         <UserInfoBox>
           <span>작성자 | Abroad12님</span>
-          <span>{title}</span>
-          <span>게시일 | {date}</span>
+          <span>제목</span>
+          <span>게시일 | 날짜</span>
         </UserInfoBox>
-        <ContentBox readOnly value={content} />
+        <ContentBox readOnly value="" />
       </UserBox>
       <CommentBox>
         <CommentInfo>

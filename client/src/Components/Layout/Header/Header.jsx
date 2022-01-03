@@ -3,8 +3,6 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import CommunitySub from './SubMenu';
 import SignupModal from '../../../Modals/signUp/SignupModal';
-import { useRecoilState, useSetRecoilState } from 'recoil';
-import { modalActive, signupModalState } from '../../../Store/atom';
 import { UserIcon, LogoHorizontal } from '../../../images';
 
 function Header() {
@@ -17,22 +15,6 @@ function Header() {
   const closeDropdown = (e) => {
     setIsDown(false);
     e.currentTarget.classList.remove('dropdown');
-  };
-
-  const [isModalActive, setModalActive] = useRecoilState(modalActive);
-  const setModalState = useSetRecoilState(signupModalState);
-
-  useEffect(() => {
-    setModalActive(false);
-  }, []);
-
-  const onModalActive = (index) => {
-    if (index === 'login') {
-      setModalState('login');
-    } else if (index === 'regist') {
-      setModalState('regist');
-    }
-    setModalActive(true);
   };
 
   return (
@@ -58,19 +40,12 @@ function Header() {
         <li onMouseEnter={dropdown} onMouseLeave={closeDropdown}>
           <img src={UserIcon} alt="user" />
           <ul>
-            <li id="header_signup_login" onClick={() => onModalActive('login')}>
-              로그인
-            </li>
-            <li
-              id="header_signup_regist"
-              onClick={() => onModalActive('login')}
-            >
-              회원가입
-            </li>
+            <li id="header_signup_login">로그인</li>
+            <li id="header_signup_regist">회원가입</li>
           </ul>
         </li>
       </SignBox>
-      <div>{isModalActive && <SignupModal />}</div>
+      {/* <div>{isModalActive && <SignupModal />}</div> */}
     </Head>
   );
 }
