@@ -1,5 +1,6 @@
 require('dotenv').config();
 const express = require('express');
+const { ObjectId } = require('mongodb');
 const path = require('path');
 const app = express();
 const {
@@ -274,10 +275,31 @@ app.get('/api/getPosts', (req, res) => {
 
 app.post('/api/postBoard', (req, res) => {
   const {
-    body: {
-      data: { userObject, board, category, post },
-    },
+    body: { userObject, board, category, post },
   } = req;
+  if (board === 'all') {
+    allBoard.create(
+      {
+        title: post.title,
+        owner: ObjectId('61c474fbf5f1305f4fc84576'),
+        category: 'all',
+        content: post.body,
+        like: 0,
+        view: 0,
+        createdAt: post.date,
+        updatedAt: post.date,
+        comments: [],
+      },
+      (err) => {
+        if (err) {
+          console.log(err);
+          res.send(err);
+          return;
+        }
+        res.sendStatus(201);
+      }
+    );
+  }
   console.log(board, category, post);
   return;
 });
