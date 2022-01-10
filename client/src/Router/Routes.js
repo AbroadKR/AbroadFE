@@ -22,7 +22,7 @@ class Routes extends React.Component {
           <Switch>
             <Route path="/" exact component={Main} />
             <Route path="/all" exact component={All} />
-            <Route path="/edit/:category" component={AbroadEditor} />
+            <Route path="/community/:board/edit" component={AbroadEditor} />
             <Route path="/qna-detail" component={QnAPageDetail} />
             <Route path="/pages/foreCampus" component={ForeCampus} />
             <Route path="/result/:koUniv" exact component={Result} />

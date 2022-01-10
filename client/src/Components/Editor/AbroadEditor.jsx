@@ -1,7 +1,7 @@
 import React, { useRef, useState, useEffect } from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
-import { useHistory } from 'react-router';
+import { useHistory, useParams } from 'react-router';
 import Prism from 'prismjs';
 import moment from 'moment';
 // 안써도 자동으로 한국 시간을 불러온다. 명확하게 하기 위해 import
@@ -27,13 +27,13 @@ export default function AbroadEditor({ match }) {
   const titleRef = useRef();
   const editorRef = useRef();
   const history = useHistory();
+  const params = useParams();
 
   const routeToList = () => {
     history.push({
-      pathname: '/all',
+      pathname: `/community/${params.board}`,
     });
   };
-
   const TEXT_EDITOR_ITEM = `text-editor-item_${match.path}`;
   const localEditData = localStorage.getItem(TEXT_EDITOR_ITEM);
 
@@ -43,23 +43,24 @@ export default function AbroadEditor({ match }) {
     localStorage.setItem(TEXT_EDITOR_ITEM, data);
   };
 
-  const [userName, setUserName] = useState(null);
-  const [title, setTitle] = useState(null);
-  const [body, setBody] = useState(null);
+  const [userName, setUserName] = useState('');
+  const [title, setTitle] = useState('');
+  const [body, setBody] = useState('');
   const [date, setDate] = useState(null);
-  const routeWithData = () => {
+  const postData = async () => {
     setDate(moment().format('YYYY-MM-DD HH:mm'));
-
-    const pageData = {
-      title,
-      body,
-      date,
-      likes: 0,
-      userName,
-    };
-    history.push({
-      pathname: '/qna-detail',
+    const { data: res } = await axios.post('/api/postBoard', {
+      post: { title, body, date: Date.now() },
+      userObject: null,
+      board: params.board,
+      category: params.category,
     });
+    window.scrollTo(0, 0);
+    setTitle('');
+    setBody('');
+    setDate(null);
+    routeToList();
+    console.log(res);
   };
 
   useEffect(() => {
@@ -99,6 +100,7 @@ export default function AbroadEditor({ match }) {
         <input
           className="titleInput"
           ref={titleRef}
+          value={title}
           onChange={() => {
             const innerTxt = titleRef.current.value;
             setTitle(innerTxt);
@@ -128,7 +130,7 @@ export default function AbroadEditor({ match }) {
       <SaveArticle>
         <button onClick={routeToList}>목록으로</button>
         <button onClick={saveToLocalStorage}>임시저장</button>
-        <button onClick={routeWithData}>등록하기</button>
+        <button onClick={postData}>등록하기</button>
       </SaveArticle>
     </Div>
   );
@@ -151,7 +153,7 @@ const UpstreamSection = styled.div`
   background-color: #66a6ff;
   color: white;
   padding-left: 2em;
-  border-radius: 30px/30px;
+  border-radius: 5px;
 
   & > span:first-child::after {
     content: '|';
@@ -167,7 +169,7 @@ const PageInfoBox = styled.div`
   height: 65px;
   flex: 1 1 45%;
   border: 0.2px solid #d1d1d1;
-  border-radius: 30px/30px;
+  border-radius: 35px;
   display: flex;
   align-items: center;
   margin: 2em auto;
@@ -209,11 +211,17 @@ const SaveArticle = styled.div`
   padding: 0.3em 1em;
 
   & > button {
-    width: 180px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 9rem;
     height: 55px;
+    font-size: 1rem;
+    font-weight: 700;
     border: 0.2px solid #66a6ff;
     border-radius: 30px/30px;
     margin: 0 0.5em;
+    color: #66a6ff;
   }
 
   & > button:last-child {

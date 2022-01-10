@@ -114,7 +114,7 @@ export default function All({ match }) {
               lastIndex={lastIndex}
               pageCount={pageCount}
             />
-            <WriteBtn to={`/edit${match.path}`}>글 작성</WriteBtn>
+            <WriteBtn to={`${match.url}/edit`}>글 작성</WriteBtn>
           </PageBox>
           <SearchBottom setPosts={setPosts} />
         </TableBox>
