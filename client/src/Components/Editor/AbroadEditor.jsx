@@ -1,7 +1,7 @@
 import React, { useRef, useState, useEffect } from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
-import { useHistory, useParams } from 'react-router';
+import { useHistory, useLocation, useParams } from 'react-router';
 import Prism from 'prismjs';
 import moment from 'moment';
 // 안써도 자동으로 한국 시간을 불러온다. 명확하게 하기 위해 import
@@ -28,7 +28,10 @@ export default function AbroadEditor({ match }) {
   const editorRef = useRef();
   const history = useHistory();
   const params = useParams();
-
+  const location = useLocation();
+  const {
+    state: { continentName, category },
+  } = location;
   const routeToList = () => {
     history.push({
       pathname: `/community/${params.board}`,
@@ -53,14 +56,13 @@ export default function AbroadEditor({ match }) {
       post: { title, body, date: Date.now() },
       userObject: null,
       board: params.board,
-      category: params.category,
+      category: params.catefory ? params.category : category,
     });
     window.scrollTo(0, 0);
     setTitle('');
     setBody('');
     setDate(null);
     routeToList();
-    console.log(res);
   };
 
   useEffect(() => {
@@ -93,7 +95,14 @@ export default function AbroadEditor({ match }) {
     <Div>
       <UpstreamSection>
         <span>커뮤니티</span>
-        <span>전체 게시판</span>
+        {continentName && <span>{continentName}&nbsp;</span>}
+        {category === 'all' ? (
+          <span>전체 게시판</span>
+        ) : category === 'free' ? (
+          <span>자유 게시판</span>
+        ) : (
+          <span>질문 게시판</span>
+        )}
       </UpstreamSection>
       <PageInfoBox>
         <span className="title">제목</span>
@@ -159,7 +168,7 @@ const UpstreamSection = styled.div`
     content: '|';
     margin: 0 5px;
   }
-  & > span:last-child {
+  & > span:not(:first-child) {
     font-weight: 900;
   }
 `;

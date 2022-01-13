@@ -1,7 +1,6 @@
 import React from 'react';
 import Result from '../Pages/Result';
-import QnABoard from '../Pages/QnABoard';
-import FreeBoard from '../Pages/FreeBoard';
+import ContinentBoard from '../Pages/ContinentBoard';
 import All from '../Pages/All';
 import Community from '../Pages/Community';
 import AbroadEditor from '../Components/Editor';
@@ -31,11 +30,11 @@ class Routes extends React.Component {
               path="/result/:koUniv/:continent/:country"
               component={Result}
             />
-            <Route path="/community/:board" exact component={All} />
+            <Route path="/community/:continent" exact component={Community} />
             <Route
               path="/community/:continent/:category"
               exact
-              component={Community}
+              component={ContinentBoard}
             />
             <Route path="/college/:id" exact component={CollegeDetail} />
           </Switch>
