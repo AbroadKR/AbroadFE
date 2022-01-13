@@ -1,63 +1,109 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import { GiSpeaker } from 'react-icons/gi';
+import Pagination from './Pagination';
+import SearchBottom from './SearchBottom';
 import axios from 'axios';
 
-function QnABoard({ match }) {
+function ContinentBoard() {
+  const [continentName, setContinentName] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
   const [order, setOrder] = useState(1);
-  const param = match.params.continent;
   const [posts, setPosts] = useState([{}]);
-  let continent;
-  const getQna = async () => {
-    const { data: res } = await axios.post('/api/getQna', {
-      page: currentPage,
-    });
-    setPosts(res);
+  const [firstIndex, setFirstIndex] = useState(1);
+  const params = useParams();
+  const { category, continent } = params;
+  const getPosts = async (opt) => {
+    setPosts([{}]);
+    if (!opt) {
+      const { data: res } = await axios.get('/api/getPosts', {
+        params: { board: continent, category },
+      });
+      setPosts(res);
+    } else {
+      const { data: res } = await axios.get('/api/getPosts/search', {
+        params: { target: opt.target, keyword: opt.keyword },
+      });
+      if (res.length === 0) {
+        alert('검색결과가 없습니다.');
+        return;
+      }
+      setPosts(res);
+    }
   };
-  const handleOrder = (e) => {
-    setOrder(Number(e.currentTarget.id));
+  const handleOrder = async (e) => {
+    setOrder(e.currentTarget.id);
+    if (e.currentTarget.id === '1') {
+      getPosts();
+    } else if (e.currentTarget.id === '3') {
+      posts.sort((a, b) => {
+        if (a.like > b.like) {
+          return -1;
+        } else if (a.like < b.like) {
+          return 1;
+        } else {
+          return 0;
+        }
+      });
+      setPosts([]);
+      setPosts(posts);
+    }
   };
   const handlePage = (e) => {
     setCurrentPage(Number(e.currentTarget.textContent));
   };
+  let lastIndex = firstIndex + 9;
+  let pageCount = Math.ceil(posts.length / 15);
+  let normalIndex = currentPage % 10 === 0 ? 10 : currentPage % 10;
+  if (currentPage > lastIndex) {
+    setFirstIndex(lastIndex + 1);
+  } else if (currentPage < firstIndex) {
+    setFirstIndex(firstIndex - 10);
+  }
+  const checkContinent = () => {
+    if (continent === 'sa') {
+      setContinentName('남미');
+    } else if (continent === 'na') {
+      setContinentName('북미');
+    } else if (continent === 'asia') {
+      setContinentName('아시아');
+    } else if (continent === 'africa') {
+      setContinentName('아프리카');
+    } else if (continent === 'oceania') {
+      setContinentName('오세아니아');
+    } else if (continent === 'europe') {
+      setContinentName('유럽');
+    }
+  };
+  useEffect(() => {
+    checkContinent();
+  }, []);
+  useEffect(() => {
+    getPosts();
+  }, [category]);
 
   useEffect(() => {
-    getQna();
-  }, []);
-
-  if (param === 'sa') {
-    continent = '남미';
-  } else if (param === 'na') {
-    continent = '북미';
-  } else if (param === 'asia') {
-    continent = '아시아';
-  } else if (param === 'africa') {
-    continent = '아프리카';
-  } else if (param === 'oceania') {
-    continent = '오세아니아';
-  } else if (param === 'europe') {
-    continent = '유럽';
-  }
-
+    getPosts();
+  }, [currentPage]);
   return (
     <>
-      {param ? (
-        <TopBox>
-          <ContinentImg bgShort={param}></ContinentImg>
-          <BoardInfo>
-            <h3>{continent} 질문게시판</h3>
-            <div>{continent} 대륙 교환학생들을 위한 질문게시판입니다.</div>
-            <div>궁금한 점들을 질문하고 정보들을 공유하세요.</div>
-            <ToQnA to="freeboard">자유게시판 바로가기</ToQnA>
-          </BoardInfo>
-        </TopBox>
-      ) : (
-        <TopNormalBox>
-          <h3>질문게시판</h3>
-        </TopNormalBox>
-      )}
+      <TopBox>
+        <ContinentImg bgShort={continent}></ContinentImg>
+        <BoardInfo>
+          <h3>
+            {continentName} {category === 'free' ? '자유게시판' : '질문게시판'}
+          </h3>
+          <div>
+            {continentName} 대륙 교환학생들을 위한
+            {category === 'free' ? ' 자유게시판' : ' 질문게시판'}입니다.
+          </div>
+          <div>다른 학생들과 자유롭게 소통해보세요.</div>
+          <ToQnA to={category === 'free' ? 'qna' : 'free'}>
+            {category === 'free' ? '질문게시판' : '자유게시판'} 바로가기
+          </ToQnA>
+        </BoardInfo>
+      </TopBox>
       <TableBox>
         <Filter order={order}>
           <li id="1" onClick={handleOrder}>
@@ -65,10 +111,6 @@ function QnABoard({ match }) {
           </li>
           <hr />
           <li id="3" onClick={handleOrder}>
-            댓글순
-          </li>
-          <hr />
-          <li id="5" onClick={handleOrder}>
             좋아요순
           </li>
         </Filter>
@@ -90,62 +132,55 @@ function QnABoard({ match }) {
                     marginRight: '1rem',
                   }}
                 />
-                대륙별 자유게시판 이용 안내
+                대륙별 {category === 'free' ? '자유게시판' : '질문게시판'} 이용
+                안내
               </td>
               <td>어브로드</td>
               <td>-</td>
             </Notice>
             {posts &&
-              posts.slice(0, 15).map((post) => (
-                <tr>
-                  <td>{post.title}</td>
-                  <td>{post.user}</td>
-                  <td>{post.like}</td>
-                </tr>
-              ))}
+              posts
+                .slice((normalIndex - 1) * 15, normalIndex * 15)
+
+                .map((post, index) => (
+                  <tr key={index}>
+                    <td>{post.title}</td>
+                    <td>{post.user}</td>
+                    <td>{post.like}</td>
+                  </tr>
+                ))}
           </Tbody>
         </Table>
         <PageBox>
-          <Pagenation currentPage={currentPage}>
-            <li style={{ fontWeight: 'bold' }}>&lt;&lt;</li>
-            <li>&lt;</li>
-            <li onClick={handlePage}>1</li>
-            <li onClick={handlePage}>2</li>
-            <li onClick={handlePage}>3</li>
-            <li onClick={handlePage}>4</li>
-            <li onClick={handlePage}>5</li>
-            <li onClick={handlePage}>6</li>
-            <li onClick={handlePage}>7</li>
-            <li onClick={handlePage}>8</li>
-            <li onClick={handlePage}>9</li>
-            <li onClick={handlePage}>10</li>
-            <li>&gt;</li>
-            <li style={{ fontWeight: 'bold' }}>&gt;&gt;</li>
-          </Pagenation>
-          <WriteBtn to={`/edit${match.path}`}>글 작성</WriteBtn>
+          <Pagination
+            currentPage={currentPage}
+            handlePage={handlePage}
+            setCurrentPage={setCurrentPage}
+            firstIndex={firstIndex}
+            lastIndex={lastIndex}
+            pageCount={pageCount}
+          />
+          <WriteBtn
+            to={{
+              pathname: `/community/${continent}/edit`,
+              state: { continentName, category },
+            }}
+          >
+            글 작성
+          </WriteBtn>
         </PageBox>
-        <SearchBox>
-          <SearchOpt name="searchOption" id="searchOption">
-            <option value="">제목+내용</option>
-            <option value="글쓴이">글쓴이</option>
-            <option value="댓글">댓글</option>
-          </SearchOpt>
-          <BarBox>
-            <SearchBar
-              type="text"
-              name="searchBar"
-              id="searchBar"
-              placeholder=""
-            />
-            <SeachBtn>검색</SeachBtn>
-          </BarBox>
-        </SearchBox>
+
+        <SearchBottom
+          setPosts={setPosts}
+          continent={continent}
+          boardType={category}
+        />
       </TableBox>
     </>
   );
 }
 
-export default QnABoard;
+export default ContinentBoard;
 
 const TopBox = styled.div`
   display: flex;
@@ -205,7 +240,8 @@ const Filter = styled.ul`
   align-items: center;
   justify-content: space-evenly;
   height: 5.3rem;
-  width: 20rem;
+
+  width: 13rem;
   margin-left: auto;
   & li {
     width: 5rem;
@@ -247,6 +283,9 @@ const Tbody = styled.tbody`
   & tr {
     height: 4.4rem;
     border-bottom: 1px solid #d1d1d1;
+    & > td:first-child {
+      cursor: pointer;
+    }
   }
   & td {
     color: #444444;
@@ -281,21 +320,7 @@ const PageBox = styled.div`
   width: 100%;
   margin: 1.5rem 0;
 `;
-const Pagenation = styled.ul`
-  display: flex;
-  justify-content: center;
-  width: 50%;
-  max-width: 600px;
-  min-width: 300px;
-  & li {
-    padding: 0.3em 0.6em;
-    cursor: pointer;
-  }
-  & li:nth-child(${(props) => props.currentPage + 2}) {
-    cursor: default;
-    color: #66a6ff;
-  }
-`;
+
 const WriteBtn = styled(Link)`
   position: absolute;
   display: flex;
@@ -310,49 +335,5 @@ const WriteBtn = styled(Link)`
   border-radius: 25px;
   color: #ffffff;
   background-color: #66a6ff;
-  cursor: pointer;
-`;
-const SearchBox = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 12rem;
-`;
-const SearchOpt = styled.select`
-  margin-right: 1rem;
-  width: 10rem;
-  height: 3rem;
-  text-align: center;
-  border: 1px solid #d1d1d1;
-  border-radius: 25px;
-  font-size: 1.1rem;
-  outline: none;
-`;
-const BarBox = styled.div`
-  position: relative;
-  display: flex;
-  width: fit-content;
-`;
-const SearchBar = styled.input`
-  width: 30rem;
-  height: 3rem;
-  padding-left: 1.3em;
-  border: 1px solid #d1d1d1;
-  border-radius: 25px;
-  font-size: 1.1rem;
-  outline: none;
-`;
-const SeachBtn = styled.button`
-  position: absolute;
-  right: 0;
-  width: 6rem;
-  height: 3rem;
-  outline: none;
-  border: none;
-  border-radius: 25px;
-  background-color: #66a6ff;
-  color: #ffffff;
-  font-size: 1.1rem;
-  font-weight: 700;
   cursor: pointer;
 `;

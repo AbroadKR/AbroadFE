@@ -1,48 +1,50 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Link, useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import { BsQuestionCircle } from 'react-icons/bs';
 import { IoChatbubbleEllipsesOutline } from 'react-icons/io5';
+import All from './All';
 
-function Community({ match }) {
-  const param = match.params.continent;
-  let continent;
-  if (param === 'sa') {
-    continent = '남미';
-  } else if (param === 'na') {
-    continent = '북미';
-  } else if (param === 'asia') {
-    continent = '아시아';
-  } else if (param === 'africa') {
-    continent = '아프리카';
-  } else if (param === 'oceania') {
-    continent = '오세아니아';
-  } else if (param === 'europe') {
-    continent = '유럽';
-  }
-  return (
+function Community() {
+  const [continentName, setContinentName] = useState(null);
+  const params = useParams();
+  const { continent } = params;
+  const checkContinent = () => {
+    if (continent === 'sa') {
+      setContinentName('남미');
+    } else if (continent === 'na') {
+      setContinentName('북미');
+    } else if (continent === 'asia') {
+      setContinentName('아시아');
+    } else if (continent === 'africa') {
+      setContinentName('아프리카');
+    } else if (continent === 'oceania') {
+      setContinentName('오세아니아');
+    } else if (continent === 'europe') {
+      setContinentName('유럽');
+    }
+  };
+  useEffect(() => {
+    checkContinent();
+  }, []);
+  return continent === 'all' ? (
+    <All />
+  ) : (
     <Wrapper>
       <TitleBox>
-        <h1>{continent} 커뮤니티</h1>
-        <div>{continent} 대륙 교환학생들을 위한 단독 커뮤니티입니다.</div>
+        <h1>{continentName} 커뮤니티</h1>
+        <div>{continentName} 대륙 교환학생들을 위한 단독 커뮤니티입니다.</div>
         <div>여러 학생들과 자유롭게 소통하고 궁금한 점들을 공유하세요.</div>
         <Hr />
       </TitleBox>
       <BtnBox>
-        <FreeBox
-          to={{
-            path: `/community/${param}/freeboard`,
-            state: { category: 'free' },
-          }}
-        >
+        <FreeBox to={`/community/${continent}/free`}>
           <IoChatbubbleEllipsesOutline
             style={{ fontSize: '7rem', height: '13rem', color: '#66A6FF' }}
           />
           <div>자유게시판 바로가기</div>
         </FreeBox>
-        <QuestionBox
-          to={{ path: `/community/${param}/qna`, state: { category: 'qna' } }}
-        >
+        <QuestionBox to={`/community/${continent}/qna`}>
           <BsQuestionCircle style={{ fontSize: '7rem', height: '13rem' }} />
           <div>질문게시판 바로가기</div>
         </QuestionBox>

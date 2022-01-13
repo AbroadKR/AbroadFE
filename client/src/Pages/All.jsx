@@ -1,29 +1,28 @@
 import axios from 'axios';
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { GiSpeaker } from 'react-icons/gi';
 import SearchBottom from './SearchBottom';
 import Pagination from './Pagination';
 
-export default function All({ match }) {
+export default function All() {
   const [currentPage, setCurrentPage] = useState(1);
   const [order, setOrder] = useState(1);
   const [posts, setPosts] = useState([]);
   const [firstIndex, setFirstIndex] = useState(1);
-  const {
-    params: { board },
-  } = match;
+  const params = useParams();
+  const { continent } = params;
   const getPost = async () => {
     const { data: res } = await axios.get('/api/getPosts', {
-      params: { board: board },
+      params: { board: 'all' },
     });
     setPosts(res);
   };
   useState(() => {
     getPost();
   }, []);
-
+  console.log(params);
   const handleOrder = async (e) => {
     setOrder(e.currentTarget.id);
     if (e.currentTarget.id === '1') {
@@ -114,7 +113,7 @@ export default function All({ match }) {
               lastIndex={lastIndex}
               pageCount={pageCount}
             />
-            <WriteBtn to={`${match.url}/edit`}>글 작성</WriteBtn>
+            <WriteBtn to={`${continent}/edit`}>글 작성</WriteBtn>
           </PageBox>
           <SearchBottom setPosts={setPosts} />
         </TableBox>

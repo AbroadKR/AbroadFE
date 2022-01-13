@@ -116,6 +116,11 @@ const FirstSub = styled.ul`
     transform: translateX(0);
     transition: all 0.4s ease;
   }
+  & > li:first-child > a {
+    display: flex;
+    align-items: center;
+    height: 100%;
+  }
   & > li {
     display: flex;
     position: relative;

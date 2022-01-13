@@ -25,78 +25,93 @@ const tableSchema = new Schema({
   lang: { type: String, required: true },
 });
 
-const forUnivSchema = new Schema({
-  id: Schema.Types.ObjectId,
-  forUniv: { type: String, required: true },
-  continent: { type: String, required: true },
-  country: { type: String, required: true },
-  image: { type: String, required: true },
-  reviews: [
-    { type: mongoose.Schema.Types.ObjectId, required: true, ref: 'review' },
-  ],
-});
-
-const postSchema = new Schema({
-  id: Schema.Types.ObjectId,
-  title: { type: String, required: true },
-  owner: {
-    type: mongoose.Schema.Types.ObjectId,
-    // required: true,
-    ref: 'user',
+const forUnivSchema = new Schema(
+  {
+    id: Schema.Types.ObjectId,
+    forUniv: { type: String, required: true },
+    continent: { type: String, required: true },
+    country: { type: String, required: true },
+    image: { type: String, required: true },
+    reviews: [
+      { type: mongoose.Schema.Types.ObjectId, required: true, ref: 'review' },
+    ],
   },
-  category: { type: String, required: true },
-  content: { type: String, required: true },
-  like: { type: Number, default: 0, required: true },
-  view: { type: Number, default: 0, required: true },
-  createdAt: { type: Date, default: Date.now, required: true },
-  updatedAt: { type: Date, default: Date.now, required: true },
-  comments: [{ type: mongoose.Schema.Types.ObjectId, ref: 'comment' }],
-});
+  { versionKey: false }
+);
+
+const postSchema = new Schema(
+  {
+    id: Schema.Types.ObjectId,
+    title: { type: String, required: true },
+    owner: {
+      type: mongoose.Schema.Types.ObjectId,
+      // required: true,
+      ref: 'user',
+    },
+    category: { type: String, required: true },
+    content: { type: String, required: true },
+    like: { type: Number, default: 0, required: true },
+    view: { type: Number, default: 0, required: true },
+    createdAt: { type: Date, default: Date.now, required: true },
+    updatedAt: { type: Date, default: Date.now, required: true },
+    comments: [{ type: mongoose.Schema.Types.ObjectId, ref: 'comment' }],
+  },
+  { versionKey: false }
+);
 
 // 새로운 review 스키마
-const reviewSchema = new Schema({
-  id: Schema.Types.ObjectId,
-  owner: {
-    type: mongoose.Schema.Types.ObjectId,
-    required: true,
-    ref: 'user',
+const reviewSchema = new Schema(
+  {
+    id: Schema.Types.ObjectId,
+    owner: {
+      type: mongoose.Schema.Types.ObjectId,
+      required: true,
+      ref: 'user',
+    },
+    avg_point: { type: Number, required: true },
+    text: { type: String, required: true },
+    korean: { type: Number, required: true },
+    difficulty: { type: Number, required: true },
+    avg_cost: { type: Number, required: true },
+    transportation: { type: Number, required: true },
+    safety: { type: Number, required: true },
   },
-  avg_point: { type: Number, required: true },
-  text: { type: String, required: true },
-  korean: { type: Number, required: true },
-  difficulty: { type: Number, required: true },
-  avg_cost: { type: Number, required: true },
-  transportation: { type: Number, required: true },
-  safety: { type: Number, required: true },
-});
+  { versionKey: false }
+);
 
 // Comment 스키마
-const commentSchema = new Schema({
-  id: Schema.Types.ObjectId,
-  owner: {
-    type: mongoose.Schema.Types.ObjectId,
-    required: true,
-    ref: 'user',
+const commentSchema = new Schema(
+  {
+    id: Schema.Types.ObjectId,
+    owner: {
+      type: mongoose.Schema.Types.ObjectId,
+      required: true,
+      ref: 'user',
+    },
+    target: {
+      type: mongoose.Schema.Types.ObjectId,
+      required: true,
+    },
+    text: { type: String, required: true },
+    createdAt: { type: String, required: true },
   },
-  target: {
-    type: mongoose.Schema.Types.ObjectId,
-    required: true,
-  },
-  text: { type: String, required: true },
-  createdAt: { type: String, required: true },
-});
+  { versionKey: false }
+);
 
 // 임시 User 스키마
-const userSchema = new Schema({
-  id: Schema.Types.ObjectId,
-  name: { type: String, required: true },
-  email: { type: String, required: true },
-  // posts: { type: mongoose.Schema.Types.ObjectId, ref: 'post' },
-  comments: [{ type: mongoose.Schema.Types.ObjectId, ref: 'comment' }],
-  reviews: [{ type: mongoose.Schema.Types.ObjectId, ref: 'review' }],
-  createdAt: { type: String, required: true },
-  updatedAt: { type: String, required: true },
-});
+const userSchema = new Schema(
+  {
+    id: Schema.Types.ObjectId,
+    name: { type: String, required: true },
+    email: { type: String, required: true },
+    // posts: { type: mongoose.Schema.Types.ObjectId, ref: 'post' },
+    comments: [{ type: mongoose.Schema.Types.ObjectId, ref: 'comment' }],
+    reviews: [{ type: mongoose.Schema.Types.ObjectId, ref: 'review' }],
+    createdAt: { type: String, required: true },
+    updatedAt: { type: String, required: true },
+  },
+  { versionKey: false }
+);
 
 tableSchema.set('collection', 'table');
 forUnivSchema.set('collection', 'forUniv');
