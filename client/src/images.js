@@ -1,3 +1,6 @@
+// logo
+import Logo_Symbol from './images/logo/logo_symbol.svg';
+
 // Header
 import UserIcon from './images/hearder/user_circle.svg';
 import LogoHorizontal from './images/hearder/logo_horizontal.svg';
@@ -39,4 +42,5 @@ export {
   UserIcon,
   LogoHorizontal,
   LogoBottom,
+  Logo_Symbol,
 };
