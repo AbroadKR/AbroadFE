@@ -5,6 +5,7 @@ import { GiSpeaker } from 'react-icons/gi';
 import Pagination from './Pagination';
 import SearchBottom from './SearchBottom';
 import axios from 'axios';
+import { AiFillHeart } from 'react-icons/ai';
 
 function ContinentBoard() {
   const [continentName, setContinentName] = useState(null);
@@ -119,7 +120,9 @@ function ContinentBoard() {
             <tr>
               <th>제목</th>
               <th>작성자</th>
-              <th>♥</th>
+              <th>
+                <AiFillHeart />
+              </th>
             </tr>
           </Thead>
           <Tbody>
@@ -144,7 +147,16 @@ function ContinentBoard() {
 
                 .map((post, index) => (
                   <tr key={index}>
-                    <td>{post.title}</td>
+                    <td>
+                      <Link
+                        to={{
+                          pathname: `/community/post/${post._id}`,
+                          state: { category, continent },
+                        }}
+                      >
+                        {post.title}
+                      </Link>
+                    </td>
                     <td>{post.user}</td>
                     <td>{post.like}</td>
                   </tr>
@@ -283,14 +295,14 @@ const Tbody = styled.tbody`
   & tr {
     height: 4.4rem;
     border-bottom: 1px solid #d1d1d1;
-    & > td:first-child {
-      cursor: pointer;
-    }
   }
   & td {
     color: #444444;
     font-size: 1.1rem;
     vertical-align: middle;
+  }
+  & td > a {
+    padding: 0.5em 1em;
   }
   & td:first-child {
     padding-left: 2.5em;

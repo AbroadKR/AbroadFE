@@ -180,7 +180,6 @@ app.get('/api/getPosts', (req, res) => {
   const {
     query: { board, category },
   } = req;
-  console.log(board, category);
   if (board === 'all') {
     allBoard
       .find({ category: board }, (err, result) => {
@@ -271,6 +270,25 @@ app.get('/api/getPosts', (req, res) => {
       .populate('comments');
   } else if (board === 'travel') {
     return;
+  }
+});
+
+app.get('/api/getSinglePost', (req, res) => {
+  const {
+    query: { board, category, id },
+  } = req;
+  console.log('getSinglePost!!', board, category, id);
+  if (board === 'all') {
+    allBoard
+      .findOne({ _id: id }, (err, post) => {
+        if (err) {
+          res.sendStatus(404);
+          return;
+        }
+        res.json(post);
+      })
+      .populate('owner')
+      .populate({ path: 'comments', populate: { path: 'owner' } });
   }
 });
 
@@ -455,7 +473,6 @@ app.post('/api/postBoard', (req, res) => {
       }
     );
   }
-  console.log(board, category, post);
   return;
 });
 

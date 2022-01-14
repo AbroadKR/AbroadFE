@@ -10,7 +10,8 @@ import Footer from '../Components/Layout/Footer';
 import { Route, Switch, BrowserRouter } from 'react-router-dom';
 import CollegeDetail from '../Pages/CollegeDetail';
 import ForeCampus from '../Pages/foreCampus';
-import QnAPageDetail from '../Components/Community/QnAPageDetail';
+import QnAPageDetail from '../Components/Community/PostDetail';
+import PostDetail from '../Components/Community/\bPostDetail';
 
 class Routes extends React.Component {
   render() {
@@ -21,8 +22,6 @@ class Routes extends React.Component {
           <Switch>
             <Route path="/" exact component={Main} />
             <Route path="/all" exact component={All} />
-            <Route path="/community/:board/edit" component={AbroadEditor} />
-            <Route path="/qna-detail" component={QnAPageDetail} />
             <Route path="/pages/foreCampus" component={ForeCampus} />
             <Route path="/result/:koUniv" exact component={Result} />
             <Route path="/result/:koUniv/:continent" exact component={Result} />
@@ -30,7 +29,13 @@ class Routes extends React.Component {
               path="/result/:koUniv/:continent/:country"
               component={Result}
             />
+            <Route
+              path="/community/:board/edit"
+              exact
+              component={AbroadEditor}
+            />
             <Route path="/community/:continent" exact component={Community} />
+            <Route path="/community/post/:id" exact component={PostDetail} />
             <Route
               path="/community/:continent/:category"
               exact

@@ -1,1 +1,1 @@
-export { default } from './QnAPageDetail';
+export { default } from './PostDetail';

@@ -5,7 +5,7 @@ import { useState, useEffect } from 'react';
 import { GiSpeaker } from 'react-icons/gi';
 import SearchBottom from './SearchBottom';
 import Pagination from './Pagination';
-
+import { AiFillHeart } from 'react-icons/ai';
 export default function All() {
   const [currentPage, setCurrentPage] = useState(1);
   const [order, setOrder] = useState(1);
@@ -22,7 +22,7 @@ export default function All() {
   useState(() => {
     getPost();
   }, []);
-  console.log(params);
+  console.log(continent);
   const handleOrder = async (e) => {
     setOrder(e.currentTarget.id);
     if (e.currentTarget.id === '1') {
@@ -74,7 +74,9 @@ export default function All() {
               <tr>
                 <th>제목</th>
                 <th>작성자</th>
-                <th>♥</th>
+                <th>
+                  <AiFillHeart />
+                </th>
               </tr>
             </Thead>
             <Tbody>
@@ -97,7 +99,16 @@ export default function All() {
                   .slice((normalIndex - 1) * 15, normalIndex * 15)
                   .map((post, index) => (
                     <tr key={index}>
-                      <td>{post.title}</td>
+                      <td>
+                        <Link
+                          to={{
+                            pathname: `/community/post/${post._id}`,
+                            state: { category: 'all', continent },
+                          }}
+                        >
+                          {post.title}
+                        </Link>
+                      </td>
                       <td>{post.owner.name}</td>
                       <td>{post.like}</td>
                     </tr>
@@ -113,7 +124,14 @@ export default function All() {
               lastIndex={lastIndex}
               pageCount={pageCount}
             />
-            <WriteBtn to={`${continent}/edit`}>글 작성</WriteBtn>
+            <WriteBtn
+              to={{
+                pathname: `${continent}/edit`,
+                state: { continentName: '', category: 'all' },
+              }}
+            >
+              글 작성
+            </WriteBtn>
           </PageBox>
           <SearchBottom setPosts={setPosts} />
         </TableBox>
@@ -201,14 +219,14 @@ const Tbody = styled.tbody`
   & tr {
     height: 4.4rem;
     border-bottom: 1px solid #d1d1d1;
-    & > td:first-child {
-      cursor: pointer;
-    }
   }
   & td {
     color: #444444;
     font-size: 1.1rem;
     vertical-align: middle;
+  }
+  & td > a {
+    padding: 0.5em 1em;
   }
   & td:first-child {
     padding-left: 2.5em;
