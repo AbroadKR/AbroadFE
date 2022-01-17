@@ -2,12 +2,14 @@ import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
 import Loading from '../Loading';
-import { useLocation, useParams } from 'react-router-dom';
+import { useHistory, useLocation, useParams } from 'react-router-dom';
 import Comment from './Comment';
 
 export default function PostDetail() {
   const [post, setPost] = useState({});
   const [isLoading, setIsLoading] = useState(true);
+  const [commentText, setCommentText] = useState('');
+  const history = useHistory();
   const location = useLocation();
   const params = useParams();
   const { id } = params;
@@ -21,10 +23,32 @@ export default function PostDetail() {
     setPost(res);
     setIsLoading(false);
   };
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (!commentText) {
+      return;
+    }
+    const { data: res } = await axios.post('/api/postComment', {
+      owner: '61c474fbf5f1305f4fc84576',
+      target: id,
+      category,
+      continent,
+      comment: { text: commentText, createdAt: Date.now() },
+    });
+    if (res === 'OK') window.alert('댓글이 작성되었습니다!');
+    setCommentText('');
+    history.go(0);
+  };
+  const handleToList = () => {
+    history.goBack();
+  };
+  const handleInput = (e) => {
+    setCommentText(e.target.value);
+  };
   useEffect(() => {
     getPost();
   }, []);
-  console.log(post);
+  // console.log(post);
   return isLoading ? (
     <Loading />
   ) : (
@@ -55,11 +79,16 @@ export default function PostDetail() {
         </ContentBox>
       </UserBox>
       <Comment comments={post.comments} />
-      <CommentInput>
-        <p>이 질문에 답변하기</p>
-        <textarea placeholder="내용을 입력해주세요" />
+      <CommentInput onSubmit={handleSubmit}>
+        <h3>답변하기</h3>
+        <textarea
+          onChange={handleInput}
+          onKeyUp={handleInput}
+          value={commentText}
+          placeholder="내용을 입력해주세요"
+        />
         <ButtonBox>
-          <button>목록으로</button>
+          <button onClick={handleToList}>목록으로</button>
           <button>등록하기</button>
         </ButtonBox>
       </CommentInput>
@@ -175,20 +204,21 @@ const ContentBodyBox = styled.div`
   }
 `;
 
-const CommentInput = styled.article`
+const CommentInput = styled.form`
   width: 85%;
   display: flex;
   flex-direction: column;
   align-items: center;
   margin-top: 2rem;
-  & > p {
-    width: 100%;
-    color: #66a6ff;
-    font-size: 1.3rem;
-    font-weight: 700;
+  & > h3 {
     display: flex;
     justify-content: flex-start;
     align-items: center;
+    width: 100%;
+    padding-left: 1.5em;
+    color: #66a6ff;
+    font-size: 1.3rem;
+    font-weight: 700;
   }
   & > textarea {
     width: 100%;
