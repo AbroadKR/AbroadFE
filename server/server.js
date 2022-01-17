@@ -6,9 +6,9 @@ const app = express();
 const {
   table,
   forUniv,
-  comment,
-  review,
-  user,
+  commentModel,
+  reviewModel,
+  userModel,
   allBoard,
   asiaBoard,
   southAmericaBoard,
@@ -277,7 +277,6 @@ app.get('/api/getSinglePost', (req, res) => {
   const {
     query: { board, category, id },
   } = req;
-  console.log('getSinglePost!!', board, category, id);
   if (board === 'all') {
     allBoard
       .findOne({ _id: id }, (err, post) => {
@@ -478,11 +477,50 @@ app.post('/api/postBoard', (req, res) => {
 
 app.post('/api/postComment', (req, res) => {
   const {
-    body: {
-      data: { userObject, target, comment },
-    },
+    body: { category, continent, owner, target, comment },
   } = req;
-  console.log(userObject, target, comment);
+  let model;
+  let newCommentId;
+  if (continent === 'all') {
+    model = allBoard;
+  } else if (continent === 'sa') {
+    model = southAmericaBoard;
+  } else if (continent === 'na') {
+    model = northAmericaBoard;
+  } else if (continent === 'asia') {
+    model = asiaBoard;
+  } else if (continent === 'africa') {
+    model = africaBoard;
+  } else if (continent === 'europe') {
+    model = europeBoard;
+  } else if (continent === 'oceania') {
+    model = oceaniaBoard;
+  }
+  commentModel.create(
+    {
+      owner: ObjectId(owner),
+      target,
+      text: comment.text,
+      createdAt: comment.createdAt,
+      like: 0,
+    },
+    (err, doc) => {
+      if (err) {
+        console.log(err);
+        res.send(err);
+        return;
+      }
+      res.sendStatus(200);
+      newCommentId = doc._id;
+      userModel
+        .findByIdAndUpdate(owner, { $push: { comments: newCommentId } })
+        .exec();
+      model
+        .findByIdAndUpdate(target, { $push: { comments: newCommentId } })
+        .exec();
+      return;
+    }
+  );
   return;
 });
 

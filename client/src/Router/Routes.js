@@ -10,8 +10,7 @@ import Footer from '../Components/Layout/Footer';
 import { Route, Switch, BrowserRouter } from 'react-router-dom';
 import CollegeDetail from '../Pages/CollegeDetail';
 import ForeCampus from '../Pages/foreCampus';
-import QnAPageDetail from '../Components/Community/PostDetail';
-import PostDetail from '../Components/Community/\bPostDetail';
+import PostDetail from '../Components/Community/PostDetail';
 
 class Routes extends React.Component {
   render() {

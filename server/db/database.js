@@ -85,7 +85,7 @@ const commentSchema = new Schema(
     id: Schema.Types.ObjectId,
     owner: {
       type: mongoose.Schema.Types.ObjectId,
-      required: true,
+      // required: true,
       ref: 'user',
     },
     target: {
@@ -93,6 +93,7 @@ const commentSchema = new Schema(
       required: true,
     },
     text: { type: String, required: true },
+    like: { type: Number, required: true },
     createdAt: { type: String, required: true },
   },
   { versionKey: false }
@@ -121,9 +122,9 @@ userSchema.set('collection', 'user');
 
 const table = mongoose.model('table', tableSchema);
 const forUniv = mongoose.model('forUniv', forUnivSchema);
-const comment = mongoose.model('comment', commentSchema);
-const review = mongoose.model('review', reviewSchema);
-const user = mongoose.model('user', userSchema);
+const commentModel = mongoose.model('comment', commentSchema);
+const reviewModel = mongoose.model('review', reviewSchema);
+const userModel = mongoose.model('user', userSchema);
 const allBoard = mongoose.model('allBoard', postSchema, 'board_All');
 const asiaBoard = mongoose.model('asiaBoard', postSchema, 'board_Asia');
 const southAmericaBoard = mongoose.model(
@@ -147,9 +148,9 @@ const oceaniaBoard = mongoose.model(
 module.exports = {
   table,
   forUniv,
-  comment,
-  review,
-  user,
+  commentModel,
+  reviewModel,
+  userModel,
   allBoard,
   asiaBoard,
   southAmericaBoard,
