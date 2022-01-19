@@ -9,6 +9,8 @@ export default function PostDetail() {
   const [post, setPost] = useState({});
   const [isLoading, setIsLoading] = useState(true);
   const [commentText, setCommentText] = useState('');
+  const [continentName, setContinentName] = useState(null);
+  const [boardName, setBoardName] = useState(null);
   const history = useHistory();
   const location = useLocation();
   const params = useParams();
@@ -16,6 +18,26 @@ export default function PostDetail() {
   const {
     state: { category, continent },
   } = location;
+  const setBoardType = () => {
+    if (continent === 'sa') {
+      setContinentName('남미');
+    } else if (continent === 'na') {
+      setContinentName('북미');
+    } else if (continent === 'asia') {
+      setContinentName('아시아');
+    } else if (continent === 'africa') {
+      setContinentName('아프리카');
+    } else if (continent === 'oceania') {
+      setContinentName('오세아니아');
+    } else if (continent === 'europe') {
+      setContinentName('유럽');
+    }
+    if (category === 'free') {
+      setBoardName('자유');
+    } else if (category === 'qna') {
+      setBoardName('질문');
+    }
+  };
   const getPost = async () => {
     const { data: res } = await axios.get('/api/getSinglePost', {
       params: { category, board: continent, id },
@@ -47,6 +69,7 @@ export default function PostDetail() {
   };
   useEffect(() => {
     getPost();
+    setBoardType();
   }, []);
   // console.log(post);
   return isLoading ? (
@@ -55,7 +78,11 @@ export default function PostDetail() {
     <CommunityWrap>
       <UpstreamSection>
         <span>커뮤니티</span>
-        <span>{continent === 'all' && '전체 게시판'}</span>
+        <span>
+          {continent === 'all'
+            ? '전체 게시판'
+            : `${continentName} ${boardName}게시판`}
+        </span>
       </UpstreamSection>
       <UserBox>
         <UserInfoBox>

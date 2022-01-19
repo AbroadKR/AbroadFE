@@ -56,7 +56,7 @@ export default function AbroadEditor({ match }) {
       post: { title, body, date: Date.now() },
       userObject: null,
       board: params.board,
-      category: params.catefory ? params.category : category,
+      category: params.category ? params.category : category,
     });
     window.scrollTo(0, 0);
     setTitle('');
