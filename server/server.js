@@ -180,85 +180,36 @@ app.get('/api/getPosts', (req, res) => {
   const {
     query: { board, category },
   } = req;
+  let model;
   if (board === 'all') {
-    allBoard
-      .find({ category: board }, (err, result) => {
-        if (err) {
-          res.end();
-          return;
-        }
-        res.json(result);
-      })
-      .populate('owner')
-      .populate('comments');
-  } else if (board === 'travel') {
-    africaBoard
-      .find({ category: board }, (err, result) => {
-        if (err) {
-          res.end();
-          return;
-        }
-        res.json(result);
-      })
-      .populate('owner')
-      .populate('comments');
-  } else if (board === 'africa') {
-    africaBoard
-      .find({ category: category }, (err, result) => {
-        if (err) {
-          res.end();
-          return;
-        }
-        res.json(result);
-      })
-      .populate('owner')
-      .populate('comments');
-  } else if (board === 'asia') {
-    asiaBoard
-      .find({ category: category }, (err, result) => {
-        if (err) {
-          res.end();
-          return;
-        }
-        res.json(result);
-      })
-      .populate('owner')
-      .populate('comments');
-  } else if (board === 'europe') {
-    europeBoard
-      .find({ category: category }, (err, result) => {
-        if (err) {
-          res.end();
-          return;
-        }
-        res.json(result);
-      })
-      .populate('owner')
-      .populate('comments');
-  } else if (board === 'na') {
-    northAmericaBoard
-      .find({ category: category }, (err, result) => {
-        if (err) {
-          res.end();
-          return;
-        }
-        res.json(result);
-      })
-      .populate('owner')
-      .populate('comments');
+    model = allBoard;
   } else if (board === 'sa') {
-    southAmericaBoard
-      .find({ category: category }, (err, result) => {
-        if (err) {
-          res.end();
-          return;
-        }
-        res.json(result);
-      })
-      .populate('owner')
-      .populate('comments');
+    model = southAmericaBoard;
+  } else if (board === 'na') {
+    model = northAmericaBoard;
+  } else if (board === 'asia') {
+    model = asiaBoard;
+  } else if (board === 'africa') {
+    model = africaBoard;
+  } else if (board === 'europe') {
+    model = europeBoard;
   } else if (board === 'oceania') {
-    oceaniaBoard
+    model = oceaniaBoard;
+  }
+  if (board === 'all') {
+    model
+      .find({ category: board }, (err, result) => {
+        if (err) {
+          res.end();
+          return;
+        }
+        res.json(result);
+      })
+      .populate('owner')
+      .populate('comments');
+    return;
+  } else {
+    model
       .find({ category: category }, (err, result) => {
         if (err) {
           res.end();
@@ -268,35 +219,65 @@ app.get('/api/getPosts', (req, res) => {
       })
       .populate('owner')
       .populate('comments');
-  } else if (board === 'travel') {
-    return;
   }
+  return;
 });
 
 app.get('/api/getSinglePost', (req, res) => {
   const {
     query: { board, category, id },
   } = req;
+  let model;
   if (board === 'all') {
-    allBoard
-      .findOne({ _id: id }, (err, post) => {
-        if (err) {
-          res.sendStatus(404);
-          return;
-        }
-        res.json(post);
-      })
-      .populate('owner')
-      .populate({ path: 'comments', populate: { path: 'owner' } });
+    model = allBoard;
+  } else if (board === 'sa') {
+    model = southAmericaBoard;
+  } else if (board === 'na') {
+    model = northAmericaBoard;
+  } else if (board === 'asia') {
+    model = asiaBoard;
+  } else if (board === 'africa') {
+    model = africaBoard;
+  } else if (board === 'europe') {
+    model = europeBoard;
+  } else if (board === 'oceania') {
+    model = oceaniaBoard;
   }
+  model
+    .findOne({ _id: id }, (err, post) => {
+      if (err) {
+        res.sendStatus(404);
+        return;
+      }
+      res.json(post);
+    })
+    .populate('owner')
+    .populate({ path: 'comments', populate: { path: 'owner' } });
+  return;
 });
 
 app.post('/api/postBoard', (req, res) => {
   const {
     body: { userObject, board, category, post },
   } = req;
+  let model;
   if (board === 'all') {
-    allBoard.create(
+    model = allBoard;
+  } else if (board === 'sa') {
+    model = southAmericaBoard;
+  } else if (board === 'na') {
+    model = northAmericaBoard;
+  } else if (board === 'asia') {
+    model = asiaBoard;
+  } else if (board === 'africa') {
+    model = africaBoard;
+  } else if (board === 'europe') {
+    model = europeBoard;
+  } else if (board === 'oceania') {
+    model = oceaniaBoard;
+  }
+  if (board === 'all') {
+    model.create(
       {
         title: post.title,
         owner: ObjectId('61c474fbf5f1305f4fc84576'),
@@ -317,140 +298,8 @@ app.post('/api/postBoard', (req, res) => {
         res.sendStatus(201);
       }
     );
-  } else if (board === 'travel') {
-    africaBoard.create(
-      {
-        title: post.title,
-        owner: ObjectId('61c474fbf5f1305f4fc84576'),
-        category: category,
-        content: post.body,
-        like: 0,
-        view: 0,
-        createdAt: post.date,
-        updatedAt: post.date,
-        comments: [],
-      },
-      (err) => {
-        if (err) {
-          console.log(err);
-          res.send(err);
-          return;
-        }
-        res.sendStatus(201);
-      }
-    );
-  } else if (board === 'sa') {
-    southAmericaBoard.create(
-      {
-        title: post.title,
-        owner: ObjectId('61c474fbf5f1305f4fc84576'),
-        category: category,
-        content: post.body,
-        like: 0,
-        view: 0,
-        createdAt: post.date,
-        updatedAt: post.date,
-        comments: [],
-      },
-      (err) => {
-        if (err) {
-          console.log(err);
-          res.send(err);
-          return;
-        }
-        res.sendStatus(201);
-      }
-    );
-  } else if (board === 'na') {
-    northAmericaBoard.create(
-      {
-        title: post.title,
-        owner: ObjectId('61c474fbf5f1305f4fc84576'),
-        category: category,
-        content: post.body,
-        like: 0,
-        view: 0,
-        createdAt: post.date,
-        updatedAt: post.date,
-        comments: [],
-      },
-      (err) => {
-        if (err) {
-          console.log(err);
-          res.send(err);
-          return;
-        }
-        res.sendStatus(201);
-      }
-    );
-  } else if (board === 'asia') {
-    asiaBoard.create(
-      {
-        title: post.title,
-        owner: ObjectId('61c474fbf5f1305f4fc84576'),
-        category: category,
-        content: post.body,
-        like: 0,
-        view: 0,
-        createdAt: post.date,
-        updatedAt: post.date,
-        comments: [],
-      },
-      (err) => {
-        if (err) {
-          console.log(err);
-          res.send(err);
-          return;
-        }
-        res.sendStatus(201);
-      }
-    );
-  } else if (board === 'africa') {
-    africaBoard.create(
-      {
-        title: post.title,
-        owner: ObjectId('61c474fbf5f1305f4fc84576'),
-        category: category,
-        content: post.body,
-        like: 0,
-        view: 0,
-        createdAt: post.date,
-        updatedAt: post.date,
-        comments: [],
-      },
-      (err) => {
-        if (err) {
-          console.log(err);
-          res.send(err);
-          return;
-        }
-        res.sendStatus(201);
-      }
-    );
-  } else if (board === 'oceania') {
-    oceaniaBoard.create(
-      {
-        title: post.title,
-        owner: ObjectId('61c474fbf5f1305f4fc84576'),
-        category: category,
-        content: post.body,
-        like: 0,
-        view: 0,
-        createdAt: post.date,
-        updatedAt: post.date,
-        comments: [],
-      },
-      (err) => {
-        if (err) {
-          console.log(err);
-          res.send(err);
-          return;
-        }
-        res.sendStatus(201);
-      }
-    );
-  } else if (board === 'europe') {
-    europeBoard.create(
+  } else {
+    model.create(
       {
         title: post.title,
         owner: ObjectId('61c474fbf5f1305f4fc84576'),
@@ -536,52 +385,3 @@ app.get('/api/getPosts/search', (req, res) => {
     res.json(frees);
   });
 });
-
-// app.post('/api/getQna', (req, res) => {
-//   const num = req.body.page;
-//   qna
-//     .find({}, (err, qnas) => {
-//       if (err) {
-//         res.end();
-//         return;
-//       }
-//       res.json(qnas);
-//     })
-//     .skip((Number(num) - 1) * 15)
-//     .limit(Number(num) * 15);
-// });
-// app.post('/api/getFree', (req, res) => {
-//   const num = req.body.page;
-//   free
-//     .find({}, (err, frees) => {
-//       if (err) {
-//         res.end();
-//         return;
-//       }
-//       res.json(frees);
-//     })
-//     .skip((Number(num) - 1) * 15)
-//     .limit((Number(num) + 9) * 15);
-// });
-// app.post('/api/getForUnivs', (req, res) => {
-//   const data = req.body;
-//   if (data.id) {
-//     forUniv.find({ _id: data.id }, (err, images) => {
-//       if (err) {
-//         res.end();
-//         return;
-//       }
-//       res.json(images);
-//     });
-//   } else if (data.title) {
-//     forUniv
-//       .find({ forUniv: data.title }, (err, images) => {
-//         if (err) {
-//           res.end();
-//           return;
-//         }
-//         res.json(images);
-//       })
-//       .select('image forUniv');
-//   }
-// });
