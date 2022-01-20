@@ -24,7 +24,6 @@ export default function ForeCampus() {
     });
     dropdown(data);
     setUniversity(data);
-    console.log(data);
   };
   const dropdown = (input) => {
     if (input) {
@@ -78,7 +77,7 @@ export default function ForeCampus() {
                   key={i}
                   onClick={(e) => inputConcurrentValue(e, univ._id)}
                 >
-                  {univ.forUniv_eng}
+                  {univ.forUniv}
                 </span>
               ))}
             </DropdownMenu>

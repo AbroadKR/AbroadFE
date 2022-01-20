@@ -134,32 +134,27 @@ app.get('/api/getForUnivs', (req, res) => {
     query: { query },
   } = req;
   if (query.length <= 2) {
-    table
-      .find(
-        { forUniv_eng: { $regex: query, $options: 'i' } },
-        (err, tables) => {
-          if (err) {
-            res.end();
-            return;
-          }
-          res.json(tables);
+    forUniv
+      .find({ forUniv: { $regex: query, $options: 'i' } }, (err, tables) => {
+        if (err) {
+          res.end();
+          return;
         }
-      )
-      .select('forUniv_eng')
-      .limit(10);
+        res.json(tables);
+      })
+      .select('forUniv')
+      .limit(10)
+      .sort({ forUniv: 1 });
   } else {
-    table
-      .find(
-        { forUniv_eng: { $regex: query, $options: 'i' } },
-        (err, tables) => {
-          if (err) {
-            res.end();
-            return;
-          }
-          res.json(tables);
+    forUniv
+      .find({ forUniv: { $regex: query, $options: 'i' } }, (err, tables) => {
+        if (err) {
+          res.end();
+          return;
         }
-      )
-      .select('forUniv_eng');
+        res.json(tables);
+      })
+      .select('forUniv');
   }
 });
 
